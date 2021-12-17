@@ -21,6 +21,7 @@ CMakeFiles/TNM084_Procedural_village.dir/noise/noise1234.c.o: \
  ../noise/noise1234.c \
  ../noise/noise1234.h
 CMakeFiles/TNM084_Procedural_village.dir/main.cpp.o: \
+ ../GlutCameraControls.h \
  ../common/GL_utilities.h \
  ../common/LittleOBJLoader.h \
  ../common/LoadTGA.h \

@@ -19,7 +19,7 @@ set(SOURCES main.cpp
         ${COMMON_INCLUDE_DIR}/LittleOBJLoader.c
         ${NOISE_INCLUDE_DIR}/noise1234.h
         ${NOISE_INCLUDE_DIR}/noise1234.c
-        )
+        GlutCameraControls.h)
 
 find_package(OpenGL REQUIRED)
 
