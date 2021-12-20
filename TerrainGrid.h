@@ -4,10 +4,12 @@
 
 #ifndef TNM084_PROCEDURAL_VILLAGE_TERRAINGRID_H
 #define TNM084_PROCEDURAL_VILLAGE_TERRAINGRID_H
+
 #include "common/VectorUtils3.h"
 #include "noise/noise1234.h"
 #include "common/LittleOBJLoader.h"
 #include "common/GL_utilities.h"
+#include <tuple>
 
 
 class TerrainGrid {
@@ -27,6 +29,12 @@ private:
     vec3 normals[kTerrainSize * kTerrainSize];
     vec3 colors[kTerrainSize * kTerrainSize];
     GLuint indices[(kTerrainSize - 1) * (kTerrainSize - 1) * 3 * 2];
+
+    std::pair<int ,int> townSquareCenterPoint =
+            std::pair<int, int>(kTerrainSize/2, kTerrainSize/2);
+
+    bool IsInTownSquare(int x, int z);
+    bool IsOnRoad(int x, int z);
 
 public:
     TerrainGrid();

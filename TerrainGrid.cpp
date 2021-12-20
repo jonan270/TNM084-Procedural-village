@@ -18,10 +18,17 @@ void TerrainGrid::MakeTerrain() {
             texCoords[ix] = SetVec2(x, z);
             //normals[ix] = SetVec3(0,1,0);
 
-            vec3 terrainColor = (
-                    z >= kTerrainSize/2 - roadIndexWidth &&
-                    z <= kTerrainSize/2 + roadIndexWidth) ?
-                    roadColor : defaultColor;
+            vec3 terrainColor = defaultColor;
+
+            // Town center placed in center of grid
+            if( (z >= kTerrainSize/2 - 2 * roadIndexWidth && z <= kTerrainSize/2 + 2 * roadIndexWidth) &&
+                (x >= kTerrainSize/2 - 2 * roadIndexWidth && x <= kTerrainSize/2 + 2 * roadIndexWidth) ) {
+                terrainColor = roadColor;
+            }
+            else if( z >= kTerrainSize/2 - roadIndexWidth &&
+                     z <= kTerrainSize/2 + roadIndexWidth) {
+                terrainColor = roadColor;
+            }
 
             colors[ix] = terrainColor;
         }
@@ -72,4 +79,16 @@ Model *TerrainGrid::GetModelPtr() {
 
     printError("LoadDataToModel");
     return model;
+}
+
+bool TerrainGrid::IsInTownSquare(int x, int z) {
+    return (x >= townSquareCenterPoint.first - 2 * roadIndexWidth &&
+            x <= townSquareCenterPoint.first + 2 * roadIndexWidth &&
+            z >= townSquareCenterPoint.second - 2 * roadIndexWidth &&
+            z <= townSquareCenterPoint.second + 2 * roadIndexWidth);
+}
+
+bool TerrainGrid::IsOnRoad(int x, int z) {
+    return (z >= townSquareCenterPoint.second - roadIndexWidth &&
+            z <= townSquareCenterPoint.second + roadIndexWidth);
 }
