@@ -15,6 +15,8 @@ noise/noise1234.h
 /Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/noise/noise1234.h
 common/LittleOBJLoader.h
 /Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/LittleOBJLoader.h
+common/GL_utilities.h
+/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/GL_utilities.h
 
 /Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/GL_utilities.h
 OpenGL/gl3.h

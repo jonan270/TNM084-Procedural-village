@@ -7,16 +7,18 @@
 #include "common/VectorUtils3.h"
 #include "noise/noise1234.h"
 #include "common/LittleOBJLoader.h"
+#include "common/GL_utilities.h"
 
 
 class TerrainGrid {
 private:
-    constexpr static int kTerrainSize = 32;
+    constexpr static int kTerrainSize = 128;
     constexpr static float kPolySize = 1.f;
 
     vec3 vertices[kTerrainSize * kTerrainSize];
     vec2 texCoords[kTerrainSize * kTerrainSize];
     vec3 normals[kTerrainSize * kTerrainSize];
+    vec3 colors[kTerrainSize * kTerrainSize];
     GLuint indices[(kTerrainSize - 1) * (kTerrainSize - 1) * 3 * 2];
 
 public:

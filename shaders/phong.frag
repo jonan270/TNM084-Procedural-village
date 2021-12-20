@@ -9,6 +9,8 @@ in vec3 exSurface; // Phong (specular)
 in vec2 exTexCoord;
 in float vertexHeight;
 
+in vec3 color;
+
 void main(void)
 {
 	const vec3 light = vec3(0.58, 0.58, 0.58); // Given in VIEW coordinates! You will usually give light in world coordinates.
@@ -28,7 +30,9 @@ void main(void)
 	shade = 0.7*diffuse + 1.0*specular + 0.3;
 
 	//vec4 color = vec4(exTexCoord.x, exTexCoord.y, exTexCoord.y, 1.0);
-	vec4 color = vec4(vertexHeight*5, vertexHeight*2 + 0.2, 0.5, 1);
+	//vec4 color = vec4(vertexHeight*5, vertexHeight*2 + 0.2, 0.5, 1);
+	//vec4 color = vec4(0.24, 0.56, 0.44, 1);
+	vec4 cl = vec4(color.r, color.g, color.b, 1.0f);
 
-	outColor = vec4(shade, shade, shade, 1.0) * color;
+	outColor = vec4(shade, shade, shade, 1.0) * cl;
 }

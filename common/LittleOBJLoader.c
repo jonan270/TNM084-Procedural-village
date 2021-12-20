@@ -1094,7 +1094,9 @@ static void ReportRerror(const char *caller, const char *name)
 // and to get attribute locations. This is clearly not optimal, but the
 // goal is stability.
 
-void DrawModel(Model *m, GLuint program, const char* vertexVariableName, const char* normalVariableName, const char* texCoordVariableName)
+void DrawModel(Model *m, GLuint program, const char* vertexVariableName,
+               const char* normalVariableName, const char* texCoordVariableName,
+               const char* colorVariableName)
 {
 	if (m != NULL)
 	{
@@ -1137,6 +1139,19 @@ void DrawModel(Model *m, GLuint program, const char* vertexVariableName, const c
 			else
 				ReportRerror("DrawModel", texCoordVariableName);
 		}
+
+        if (colorVariableName!=NULL)
+        {
+            loc = glGetAttribLocation(program, colorVariableName);
+            if (loc >= 0)
+            {
+                glBindBuffer(GL_ARRAY_BUFFER, m->cb);
+                glVertexAttribPointer(loc, 3, GL_FLOAT, GL_FALSE, 0, 0);
+                glEnableVertexAttribArray(loc);
+            }
+            else
+                ReportRerror("DrawModel", colorVariableName);
+        }
 
 		glDrawElements(GL_TRIANGLES, m->numIndices, GL_UNSIGNED_INT, 0L);
 	}
@@ -1210,6 +1225,12 @@ void ReloadModelData(Model *m)
 		glBindBuffer(GL_ARRAY_BUFFER, m->tb);
 		glBufferData(GL_ARRAY_BUFFER, m->numVertices*2*sizeof(GLfloat), m->texCoordArray, GL_STATIC_DRAW);
 	}
+
+    if (m->colorArray != NULL)
+    {
+        glBindBuffer(GL_ARRAY_BUFFER, m->cb);
+        glBufferData(GL_ARRAY_BUFFER, m->numVertices*3*sizeof(GLfloat), m->colorArray, GL_STATIC_DRAW);
+    }
 	
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m->ib);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, m->numIndices*sizeof(GLuint), m->indexArray, GL_STATIC_DRAW);
@@ -1221,8 +1242,12 @@ static void GenModelBuffers(Model *m)
 	glGenBuffers(1, &m->vb);
 	glGenBuffers(1, &m->ib);
 	glGenBuffers(1, &m->nb);
+
 	if (m->texCoordArray != NULL)
 		glGenBuffers(1, &m->tb);
+
+    if(m->colorArray != NULL)
+        glGenBuffers(1, &m->cb);
 
 	ReloadModelData(m);
 }
@@ -1287,6 +1312,7 @@ Model* LoadDataToModel(
 	m->indexArray = indices;
 	m->numVertices = numVert;
 	m->numIndices = numInd;
+    m->colorArray = colors; // Added
 	
 	GenModelBuffers(m);
 	
@@ -1314,6 +1340,7 @@ void DisposeModel(Model *m)
 		glDeleteBuffers(1, &m->ib);
 		glDeleteBuffers(1, &m->nb);
 		glDeleteBuffers(1, &m->tb);
+        glDeleteBuffers(1, &m->cb);
 		glDeleteVertexArrays(1, &m->vao);
 		
 		if (m->material != NULL)

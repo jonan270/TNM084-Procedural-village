@@ -49,7 +49,7 @@ typedef struct
   
   // Space for saving VBO and VAO IDs
   GLuint vao; // VAO
-  GLuint vb, ib, nb, tb; // VBOs
+  GLuint vb, ib, nb, tb, cb; // VBOs
   
   Mtl *material;
 } Model;
@@ -60,7 +60,7 @@ Model* LoadModel(const char* name); // Load OBJ as single Model
 Model** LoadModelSet(const char* name);  // Multi-part OBJ!
 
 // Drawing models
-void DrawModel(Model *m, GLuint program, const char* vertexVariableName, const char* normalVariableName, const char* texCoordVariableName);
+void DrawModel(Model *m, GLuint program, const char* vertexVariableName, const char* normalVariableName, const char* texCoordVariableName, const char* colorVariableName);
 void DrawWireframeModel(Model *m, GLuint program, const char* vertexVariableName, const char* normalVariableName, const char* texCoordVariableName);
 
 // Utility functions that you may need if you want to modify the model.

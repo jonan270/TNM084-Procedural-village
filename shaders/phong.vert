@@ -2,10 +2,13 @@
 
 in  vec3 inPosition;
 in  vec3 inNormal;
+in vec3 inColor;
 in vec2 inTexCoord;
 out vec3 exNormal; // Phong
 out vec3 exSurface; // Phong (specular)
 out vec2 exTexCoord;
+
+out vec3 color;
 out float vertexHeight;
 
 uniform mat4 modelviewMatrix;
@@ -20,6 +23,6 @@ void main(void)
 	exTexCoord = inTexCoord;
 
 	vertexHeight = inPosition.y;
-
+	color = inColor;
 	gl_Position = projectionMatrix * modelviewMatrix * vec4(inPosition, 1.0); // This should include projection
 }

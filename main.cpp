@@ -47,13 +47,9 @@ void init() {
     TerrainGrid grid{};
     terrainModel = grid.GetModelPtr();
 
-    printError("LoadDataToModel");
-
     // Important! The shader we upload to must be active!
     glUseProgram(phongShader);
     glUniformMatrix4fv(glGetUniformLocation(phongShader, "projectionMatrix"), 1, GL_TRUE, projectionMatrix.m);
-
-    //glUniform1i(glGetUniformLocation(phongShader, "tex"), 0); // Texture unit 0
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -68,7 +64,7 @@ void display(void) {
     glUseProgram(phongShader);
     mat4 m = glutCameraControls.UpdateWorldMatrix();
     glUniformMatrix4fv(glGetUniformLocation(phongShader, "modelviewMatrix"), 1, GL_TRUE, m.m);
-    DrawModel(terrainModel, phongShader, "inPosition", "inNormal", "inTexCoord");
+    DrawModel(terrainModel, phongShader, "inPosition", "inNormal", "inTexCoord", "inColor");
 
     printError("display");
 

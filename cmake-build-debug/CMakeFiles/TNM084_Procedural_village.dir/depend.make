@@ -23,6 +23,7 @@ CMakeFiles/TNM084_Procedural_village.dir/noise/noise1234.c.o: \
 CMakeFiles/TNM084_Procedural_village.dir/TerrainGrid.cpp.o: \
  ../TerrainGrid.cpp \
  ../TerrainGrid.h \
+ ../common/GL_utilities.h \
  ../common/LittleOBJLoader.h \
  ../common/VectorUtils3.h \
  ../noise/noise1234.h
