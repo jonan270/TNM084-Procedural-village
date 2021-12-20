@@ -129,6 +129,30 @@ TNM084_Procedural_village/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TNM084_Procedural_village.dir/build.make CMakeFiles/TNM084_Procedural_village.dir/build
 .PHONY : TNM084_Procedural_village/fast
 
+TerrainGrid.o: TerrainGrid.cpp.o
+.PHONY : TerrainGrid.o
+
+# target to build an object file
+TerrainGrid.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TNM084_Procedural_village.dir/build.make CMakeFiles/TNM084_Procedural_village.dir/TerrainGrid.cpp.o
+.PHONY : TerrainGrid.cpp.o
+
+TerrainGrid.i: TerrainGrid.cpp.i
+.PHONY : TerrainGrid.i
+
+# target to preprocess a source file
+TerrainGrid.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TNM084_Procedural_village.dir/build.make CMakeFiles/TNM084_Procedural_village.dir/TerrainGrid.cpp.i
+.PHONY : TerrainGrid.cpp.i
+
+TerrainGrid.s: TerrainGrid.cpp.s
+.PHONY : TerrainGrid.s
+
+# target to generate assembly for a file
+TerrainGrid.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TNM084_Procedural_village.dir/build.make CMakeFiles/TNM084_Procedural_village.dir/TerrainGrid.cpp.s
+.PHONY : TerrainGrid.cpp.s
+
 common/GL_utilities.o: common/GL_utilities.c.o
 .PHONY : common/GL_utilities.o
 
@@ -306,6 +330,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... TNM084_Procedural_village"
+	@echo "... TerrainGrid.o"
+	@echo "... TerrainGrid.i"
+	@echo "... TerrainGrid.s"
 	@echo "... common/GL_utilities.o"
 	@echo "... common/GL_utilities.i"
 	@echo "... common/GL_utilities.s"

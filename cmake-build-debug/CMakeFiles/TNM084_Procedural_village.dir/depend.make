@@ -20,11 +20,17 @@ CMakeFiles/TNM084_Procedural_village.dir/common/VectorUtils3.c.o: \
 CMakeFiles/TNM084_Procedural_village.dir/noise/noise1234.c.o: \
  ../noise/noise1234.c \
  ../noise/noise1234.h
+CMakeFiles/TNM084_Procedural_village.dir/TerrainGrid.cpp.o: \
+ ../TerrainGrid.cpp \
+ ../TerrainGrid.h \
+ ../common/LittleOBJLoader.h \
+ ../common/VectorUtils3.h \
+ ../noise/noise1234.h
 CMakeFiles/TNM084_Procedural_village.dir/main.cpp.o: \
  ../GlutCameraControls.h \
+ ../TerrainGrid.h \
  ../common/GL_utilities.h \
  ../common/LittleOBJLoader.h \
- ../common/LoadTGA.h \
  ../common/Mac/MicroGlut.h \
  ../common/VectorUtils3.h \
  ../main.cpp \
