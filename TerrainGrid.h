@@ -13,7 +13,14 @@
 class TerrainGrid {
 private:
     constexpr static int kTerrainSize = 128;
-    constexpr static float kPolySize = 1.f;
+    constexpr static float kPolySize = 0.1f;
+    constexpr static int roadIndexWidth = 2;
+
+    // Default color to be used for grass/vegetation
+    const vec3 defaultColor = vec3{ 0.24, 0.56, 0.44 };
+
+    // Color used to represent roads
+    const vec3 roadColor = vec3{ 0.67, 0.64, 0.5 };
 
     vec3 vertices[kTerrainSize * kTerrainSize];
     vec2 texCoords[kTerrainSize * kTerrainSize];

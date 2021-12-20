@@ -58,7 +58,7 @@ void init() {
 
 }
 
-void display(void) {
+void display() {
 
     // Floor
     glUseProgram(phongShader);
@@ -78,7 +78,7 @@ int main(int argc, char *argv[]) {
     glutInit(&argc, argv);
     glutInitContextVersion(3, 2);
     glutInitWindowSize(RES, RES);
-    glutCreateWindow("Lab 3b");
+    glutCreateWindow("Procedural village");
     glutRepeatingTimer(20);
     glutDisplayFunc(display);
     glutKeyboardFunc(keys);

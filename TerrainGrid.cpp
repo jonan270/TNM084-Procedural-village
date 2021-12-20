@@ -9,21 +9,27 @@ TerrainGrid::TerrainGrid() {
 }
 
 void TerrainGrid::MakeTerrain() {
-    for (int x = 0; x < kTerrainSize; x++)
+    for (int x = 0; x < kTerrainSize; x++) {
         for (int z = 0; z < kTerrainSize; z++) {
             int ix = z * kTerrainSize + x;
-            float y = 0.1f * noise2(x + 0.23, z + 0.22);
+            float y = 0.05f * noise2(0.1f*x + 0.23, 0.1f*z + 0.22);
 
             vertices[ix] = SetVec3(x * kPolySize, y, z * kPolySize);
             texCoords[ix] = SetVec2(x, z);
             //normals[ix] = SetVec3(0,1,0);
 
-            colors[ix] = SetVec3(0.24, 0.56, 0.44);
+            vec3 terrainColor = (
+                    z >= kTerrainSize/2 - roadIndexWidth &&
+                    z <= kTerrainSize/2 + roadIndexWidth) ?
+                    roadColor : defaultColor;
+
+            colors[ix] = terrainColor;
         }
+    }
 
     // Make indices
     // You don't need to change this.
-    for (int x = 0; x < kTerrainSize - 1; x++)
+    for (int x = 0; x < kTerrainSize - 1; x++) {
         for (int z = 0; z < kTerrainSize - 1; z++) {
             // Quad count
             int q = (z * (kTerrainSize - 1)) + (x);
@@ -36,9 +42,10 @@ void TerrainGrid::MakeTerrain() {
             indices[q * 2 * 3 + 4] = x + 1 + (z + 1) * kTerrainSize;
             indices[q * 2 * 3 + 5] = x + (z + 1) * kTerrainSize;
         }
+    }
 
     // Make normal vectors
-    for (int x = 0; x < kTerrainSize; x++)
+    for (int x = 0; x < kTerrainSize; x++) {
         for (int z = 0; z < kTerrainSize; z++) {
             //normals[z * kTerrainSize + x] = SetVec3(0,1,0);
 
@@ -53,6 +60,7 @@ void TerrainGrid::MakeTerrain() {
             vec3 normal = CrossProduct(v1, v2);
             normals[z * kTerrainSize + x] = normal;
         }
+    }
 }
 
 Model *TerrainGrid::GetModelPtr() {
@@ -61,6 +69,7 @@ Model *TerrainGrid::GetModelPtr() {
             texCoords, colors,
             indices, kTerrainSize * kTerrainSize,
             (kTerrainSize - 1) * (kTerrainSize - 1) * 2 * 3);
+
     printError("LoadDataToModel");
     return model;
 }
