@@ -30,7 +30,7 @@ constexpr int RES = 1080;
 
 void init() {
     // GL inits
-    glClearColor(0.2, 0.2, 0.5, 0);
+    glClearColor(0.37, 0.5, 0.6, 1);
     glEnable(GL_DEPTH_TEST);
     glDisable(GL_CULL_FACE);
     glDisable(GL_BLEND);
