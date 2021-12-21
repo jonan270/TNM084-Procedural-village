@@ -16,7 +16,8 @@
 #include "TerrainGrid.h"
 
 mat4 projectionMatrix;
-Model *terrainModel;
+Model*terrainModel;
+Model* wellPtr;
 
 // Reference to shader programs
 GLuint phongShader;
@@ -47,6 +48,8 @@ void init() {
     TerrainGrid grid{};
     terrainModel = grid.GetModelPtr();
 
+    wellPtr = LoadModel((char *)"../obj-models/well.obj");
+
     // Important! The shader we upload to must be active!
     glUseProgram(phongShader);
     glUniformMatrix4fv(glGetUniformLocation(phongShader, "projectionMatrix"), 1, GL_TRUE, projectionMatrix.m);
@@ -64,7 +67,9 @@ void display() {
     glUseProgram(phongShader);
     mat4 m = glutCameraControls.UpdateWorldMatrix();
     glUniformMatrix4fv(glGetUniformLocation(phongShader, "modelviewMatrix"), 1, GL_TRUE, m.m);
+
     DrawModel(terrainModel, phongShader, "inPosition", "inNormal", "inTexCoord", "inColor");
+    DrawModel(wellPtr, phongShader, (char *)"inPosition", NULL, (char *)"inTexCoord", NULL);
 
     printError("display");
 
