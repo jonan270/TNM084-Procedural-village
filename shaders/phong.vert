@@ -6,7 +6,7 @@ in vec3 inColor;
 in vec2 inTexCoord;
 out vec3 exNormal; // Phong
 out vec3 exSurface; // Phong (specular)
-//out vec2 exTexCoord;
+out vec2 exTexCoord;
 
 out vec3 color;
 
@@ -19,7 +19,7 @@ void main(void)
 
 	exSurface = vec3(modelviewMatrix * vec4(inPosition, 1.0)); // Don't include projection here - we only want to go to view coordinates
 
-	//exTexCoord = inTexCoord;
+	exTexCoord = inTexCoord;
 
 	color = inColor;
 	gl_Position = projectionMatrix * modelviewMatrix * vec4(inPosition, 1.0); // This should include projection

@@ -717,7 +717,7 @@ static void GenerateNormals(Mesh* mesh)
 	}
 }
 
-static Model* GenerateModelWithColor(Mesh* mesh, vec3 modelColor)
+Model* GenerateModelWithColor(Mesh* mesh, vec3 modelColor)
 {
     // Convert from Mesh format (multiple index lists) to Model format
     // (one index list) by generating a new set of vertices/indices

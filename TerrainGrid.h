@@ -13,9 +13,18 @@
 
 
 class TerrainGrid {
-private:
+
+public:
     constexpr static int kTerrainSize = 128;
     constexpr static float kPolySize = 0.1f;
+    TerrainGrid();
+
+    // Make basic terrain.
+    // Based on lab 3b
+    void MakeTerrain();
+
+    Model* GetModelPtr();
+private:
     constexpr static int roadIndexWidth = 2;
 
     // Default color to be used for grass/vegetation
@@ -36,14 +45,6 @@ private:
     bool IsInTownSquare(int x, int z);
     bool IsOnRoad(int x, int z);
 
-public:
-    TerrainGrid();
-
-    // Make basic terrain.
-    // Based on lab 3b
-    void MakeTerrain();
-
-    Model* GetModelPtr();
 };
 
 

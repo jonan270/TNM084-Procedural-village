@@ -12,6 +12,7 @@
 #include "common/VectorUtils3.h"
 #include "common/LittleOBJLoader.h"
 
+#include <iostream>
 #include "GlutCameraControls.h"
 #include "TerrainGrid.h"
 
@@ -22,12 +23,11 @@ Model* wellPtr;
 // Reference to shader programs
 GLuint phongShader;
 
-#define kTerrainSize 32
-#define kPolySize 1.0
-
-GlutCameraControls glutCameraControls = GlutCameraControls(kTerrainSize, kPolySize);
+GlutCameraControls glutCameraControls = GlutCameraControls(TerrainGrid::kTerrainSize, TerrainGrid::kPolySize);
 
 constexpr int RES = 1080;
+
+void MoveModel(Model* m, float x, float y, float z);
 
 void init() {
     // GL inits
@@ -48,7 +48,12 @@ void init() {
     TerrainGrid grid{};
     terrainModel = grid.GetModelPtr();
 
-    wellPtr = LoadModel((char *)"../obj-models/well.obj", SetVec3(0.5, 0.1, 0.1));
+    wellPtr = LoadModel((char *)"../obj-models/well.obj", SetVec3(0.427, 0.317, 0.235));
+    ScaleModel(wellPtr, 0.1, 0.1, 0.1);
+    MoveModel(wellPtr, TerrainGrid::kPolySize*TerrainGrid::kTerrainSize/2.0, 0,
+              TerrainGrid::kPolySize*TerrainGrid::kTerrainSize/2.0);
+
+    ReloadModelData(wellPtr);
     //wellPtr->material = terrainModel->material;
 
     // Important! The shader we upload to must be active!
@@ -90,4 +95,14 @@ int main(int argc, char *argv[]) {
     glutKeyboardFunc(keys);
     init();
     glutMainLoop();
+}
+
+void MoveModel(Model* m, float x, float y, float z) {
+    long i;
+    for (i = 0; i < m->numVertices; i++)
+    {
+        m->vertexArray[i].x += x;
+        m->vertexArray[i].y += y;
+        m->vertexArray[i].z += z;
+    }
 }
