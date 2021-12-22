@@ -56,7 +56,7 @@ typedef struct
 
 // Basic model loading
 #define LoadModelPlus LoadModel
-Model* LoadModel(const char* name); // Load OBJ as single Model
+Model* LoadModel(const char* name, vec3 modelColor); // Load OBJ as single Model
 Model** LoadModelSet(const char* name);  // Multi-part OBJ!
 
 // Drawing models

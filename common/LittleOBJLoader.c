@@ -717,6 +717,138 @@ static void GenerateNormals(Mesh* mesh)
 	}
 }
 
+static Model* GenerateModelWithColor(Mesh* mesh, vec3 modelColor)
+{
+    // Convert from Mesh format (multiple index lists) to Model format
+    // (one index list) by generating a new set of vertices/indices
+    // and where new vertices have been created whenever necessary
+
+    typedef struct
+    {
+        int positionIndex;
+        int normalIndex;
+        int texCoordIndex;
+        int newIndex;
+    } IndexTriplet;
+
+    int hashGap = 6;
+
+    int indexHashMapSize = (mesh->vertexCount * hashGap + mesh->coordCount);
+
+    IndexTriplet* indexHashMap = (IndexTriplet *)malloc(sizeof(IndexTriplet)
+                                                        * indexHashMapSize);
+
+    int numNewVertices = 0;
+    int index;
+
+    int maxValue = 0;
+
+    Model* model = (Model *)malloc(sizeof(Model));
+    memset(model, 0, sizeof(Model));
+
+    model->indexArray = (GLuint *)malloc(sizeof(GLuint) * mesh->coordCount);
+    model->numIndices = mesh->coordCount;
+
+    memset(indexHashMap, 0xff, sizeof(IndexTriplet) * indexHashMapSize);
+
+    for (index = 0; index < mesh->coordCount; index++)
+    {
+        IndexTriplet currentVertex = { -1, -1, -1, -1 };
+        int insertPos = 0;
+        if (mesh->coordIndex)
+            currentVertex.positionIndex = mesh->coordIndex[index];
+        if (mesh->normalsIndex)
+            currentVertex.normalIndex = mesh->normalsIndex[index];
+        if (mesh->textureIndex)
+            currentVertex.texCoordIndex = mesh->textureIndex[index];
+
+        if (maxValue < currentVertex.texCoordIndex)
+            maxValue = currentVertex.texCoordIndex;
+
+        if (currentVertex.positionIndex >= 0)
+            insertPos = currentVertex.positionIndex * hashGap;
+
+        while (1)
+        {
+            if (indexHashMap[insertPos].newIndex == -1)
+            {
+                currentVertex.newIndex = numNewVertices++;
+                indexHashMap[insertPos] = currentVertex;
+                break;
+            }
+            else if (indexHashMap[insertPos].positionIndex
+                     == currentVertex.positionIndex
+                     && indexHashMap[insertPos].normalIndex
+                        == currentVertex.normalIndex
+                     && indexHashMap[insertPos].texCoordIndex
+                        == currentVertex.texCoordIndex)
+            {
+                currentVertex.newIndex = indexHashMap[insertPos].newIndex;
+                break;
+            }
+            else
+                insertPos++;
+        }
+
+        model->indexArray[index] = currentVertex.newIndex;
+    }
+
+    if (mesh->vertices)
+        model->vertexArray = (vec3 *)malloc(sizeof(vec3) * numNewVertices);
+    if (mesh->vertexNormals)
+        model->normalArray = (vec3 *)malloc(sizeof(vec3) * numNewVertices);
+    if (mesh->textureCoords)
+        model->texCoordArray = (vec2 *)malloc(sizeof(vec2) * numNewVertices);
+
+    // Added to support colors
+    model->colorArray = (vec3 *)malloc(sizeof(vec3) * numNewVertices);
+    model->numVertices = numNewVertices;
+
+    for (index = 0; index < indexHashMapSize; index++)
+    {
+        if (indexHashMap[index].newIndex != -1)
+        {
+            model->colorArray[indexHashMap[index].newIndex] = modelColor;
+            if (mesh->vertices)
+                model->vertexArray[indexHashMap[index].newIndex] = mesh->vertices[indexHashMap[index].positionIndex];
+            if (mesh->vertexNormals)
+            {
+                model->normalArray[indexHashMap[index].newIndex] = mesh->vertexNormals[indexHashMap[index].normalIndex];
+            }
+            if (mesh->textureCoords)
+                model->texCoordArray[indexHashMap[index].newIndex] = mesh->textureCoords[indexHashMap[index].texCoordIndex];
+        }
+    }
+
+    free(indexHashMap);
+
+    // If there is a material set, match materials to parts
+    if (gMaterials != NULL)
+        if (mesh->materialName != NULL)
+            for (int ii = 0; gMaterials[ii] != NULL; ii++)
+            {
+                Mtl *mtl = gMaterials[ii];
+                if (strcmp(mesh->materialName, mtl->newmtl) == 0)
+                {
+                    // Copy mtl to model!
+                    model->material = (Mtl *)malloc(sizeof(Mtl));
+                    memcpy(model->material, mtl, sizeof(Mtl));
+
+                    strcpy(model->material->map_Ka, mtl->map_Ka);
+                    strcpy(model->material->map_Kd, mtl->map_Kd);
+                    strcpy(model->material->map_Ks, mtl->map_Ks);
+                    strcpy(model->material->map_Ke, mtl->map_Ke);
+                    strcpy(model->material->map_Ns, mtl->map_Ns);
+                    strcpy(model->material->map_d, mtl->map_d);
+                    strcpy(model->material->map_bump, mtl->map_bump);
+                }
+            }
+
+    return model;
+}
+
+
+
 static Model* GenerateModel(Mesh* mesh)
 {
 	// Convert from Mesh format (multiple index lists) to Model format
@@ -799,7 +931,7 @@ static Model* GenerateModel(Mesh* mesh)
 		model->normalArray = (vec3 *)malloc(sizeof(vec3) * numNewVertices);
 	if (mesh->textureCoords)
 		model->texCoordArray = (vec2 *)malloc(sizeof(vec2) * numNewVertices);
-	
+
 	model->numVertices = numNewVertices;
 
 	for (index = 0; index < indexHashMapSize; index++)
@@ -1253,13 +1385,13 @@ static void GenModelBuffers(Model *m)
 }
 
 // For simple models
-Model* LoadModel(const char* name)
+Model* LoadModel(const char* name, vec3 modelColor)
 {
 	Model* model = NULL;
 	Mesh* mesh = LoadOBJ(name);
 	DecomposeToTriangles(mesh);
 	GenerateNormals(mesh);
-	model = GenerateModel(mesh);
+	model = GenerateModelWithColor(mesh, modelColor);
 	DisposeMesh(mesh);
 
 	GenModelBuffers(model);	
@@ -1315,7 +1447,7 @@ Model* LoadDataToModel(
     m->colorArray = colors; // Added
 	
 	GenModelBuffers(m);
-	
+
 	return m;
 }
 
