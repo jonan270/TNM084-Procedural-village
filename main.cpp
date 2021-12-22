@@ -48,7 +48,8 @@ void init() {
     TerrainGrid grid{};
     terrainModel = grid.GetModelPtr();
 
-    wellPtr = LoadModel((char *)"../obj-models/well.obj");
+    wellPtr = LoadModel((char *)"../obj-models/well.obj", SetVec3(0.5, 0.1, 0.1));
+    //wellPtr->material = terrainModel->material;
 
     // Important! The shader we upload to must be active!
     glUseProgram(phongShader);
@@ -69,7 +70,7 @@ void display() {
     glUniformMatrix4fv(glGetUniformLocation(phongShader, "modelviewMatrix"), 1, GL_TRUE, m.m);
 
     DrawModel(terrainModel, phongShader, "inPosition", "inNormal", "inTexCoord", "inColor");
-    DrawModel(wellPtr, phongShader, (char *)"inPosition", NULL, (char *)"inTexCoord", NULL);
+    DrawModel(wellPtr, phongShader, (char *)"inPosition", "inNormal", (char *)"inTexCoord", "inColor");
 
     printError("display");
 
