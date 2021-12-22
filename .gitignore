@@ -31,4 +31,4 @@
 *.app
 
 *.DS_Store # Because mac
-cmake-build-debug/ # Ignore build files
+/cmake-build-debug/ # Ignore build files
