@@ -63,11 +63,11 @@ common/GL_utilities.h
 /Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/GL_utilities.h
 common/Mac/MicroGlut.h
 /Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/Mac/MicroGlut.h
-common/VectorUtils3.h
-/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/VectorUtils3.h
 common/LittleOBJLoader.h
 /Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/LittleOBJLoader.h
 iostream
+-
+vector
 -
 GlutCameraControls.h
 /Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/GlutCameraControls.h

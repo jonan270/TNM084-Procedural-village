@@ -1,4 +1,6 @@
-// The basic project setup is based on lab3b from the course
+// Jonathan Andersson - jonan270
+// The basic project setup is based on lab3b from the course.
+// Note that I have made som minor changes to LittleObjLoader
 
 #ifdef __APPLE__
 
@@ -9,16 +11,17 @@
 
 #include "common/GL_utilities.h"
 #include "common/Mac/MicroGlut.h"
-#include "common/VectorUtils3.h"
 #include "common/LittleOBJLoader.h"
 
 #include <iostream>
+#include <vector>
 #include "GlutCameraControls.h"
 #include "TerrainGrid.h"
 
 mat4 projectionMatrix;
-Model*terrainModel;
-Model* wellPtr;
+std::vector<Model*> models;
+//Model*terrainModel;
+//Model* wellPtr;
 
 // Reference to shader programs
 GLuint phongShader;
@@ -27,7 +30,7 @@ GlutCameraControls glutCameraControls = GlutCameraControls(TerrainGrid::kTerrain
 
 constexpr int RES = 1080;
 
-void MoveModel(Model* m, float x, float y, float z);
+void TranslateModel(Model* m, float x, float y, float z);
 
 void init() {
     // GL inits
@@ -46,15 +49,17 @@ void init() {
 
     // Upload geometry to the GPU:
     TerrainGrid grid{};
-    terrainModel = grid.GetModelPtr();
+    Model* terrainModel = grid.GetModelPtr();
 
-    wellPtr = LoadModel((char *)"../obj-models/well.obj", SetVec3(0.427, 0.317, 0.235));
-    ScaleModel(wellPtr, 0.1, 0.1, 0.1);
-    MoveModel(wellPtr, TerrainGrid::kPolySize*TerrainGrid::kTerrainSize/2.0, 0,
-              TerrainGrid::kPolySize*TerrainGrid::kTerrainSize/2.0);
+    Model* wellModel = LoadModel((char *)"../obj-models/well.obj", SetVec3(0.427, 0.317, 0.235));
 
-    ReloadModelData(wellPtr);
-    //wellPtr->material = terrainModel->material;
+    ScaleModel(wellModel, 0.1, 0.1, 0.1);
+    TranslateModel(wellModel, TerrainGrid::kPolySize * TerrainGrid::kTerrainSize / 2.0, 0,
+                   TerrainGrid::kPolySize * TerrainGrid::kTerrainSize / 2.0);
+
+    //ReloadModelData(wellModel);
+    models.push_back(terrainModel);
+    models.push_back(wellModel);
 
     // Important! The shader we upload to must be active!
     glUseProgram(phongShader);
@@ -72,18 +77,24 @@ void display() {
     // Floor
     glUseProgram(phongShader);
     mat4 m = glutCameraControls.UpdateWorldMatrix();
-    glUniformMatrix4fv(glGetUniformLocation(phongShader, "modelviewMatrix"), 1, GL_TRUE, m.m);
 
-    DrawModel(terrainModel, phongShader, "inPosition", "inNormal", "inTexCoord", "inColor");
-    DrawModel(wellPtr, phongShader, (char *)"inPosition", "inNormal", (char *)"inTexCoord", "inColor");
+    glUniformMatrix4fv(
+            glGetUniformLocation(phongShader, "modelviewMatrix"),
+            1, GL_TRUE, m.m);
+
+    for(Model* model : models)
+        DrawModel(model, phongShader,
+                  "inPosition",
+                  "inNormal",
+                  "inTexCoord",
+                  "inColor");
 
     printError("display");
 
     glutSwapBuffers();
 }
 
-void keys(unsigned char key, int x, int y) {
-}
+void keys(unsigned char key, int x, int y) {}
 
 int main(int argc, char *argv[]) {
     glutInit(&argc, argv);
@@ -97,12 +108,13 @@ int main(int argc, char *argv[]) {
     glutMainLoop();
 }
 
-void MoveModel(Model* m, float x, float y, float z) {
-    long i;
-    for (i = 0; i < m->numVertices; i++)
-    {
+// Translate the model m along coordinate variables
+// x, y and z.
+void TranslateModel(Model* m, float x, float y, float z) {
+    for (long int i = 0; i < m->numVertices; i++) {
         m->vertexArray[i].x += x;
         m->vertexArray[i].y += y;
         m->vertexArray[i].z += z;
     }
+    ReloadModelData(m);
 }
