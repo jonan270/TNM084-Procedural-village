@@ -61,10 +61,10 @@ void TerrainGrid::MakeTerrain() {
         for (int z = 0; z < kTerrainSize; z++) {
             //normals[z * kTerrainSize + x] = SetVec3(0,1,0);
 
-            vec3 p1 = SetVec3(x + 1, GetYNoiseValue(x, z), z + 1);
-            vec3 p2 = SetVec3(x + 1, GetYNoiseValue(x, z), z - 1);
-            vec3 p3 = SetVec3(x - 1, GetYNoiseValue(x, z), z - 1);
-            vec3 p4 = SetVec3(x - 1, GetYNoiseValue(x, z), z + 1);
+            vec3 p1 = SetVec3(x + 1, GetYNoiseValue(x + 1, z + 1), z + 1);
+            vec3 p2 = SetVec3(x + 1, GetYNoiseValue(x + 1, z - 1), z - 1);
+            vec3 p3 = SetVec3(x - 1, GetYNoiseValue(x - 1, z - 1), z - 1);
+            vec3 p4 = SetVec3(x - 1, GetYNoiseValue(x - 1, z + 1), z + 1);
 
             vec3 v1 = VectorSub(p1, p3);
             vec3 v2 = VectorSub(p2, p4);
