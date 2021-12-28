@@ -166,10 +166,27 @@ void TerrainGrid::MakeRoads() {
 }
 
 void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
+    Direction currentDirection = startDirection;
+    int countX = x;
+    int countZ = z;
+
     switch (startDirection) {
         case Direction::south:
+            /*
             for(int i = x; i < kTerrainSize; i++) {
                 colors[GetArrIndex(i,z)] = roadColor;
+            }
+            */
+            while(true) {
+                if( (countX >= kTerrainSize || countZ >= kTerrainSize) ||
+                    (countX <= 0 || countZ <= 0))
+                    break;
+                Direction newDir = RandDirection4();
+                auto p = getNextIndexFrom({countX, countZ}, newDir);
+                currentDirection = newDir;
+                countX = p.first;
+                countZ = p.second;
+                colors[GetArrIndex(countX, countZ)] = roadColor;
             }
             break;
         case Direction::east:
@@ -187,8 +204,6 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
                 colors[GetArrIndex(x,i)] = roadColor;
             }
             break;
-        default:
-            return;
     }
 }
 
@@ -219,5 +234,71 @@ TerrainGrid::Direction TerrainGrid::RandDirection4() {
         case 1: return Direction::east;
         case 2: return Direction::north;
         case 3: return Direction::west;
+    }
+}
+
+TerrainGrid::Direction TerrainGrid::RightFrom(TerrainGrid::Direction current) const {
+    switch (current) {
+        case Direction::south:
+            return Direction::southEast;
+        case Direction::southEast:
+            return Direction::east;
+        case Direction::east:
+            return Direction::northEast;
+        case Direction::northEast:
+            return Direction::north;
+        case Direction::north:
+            return Direction::northWest;
+        case Direction::northWest:
+            return Direction::west;
+        case Direction::west:
+            return Direction::southWest;
+        case Direction::southWest:
+            return Direction::south;
+    }
+}
+
+TerrainGrid::Direction TerrainGrid::LeftFrom(TerrainGrid::Direction current) const {
+    switch (current) {
+        case Direction::south:
+            return Direction::southWest;
+        case Direction::southEast:
+            return Direction::south;
+        case Direction::east:
+            return Direction::southEast;
+        case Direction::northEast:
+            return Direction::east;
+        case Direction::north:
+            return Direction::northEast;
+        case Direction::northWest:
+            return Direction::north;
+        case Direction::west:
+            return Direction::northWest;
+        case Direction::southWest:
+            return Direction::west;
+    }
+}
+
+std::pair<int, int>
+TerrainGrid::getNextIndexFrom(std::pair<int, int> currentIdx, TerrainGrid::Direction nextDir) const {
+    int x = currentIdx.first;
+    int z = currentIdx.second;
+    switch (nextDir) {
+        case Direction::south:
+            return {x + 1, z};
+        case Direction::southEast:
+            return {x + 1, z + 1};
+        case Direction::east:
+            return {x, z + 1};
+        case Direction::northEast:
+            return {x - 1, z + 1};
+        case Direction::north:
+            return {x - 1, z};
+        case Direction::northWest:
+            return {x - 1, z - 1};
+        case Direction::west:
+            return {x, z - 1};
+        case Direction::southWest:
+            return {x + 1, z - 1};
     }
 }

@@ -82,6 +82,16 @@ private:
     // Return south, east, north, or
     // west at random.
     Direction RandDirection4();
+
+    // Return the direction 1 step to the
+    // right from current
+    Direction RightFrom(Direction current) const;
+
+    // Return the direction 1 step to the
+    // left from current
+    Direction LeftFrom(Direction current) const;
+
+    std::pair<int,int> getNextIndexFrom(std::pair<int,int> currentIdx, Direction nextDir) const;
 };
 
 
