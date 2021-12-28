@@ -31,15 +31,9 @@ void TerrainGrid::MakeTerrain() {
                 terrainColor = roadColor;
             }
             //
-            else if(IsOnRoad(x,z)) {
-                terrainColor = roadColor;
-            }
-            else if(dir == Direction::southEast) {
-                if(x == currentRoadPos.first + 1 && z == currentRoadPos.second + 1 ) {
-                    terrainColor = roadColor;
-                    currentRoadPos = std::pair<int,int>(x, z);
-                }
-            }
+            //else if(IsOnRoad(x,z)) {
+            //    terrainColor = roadColor;
+            //}
 
             colors[ix] = terrainColor;
         }
@@ -167,21 +161,58 @@ void TerrainGrid::MakeRoads() {
 
 void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
     Direction currentDirection = startDirection;
+
+    // Number of allowed directions for a given direction
+    const int N_ALLOWED_DIR = 5;
+
     int countX = x;
     int countZ = z;
 
+    // Get an allowed random direction,
+    // disallowed directions are those
+    // heading opposite to the general
+    // start direction of a given road.
+    Direction allowed[N_ALLOWED_DIR] = {
+            startDirection,
+            RightFrom(startDirection),
+            RightFrom(RightFrom(startDirection)),
+            LeftFrom(startDirection),
+            LeftFrom(LeftFrom(startDirection))
+    };
+
+    while(true) {
+        // Break when edge of map is reached
+        if( (countX >= kTerrainSize || countZ >= kTerrainSize) ||
+            (countX <= 0 || countZ <= 0))
+            break;
+
+        int randDirInt = rand() % N_ALLOWED_DIR; // 0-4
+        Direction newDir = allowed[randDirInt];
+
+        auto p = getNextIndexFrom({countX, countZ}, newDir);
+        currentDirection = newDir;
+        countX = p.first;
+        countZ = p.second;
+        colors[GetArrIndex(countX, countZ)] = roadColor;
+    }
+
+    /*
     switch (startDirection) {
         case Direction::south:
-            /*
-            for(int i = x; i < kTerrainSize; i++) {
-                colors[GetArrIndex(i,z)] = roadColor;
-            }
-            */
+
+            //for(int i = x; i < kTerrainSize; i++) {
+            //    colors[GetArrIndex(i,z)] = roadColor;
+            //}
+
             while(true) {
+                // Break when edge of map is reached
                 if( (countX >= kTerrainSize || countZ >= kTerrainSize) ||
                     (countX <= 0 || countZ <= 0))
                     break;
-                Direction newDir = RandDirection4();
+
+                int randDirInt = rand() % N_ALLOWED_DIR; // 0-4
+                Direction newDir = allowed[randDirInt];
+
                 auto p = getNextIndexFrom({countX, countZ}, newDir);
                 currentDirection = newDir;
                 countX = p.first;
@@ -205,6 +236,7 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
             }
             break;
     }
+    */
 }
 
 bool TerrainGrid::IsInTownSquare(int x, int z) const {
@@ -224,7 +256,7 @@ int TerrainGrid::GetArrIndex(int x, int z) {
 }
 
 float TerrainGrid::GetYNoiseValue(int x, int z) {
-    return 0.05f * noise2(0.1f * (float)x + 0.23f, 0.1f * (float)z + 0.22f);;
+    return 0.75f * noise2(0.1f * (float)x + 0.23f, 0.1f * (float)z + 0.22f);;
 }
 
 TerrainGrid::Direction TerrainGrid::RandDirection4() {

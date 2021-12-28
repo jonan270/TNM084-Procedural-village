@@ -83,6 +83,11 @@ private:
     // west at random.
     Direction RandDirection4();
 
+    // Get an allowed random direction,
+    // disallowed directions are those
+    // heading opposite to the general
+    // start direction of a given road.
+
     // Return the direction 1 step to the
     // right from current
     Direction RightFrom(Direction current) const;
