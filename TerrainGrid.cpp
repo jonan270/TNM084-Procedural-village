@@ -5,8 +5,10 @@
 #include "TerrainGrid.h"
 
 TerrainGrid::TerrainGrid() {
-    //srand(randomSeed);
-    srand(time(nullptr));
+    // Base random seed on current time
+    randomSeed = time(nullptr);
+    //std::cout << "Seed: " << randomSeed << "\n";
+    srand(randomSeed);
     MakeTerrain();
     MakeRoads();
 }
@@ -22,7 +24,6 @@ void TerrainGrid::MakeTerrain() {
 
             vertices[ix] = SetVec3(x * kPolySize, y, z * kPolySize);
             texCoords[ix] = SetVec2(x, z);
-            //normals[ix] = SetVec3(0,1,0);
 
             vec3 terrainColor = defaultColor;
 
@@ -30,10 +31,6 @@ void TerrainGrid::MakeTerrain() {
             if(IsInTownSquare(x,z)) {
                 terrainColor = roadColor;
             }
-            //
-            //else if(IsOnRoad(x,z)) {
-            //    terrainColor = roadColor;
-            //}
 
             colors[ix] = terrainColor;
         }
@@ -59,8 +56,6 @@ void TerrainGrid::MakeTerrain() {
     // Make normal vectors
     for (int x = 0; x < kTerrainSize; x++) {
         for (int z = 0; z < kTerrainSize; z++) {
-            //normals[z * kTerrainSize + x] = SetVec3(0,1,0);
-
             vec3 p1 = SetVec3(x + 1, GetYNoiseValue(x + 1, z + 1), z + 1);
             vec3 p2 = SetVec3(x + 1, GetYNoiseValue(x + 1, z - 1), z - 1);
             vec3 p3 = SetVec3(x - 1, GetYNoiseValue(x - 1, z - 1), z - 1);
@@ -88,40 +83,6 @@ Model *TerrainGrid::GetModelPtr() {
 
 void TerrainGrid::MakeRoads() {
     for(int i = 0; i < branchPoints; i++) {
-        std::cout << i << "\n";
-        /*
-        // Town square is a square grid
-        int startX = townSquareCenterPoint.first - townSquareWidth;
-        int startZ = townSquareCenterPoint.second - townSquareWidth;
-
-        int endX = townSquareCenterPoint.first + townSquareWidth;
-        int endZ = townSquareCenterPoint.second + townSquareWidth;
-
-        // Make branches extending from towncenter border at random.
-
-        // Get random x index between [startX, endX]
-        int randX = rand() % (endX - startX + 1) + startX;
-        int z;
-        // Follow along z and place at border.
-        if(randX == startX) {
-            z = startZ;
-        }
-        else if(randX == endX) {
-            z = endZ;
-        }
-        else {
-            z = rand() % 2 == 0 ? startZ : endZ;
-        }
-        std::cout << "Randomly picked index was: ("
-        << randX << ", " << z << ")\n";
-
-        colors[GetArrIndex(randX,z)] = SetVec3(1,0,0);
-         */
-
-        // Pick a random 4 way direction to find
-        // along which grid border to place
-        // connecting road.
-
         int startX = townSquareCenterPoint.first - townSquareWidth;
         int startZ = townSquareCenterPoint.second - townSquareWidth;
 
@@ -133,22 +94,22 @@ void TerrainGrid::MakeRoads() {
         Direction dir = RandDirection4();
         switch (dir) {
             case Direction::south:
-                std::cout << "South\n";
+                //std::cout << "South\n";
                 x = endX;
                 z = rand() % (endZ - startZ + 1) + startZ;
                 break;
             case Direction::east:
-                std::cout << "East\n";
+                //std::cout << "East\n";
                 x = rand() % (endX - startX + 1) + startX;
                 z = endZ;
                 break;
             case Direction::north:
-                std::cout << "North\n";
+                //std::cout << "North\n";
                 x = startX;
                 z = rand() % (endZ - startZ + 1) + startZ;
                 break;
             case Direction::west:
-                std::cout << "West\n";
+                //std::cout << "West\n";
                 x = rand() % (endX - startX + 1) + startX;
                 z = startZ;
                 break;
@@ -160,8 +121,6 @@ void TerrainGrid::MakeRoads() {
 }
 
 void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
-    Direction currentDirection = startDirection;
-
     // Number of allowed directions for a given direction
     const int N_ALLOWED_DIR = 5;
 
@@ -190,53 +149,10 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
         Direction newDir = allowed[randDirInt];
 
         auto p = getNextIndexFrom({countX, countZ}, newDir);
-        currentDirection = newDir;
         countX = p.first;
         countZ = p.second;
         colors[GetArrIndex(countX, countZ)] = roadColor;
     }
-
-    /*
-    switch (startDirection) {
-        case Direction::south:
-
-            //for(int i = x; i < kTerrainSize; i++) {
-            //    colors[GetArrIndex(i,z)] = roadColor;
-            //}
-
-            while(true) {
-                // Break when edge of map is reached
-                if( (countX >= kTerrainSize || countZ >= kTerrainSize) ||
-                    (countX <= 0 || countZ <= 0))
-                    break;
-
-                int randDirInt = rand() % N_ALLOWED_DIR; // 0-4
-                Direction newDir = allowed[randDirInt];
-
-                auto p = getNextIndexFrom({countX, countZ}, newDir);
-                currentDirection = newDir;
-                countX = p.first;
-                countZ = p.second;
-                colors[GetArrIndex(countX, countZ)] = roadColor;
-            }
-            break;
-        case Direction::east:
-            for(int i = z; i < kTerrainSize; i++) {
-                colors[GetArrIndex(x,i)] = roadColor;
-            }
-            break;
-        case Direction::north:
-            for(int i = x; i > 0; i--) {
-                colors[GetArrIndex(i,z)] = roadColor;
-            }
-            break;
-        case Direction::west:
-            for(int i = z; i > 0; i--) {
-                colors[GetArrIndex(x,i)] = roadColor;
-            }
-            break;
-    }
-    */
 }
 
 bool TerrainGrid::IsInTownSquare(int x, int z) const {
@@ -256,7 +172,8 @@ int TerrainGrid::GetArrIndex(int x, int z) {
 }
 
 float TerrainGrid::GetYNoiseValue(int x, int z) {
-    return 0.75f * noise2(0.1f * (float)x + 0.23f, 0.1f * (float)z + 0.22f);;
+    return 0.1f * noise2(0.1f * (float)x + 0.23f,
+                         0.1f * (float)z + 0.22f);
 }
 
 TerrainGrid::Direction TerrainGrid::RandDirection4() {
@@ -269,7 +186,7 @@ TerrainGrid::Direction TerrainGrid::RandDirection4() {
     }
 }
 
-TerrainGrid::Direction TerrainGrid::RightFrom(TerrainGrid::Direction current) const {
+TerrainGrid::Direction TerrainGrid::RightFrom(TerrainGrid::Direction current) {
     switch (current) {
         case Direction::south:
             return Direction::southEast;
@@ -290,7 +207,7 @@ TerrainGrid::Direction TerrainGrid::RightFrom(TerrainGrid::Direction current) co
     }
 }
 
-TerrainGrid::Direction TerrainGrid::LeftFrom(TerrainGrid::Direction current) const {
+TerrainGrid::Direction TerrainGrid::LeftFrom(TerrainGrid::Direction current) {
     switch (current) {
         case Direction::south:
             return Direction::southWest;
@@ -312,7 +229,7 @@ TerrainGrid::Direction TerrainGrid::LeftFrom(TerrainGrid::Direction current) con
 }
 
 std::pair<int, int>
-TerrainGrid::getNextIndexFrom(std::pair<int, int> currentIdx, TerrainGrid::Direction nextDir) const {
+TerrainGrid::getNextIndexFrom(std::pair<int, int> currentIdx, TerrainGrid::Direction nextDir) {
     int x = currentIdx.first;
     int z = currentIdx.second;
     switch (nextDir) {

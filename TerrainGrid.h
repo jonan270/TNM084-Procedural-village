@@ -42,7 +42,7 @@ private:
     constexpr static int roadIndexWidth = 2;
     constexpr static int townSquareWidth = 3 * roadIndexWidth;
     constexpr static int branchPoints = 3;
-    constexpr static unsigned int randomSeed = 113;
+    int randomSeed;
 
     // Default color to be used for grass/vegetation
     const vec3 defaultColor = vec3{ 0.24, 0.56, 0.44 };
@@ -68,6 +68,7 @@ private:
     void MakeRoadFrom(int x, int z, Direction startDirection);
     void MakeRoads();
 
+    // Is gridslot (x,z) in the town square?
     bool IsInTownSquare(int x, int z) const;
     bool IsOnRoad(int x, int z) const;
 
@@ -81,7 +82,7 @@ private:
 
     // Return south, east, north, or
     // west at random.
-    Direction RandDirection4();
+    static Direction RandDirection4();
 
     // Get an allowed random direction,
     // disallowed directions are those
@@ -90,13 +91,15 @@ private:
 
     // Return the direction 1 step to the
     // right from current
-    Direction RightFrom(Direction current) const;
+    static Direction RightFrom(Direction current) ;
 
     // Return the direction 1 step to the
     // left from current
-    Direction LeftFrom(Direction current) const;
+    static Direction LeftFrom(Direction current) ;
 
-    std::pair<int,int> getNextIndexFrom(std::pair<int,int> currentIdx, Direction nextDir) const;
+    // Get the connecting index when moving
+    // in the provided Direction nextDir
+    static std::pair<int,int> getNextIndexFrom(std::pair<int,int> currentIdx, Direction nextDir) ;
 };
 
 
