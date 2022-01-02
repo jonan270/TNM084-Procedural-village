@@ -21,7 +21,7 @@ class TerrainGrid {
 public:
 
     // The different directions where a
-    // road might turn
+    // road might be headed.
     enum Direction {
         south,
         southEast,
@@ -39,9 +39,9 @@ public:
     Model* GetModelPtr();
 
 private:
-    constexpr static int roadIndexWidth = 2;
+    constexpr static int roadIndexWidth = 3;
     constexpr static int townSquareWidth = 3 * roadIndexWidth;
-    constexpr static int branchPoints = 3;
+    constexpr static int branchPoints = 1;
     int randomSeed;
 
     // Default color to be used for grass/vegetation
@@ -67,6 +67,8 @@ private:
     // from town square.
     void MakeRoadFrom(int x, int z, Direction startDirection);
     void MakeRoads();
+
+    void DrawRoadAroundIdx(int x, int z, Direction current);
 
     // Is gridslot (x,z) in the town square?
     bool IsInTownSquare(int x, int z) const;
@@ -99,7 +101,8 @@ private:
 
     // Get the connecting index when moving
     // in the provided Direction nextDir
-    static std::pair<int,int> getNextIndexFrom(std::pair<int,int> currentIdx, Direction nextDir) ;
+    static std::pair<int,int>
+    GetNextIndexFrom(std::pair<int,int> currentIdx, Direction nextDir) ;
 };
 
 

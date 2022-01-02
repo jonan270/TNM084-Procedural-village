@@ -54,7 +54,7 @@ void init() {
     Model* wellModel = LoadModel((char *)"../obj-models/well.obj", SetVec3(0.427, 0.317, 0.235));
 
     ScaleModel(wellModel, 0.1, 0.1, 0.1);
-    TranslateModel(wellModel, TerrainGrid::kPolySize * TerrainGrid::kTerrainSize / 2.0, 0,
+    TranslateModel(wellModel, TerrainGrid::kPolySize * TerrainGrid::kTerrainSize / 2.0 + 5, 0,
                    TerrainGrid::kPolySize * TerrainGrid::kTerrainSize / 2.0);
 
     //ReloadModelData(wellModel);

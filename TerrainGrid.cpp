@@ -92,24 +92,25 @@ void TerrainGrid::MakeRoads() {
         int x{}, z{};
 
         Direction dir = RandDirection4();
+        dir = Direction::north;
         switch (dir) {
             case Direction::south:
-                //std::cout << "South\n";
+                std::cout << "South\n";
                 x = endX;
                 z = rand() % (endZ - startZ + 1) + startZ;
                 break;
             case Direction::east:
-                //std::cout << "East\n";
+                std::cout << "East\n";
                 x = rand() % (endX - startX + 1) + startX;
                 z = endZ;
                 break;
             case Direction::north:
-                //std::cout << "North\n";
+                std::cout << "North\n";
                 x = startX;
                 z = rand() % (endZ - startZ + 1) + startZ;
                 break;
             case Direction::west:
-                //std::cout << "West\n";
+                std::cout << "West\n";
                 x = rand() % (endX - startX + 1) + startX;
                 z = startZ;
                 break;
@@ -139,6 +140,8 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
             LeftFrom(LeftFrom(startDirection))
     };
 
+    int testCount = 0;
+    //Direction oldDir = startDirection;
     while(true) {
         // Break when edge of map is reached
         if( (countX >= kTerrainSize || countZ >= kTerrainSize) ||
@@ -146,12 +149,22 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
             break;
 
         int randDirInt = rand() % N_ALLOWED_DIR; // 0-4
-        Direction newDir = allowed[randDirInt];
+        //Direction newDir = allowed[randDirInt];
+        Direction newDir = Direction::north;//HERE
+        if (testCount > 20)
+            newDir = Direction::northWest;
 
-        auto p = getNextIndexFrom({countX, countZ}, newDir);
+        DrawRoadAroundIdx(countX, countZ, newDir);
+        auto p = GetNextIndexFrom({countX, countZ}, newDir);
         countX = p.first;
         countZ = p.second;
+        //countX--;
+
+        DrawRoadAroundIdx(countX, countZ, newDir);
+        //DrawRoadAroundIdx(countX, countZ, newDir);
         colors[GetArrIndex(countX, countZ)] = roadColor;
+        testCount++;
+        //oldDir = newDir;
     }
 }
 
@@ -229,7 +242,7 @@ TerrainGrid::Direction TerrainGrid::LeftFrom(TerrainGrid::Direction current) {
 }
 
 std::pair<int, int>
-TerrainGrid::getNextIndexFrom(std::pair<int, int> currentIdx, TerrainGrid::Direction nextDir) {
+TerrainGrid::GetNextIndexFrom(std::pair<int, int> currentIdx, TerrainGrid::Direction nextDir) {
     int x = currentIdx.first;
     int z = currentIdx.second;
     switch (nextDir) {
@@ -249,5 +262,93 @@ TerrainGrid::getNextIndexFrom(std::pair<int, int> currentIdx, TerrainGrid::Direc
             return {x, z - 1};
         case Direction::southWest:
             return {x + 1, z - 1};
+    }
+}
+
+void TerrainGrid::DrawRoadAroundIdx(int x, int z, TerrainGrid::Direction current) {
+
+    // This rather complicated switch sets colors
+    // around (x,z)
+    switch (current) {
+        case Direction::south:
+            for(int i = x - (roadIndexWidth - 1) / 2;
+                i <= x + (roadIndexWidth - 1) / 2 &&
+                i > 0 && i < kTerrainSize;
+                i++)
+                for(int j = z - (roadIndexWidth - 1) / 2;
+                    j <= z + (roadIndexWidth - 1) / 2 &&
+                    j > 0 && j < kTerrainSize;
+                    j++)
+                    colors[GetArrIndex(i, j)] = roadColor;
+            break;
+        case Direction::southEast:
+            for(int i = x - (roadIndexWidth - 1)/2;
+                i <= x + (roadIndexWidth - 1)/2 &&
+                i > 0 && i < kTerrainSize;
+                i++)
+                for(int j = z - (roadIndexWidth - 1)/2;
+                    j <= z + (roadIndexWidth - 1)/2 &&
+                    j > 0 && z < kTerrainSize;
+                    j++)
+                    colors[GetArrIndex(i,j)] = roadColor;
+            break;
+        case Direction::east:
+            for(int i = x - (roadIndexWidth - 1) / 2;
+                i <= x + (roadIndexWidth - 1) / 2 &&
+                i > 0 && i < kTerrainSize;
+                i++)
+                for(int j = z - (roadIndexWidth - 1) / 2;
+                    j <= z + (roadIndexWidth - 1) / 2 &&
+                    j > 0 && j < kTerrainSize;
+                    j++)
+                    colors[GetArrIndex(i, j)] = roadColor;
+            break;
+        case Direction::northEast:
+            for(int i = x - (roadIndexWidth - 1) / 2;
+                i <= x + (roadIndexWidth - 1) / 2 &&
+                i > 0 && i < kTerrainSize;
+                i++)
+                colors[GetArrIndex(i,i)] = roadColor;
+            break;
+        case Direction::north:
+            for(int i = x - (roadIndexWidth - 1) / 2;
+                i <= x + (roadIndexWidth - 1) / 2 &&
+                i > 0 && i < kTerrainSize;
+                i++)
+                for(int j = z - (roadIndexWidth - 1) / 2;
+                    j <= z + (roadIndexWidth - 1) / 2 &&
+                    j > 0 && j < kTerrainSize;
+                    j++)
+                    colors[GetArrIndex(i, j)] = roadColor;
+            break;
+        case Direction::northWest:
+            for(int i = x - (roadIndexWidth - 1)/2;
+                i <= x + (roadIndexWidth - 1)/2 &&
+                i > 0 && i < kTerrainSize;
+                i++)
+                for(int j = z - (roadIndexWidth - 1)/2;
+                    j <= z + (roadIndexWidth - 1)/2 &&
+                    j > 0 && z < kTerrainSize;
+                    j++)
+                    colors[GetArrIndex(i,j)] = roadColor;
+            break;
+        case Direction::west:
+            for(int i = x - (roadIndexWidth - 1) / 2;
+                i <= x + (roadIndexWidth - 1) / 2 &&
+                i > 0 && i < kTerrainSize;
+                i++)
+                for(int j = z - (roadIndexWidth - 1) / 2;
+                    j <= z + (roadIndexWidth - 1) / 2 &&
+                    j > 0 && j < kTerrainSize;
+                    j++)
+                    colors[GetArrIndex(i, j)] = roadColor;
+            break;
+        case Direction::southWest:
+            for(int i = x - (roadIndexWidth - 1) / 2;
+                i <= x + (roadIndexWidth - 1) / 2 &&
+                i > 0 && i < kTerrainSize;
+                i++)
+                colors[GetArrIndex(i,i)] = roadColor;
+            break;
     }
 }
