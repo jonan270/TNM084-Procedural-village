@@ -32,7 +32,7 @@ public:
         west,
         southWest
     };
-    constexpr static int kTerrainSize = 128;
+    constexpr static int kTerrainSize = 350;
     constexpr static float kPolySize = 0.1f;
     TerrainGrid();
 
@@ -41,7 +41,7 @@ public:
 private:
     constexpr static int roadIndexWidth = 3;
     constexpr static int townSquareWidth = 3 * roadIndexWidth;
-    constexpr static int branchPoints = 1;
+    constexpr static int branchPoints = 6;
     int randomSeed;
 
     // Default color to be used for grass/vegetation
@@ -93,16 +93,20 @@ private:
 
     // Return the direction 1 step to the
     // right from current
-    static Direction RightFrom(Direction current) ;
+    static Direction RightFrom(Direction current);
 
     // Return the direction 1 step to the
     // left from current
-    static Direction LeftFrom(Direction current) ;
+    static Direction LeftFrom(Direction current);
+
+    // Return the direction opposite
+    // from current. I.E current = north => return south
+    static Direction OppositeFrom(Direction current);
 
     // Get the connecting index when moving
     // in the provided Direction nextDir
     static std::pair<int,int>
-    GetNextIndexFrom(std::pair<int,int> currentIdx, Direction nextDir) ;
+    GetNextIndexFrom(int x, int z, Direction nextDir);
 };
 
 

@@ -92,7 +92,7 @@ void TerrainGrid::MakeRoads() {
         int x{}, z{};
 
         Direction dir = RandDirection4();
-        dir = Direction::south;
+        //dir = Direction::south;
         switch (dir) {
             case Direction::south:
                 std::cout << "South\n";
@@ -141,27 +141,30 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
     };
 
     int testCount = 0;
-    //Direction oldDir = startDirection;
+    Direction newDir = startDirection;
     while(true) {
         // Break when edge of map is reached
         if( (countX >= kTerrainSize || countZ >= kTerrainSize) ||
             (countX <= 0 || countZ <= 0))
             break;
 
-        int randDirInt = rand() % N_ALLOWED_DIR; // 0-4
-        //Direction newDir = allowed[randDirInt];
-        Direction newDir = Direction::south;//HERE
-        if (testCount > 20)
-            newDir = Direction::southWest;
+        if (testCount > 5) {
+            int randDirInt{};
+
+            // Do not go in the opposite direction
+            do
+                randDirInt = rand() % N_ALLOWED_DIR; // 0-4
+            while(allowed[randDirInt] == OppositeFrom(newDir));
+            newDir = allowed[randDirInt];
+            testCount = 0;
+        }
 
         DrawRoadAroundIdx(countX, countZ, newDir);
-        auto p = GetNextIndexFrom({countX, countZ}, newDir);
+        auto p = GetNextIndexFrom(countX, countZ, newDir);
         countX = p.first;
         countZ = p.second;
-        //countX--;
 
         DrawRoadAroundIdx(countX, countZ, newDir);
-        //DrawRoadAroundIdx(countX, countZ, newDir);
         colors[GetArrIndex(countX, countZ)] = roadColor;
         testCount++;
         //oldDir = newDir;
@@ -185,8 +188,8 @@ int TerrainGrid::GetArrIndex(int x, int z) {
 }
 
 float TerrainGrid::GetYNoiseValue(int x, int z) {
-    return 0.1f * noise2(0.1f * (float)x + 0.23f,
-                         0.1f * (float)z + 0.22f);
+    return 0.1f * noise2(kPolySize * (float)x + 0.23f,
+                         kPolySize * (float)z + 0.22f);
 }
 
 TerrainGrid::Direction TerrainGrid::RandDirection4() {
@@ -197,6 +200,11 @@ TerrainGrid::Direction TerrainGrid::RandDirection4() {
         case 2: return Direction::north;
         case 3: return Direction::west;
     }
+}
+
+TerrainGrid::Direction TerrainGrid::OppositeFrom(TerrainGrid::Direction current) {
+    // Yes, I am lazy. The computer can handle ;)
+    return LeftFrom(LeftFrom(LeftFrom(LeftFrom(current))));
 }
 
 TerrainGrid::Direction TerrainGrid::RightFrom(TerrainGrid::Direction current) {
@@ -242,9 +250,7 @@ TerrainGrid::Direction TerrainGrid::LeftFrom(TerrainGrid::Direction current) {
 }
 
 std::pair<int, int>
-TerrainGrid::GetNextIndexFrom(std::pair<int, int> currentIdx, TerrainGrid::Direction nextDir) {
-    int x = currentIdx.first;
-    int z = currentIdx.second;
+TerrainGrid::GetNextIndexFrom(int x, int z, TerrainGrid::Direction nextDir) {
     switch (nextDir) {
         case Direction::south:
             return {x + 1, z};
@@ -268,7 +274,7 @@ TerrainGrid::GetNextIndexFrom(std::pair<int, int> currentIdx, TerrainGrid::Direc
 void TerrainGrid::DrawRoadAroundIdx(int x, int z, TerrainGrid::Direction current) {
 
     // This rather complicated switch sets colors
-    // around (x,z)
+    // around (x,z) to form a road
     switch (current) {
         case Direction::south:
         case Direction::north:
@@ -300,3 +306,5 @@ void TerrainGrid::DrawRoadAroundIdx(int x, int z, TerrainGrid::Direction current
             break;
     }
 }
+
+
