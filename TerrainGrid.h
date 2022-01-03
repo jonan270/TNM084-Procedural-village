@@ -32,6 +32,7 @@ public:
         west,
         southWest
     };
+
     constexpr static int kTerrainSize = 350;
     constexpr static float kPolySize = 0.1f;
     TerrainGrid();
@@ -51,7 +52,7 @@ private:
 
     // Color used to represent roads
     //const vec3 roadColor = vec3{ 0.67, 0.64, 0.5 }; // Old
-    const vec3 roadColor = vec3{ 0.46,0.43,0.38};
+    const vec3 roadColor = vec3{ 0.45,0.41,0.35};
     // 0.37,0.32,0.23
 
     vec3 vertices[kTerrainSize * kTerrainSize]; // Vertex position

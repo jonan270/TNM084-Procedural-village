@@ -116,6 +116,7 @@ void TerrainGrid::MakeRoads() {
                 break;
         }
         MakeRoadFrom(x, z, dir);
+        //akeRoadFrom(10, 10, Direction::north);
         colors[GetArrIndex(x,z)] = SetVec3(1,0,0);
     }
 
@@ -123,7 +124,7 @@ void TerrainGrid::MakeRoads() {
 
 void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
     // Number of allowed directions for a given direction
-    const int N_ALLOWED_DIR = 5;
+    const int N_ALLOWED_DIR = 3;
 
     int countX = x;
     int countZ = z;
@@ -135,12 +136,13 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
     Direction allowed[N_ALLOWED_DIR] = {
             startDirection,
             RightFrom(startDirection),
-            RightFrom(RightFrom(startDirection)),
+            //RightFrom(RightFrom(startDirection)),
             LeftFrom(startDirection),
-            LeftFrom(LeftFrom(startDirection))
+            //LeftFrom(LeftFrom(startDirection))
     };
 
     int straightCount = 0;
+    int testCount = 0;
     Direction newDir = startDirection;
     while(true) {
         // Break when edge of map is reached
@@ -154,9 +156,10 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
 
             // Do not go in the opposite direction
             do
-                randDirInt = rand() % N_ALLOWED_DIR; // 0-4
+                randDirInt = rand() % N_ALLOWED_DIR; // 0-2
             while(allowed[randDirInt] == OppositeFrom(newDir));
             newDir = allowed[randDirInt];
+
             straightCount = 0;
         }
 
@@ -165,9 +168,20 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
         countX = p.first;
         countZ = p.second;
 
+        if(testCount > 90) {
+            std::cout << "Going..\n";
+
+            Direction branchDir = rand() % 2 == 0 ?
+                    LeftFrom(newDir) : RightFrom(newDir);
+
+            MakeRoadFrom(countX, countZ, branchDir);
+            testCount = 0;
+        }
+
         DrawRoadAroundIdx(countX, countZ, newDir);
         colors[GetArrIndex(countX, countZ)] = roadColor;
         straightCount++;
+        testCount++;
     }
 }
 
@@ -202,8 +216,8 @@ int TerrainGrid::GetArrIndex(int x, int z) {
 }
 
 float TerrainGrid::GetYNoiseValue(int x, int z) {
-    return kPolySize * noise2(0.1f * (float)x + 0.23f,
-                         0.1f * (float)z + 0.22f);
+    return kPolySize * noise2(kPolySize * (float)x + 0.23f,
+                              kPolySize * (float)z + 0.22f);
 }
 
 TerrainGrid::Direction TerrainGrid::RandDirection4() {
