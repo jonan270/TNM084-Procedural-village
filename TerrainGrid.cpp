@@ -180,10 +180,32 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
         countX = p.first;
         countZ = p.second;
 
+        // TODO: Remove magic number
         if(testCount > 150) {
-            // Go either left or right from current
+
+            // 2 directional branching
             Direction branchDir = rand() % 2 == 0 ?
                     LeftFrom(newDir) : RightFrom(newDir);
+
+            // 4 directional branching
+            /*
+            Direction branchDir;
+            switch(rand() % 4) {
+                case 0:
+                    branchDir = LeftFrom(newDir);
+                    break;
+                case 1:
+                    branchDir = RightFrom(newDir);
+                    break;
+                case 2:
+                    branchDir = LeftFrom(LeftFrom(newDir));
+                    break;
+                case 3:
+                    branchDir = RightFrom(RightFrom(newDir));
+                    break;
+                default: assert(false);
+            }
+            */
 
             MakeRoadFrom(countX, countZ, branchDir);
             testCount = 0;
