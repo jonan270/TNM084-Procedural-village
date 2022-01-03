@@ -168,8 +168,8 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
         countX = p.first;
         countZ = p.second;
 
-        if(testCount > 90) {
-            std::cout << "Going..\n";
+        if(testCount > 150) {
+            //std::cout << "Going..\n";
 
             Direction branchDir = rand() % 2 == 0 ?
                     LeftFrom(newDir) : RightFrom(newDir);
@@ -333,6 +333,14 @@ void TerrainGrid::DrawRoadAroundIdx(int x, int z, TerrainGrid::Direction current
                     colors[GetArrIndex(i,j)] = roadColor;
             break;
     }
+}
+
+TerrainGrid::~TerrainGrid() {
+    delete[] vertices;
+    delete[] texCoords;
+    delete[] normals;
+    delete[] colors;
+    delete[] indices;
 }
 
 

@@ -33,9 +33,11 @@ public:
         southWest
     };
 
-    constexpr static int kTerrainSize = 350;
+    constexpr static int kTerrainSize = 512;
     constexpr static float kPolySize = 0.1f;
+
     TerrainGrid();
+    ~TerrainGrid();
 
     Model* GetModelPtr();
 
@@ -53,13 +55,14 @@ private:
     // Color used to represent roads
     //const vec3 roadColor = vec3{ 0.67, 0.64, 0.5 }; // Old
     const vec3 roadColor = vec3{ 0.45,0.41,0.35};
-    // 0.37,0.32,0.23
 
-    vec3 vertices[kTerrainSize * kTerrainSize]; // Vertex position
-    vec2 texCoords[kTerrainSize * kTerrainSize];
-    vec3 normals[kTerrainSize * kTerrainSize];
-    vec3 colors[kTerrainSize * kTerrainSize];
-    GLuint indices[(kTerrainSize - 1) * (kTerrainSize - 1) * 3 * 2];
+    // Due to the large memory requirements, arrays
+    // need to be stored on heap memory.
+    vec3* vertices = new vec3[kTerrainSize * kTerrainSize];
+    vec2* texCoords = new vec2[kTerrainSize * kTerrainSize];
+    vec3* normals = new vec3[kTerrainSize * kTerrainSize];
+    vec3* colors = new vec3[kTerrainSize * kTerrainSize];
+    GLuint* indices = new GLuint[(kTerrainSize - 1) * (kTerrainSize - 1) * 3 * 2];
 
     std::pair<int ,int> townSquareCenterPoint =
             std::pair<int, int>(kTerrainSize/2, kTerrainSize/2);
