@@ -11,7 +11,7 @@
 #include "common/GL_utilities.h"
 #include <tuple>
 #include <cstdlib> // srand makes use of random seed
-#include <time.h>
+#include <ctime>
 
 #include <iostream>
 
@@ -58,10 +58,10 @@ private:
 
     // Due to the large memory requirements, arrays
     // need to be stored on heap memory.
-    vec3* vertices = new vec3[kTerrainSize * kTerrainSize];
+    vec3* vertices  = new vec3[kTerrainSize * kTerrainSize];
     vec2* texCoords = new vec2[kTerrainSize * kTerrainSize];
-    vec3* normals = new vec3[kTerrainSize * kTerrainSize];
-    vec3* colors = new vec3[kTerrainSize * kTerrainSize];
+    vec3* normals   = new vec3[kTerrainSize * kTerrainSize];
+    vec3* colors    = new vec3[kTerrainSize * kTerrainSize];
     GLuint* indices = new GLuint[(kTerrainSize - 1) * (kTerrainSize - 1) * 3 * 2];
 
     std::pair<int ,int> townSquareCenterPoint =
