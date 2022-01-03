@@ -127,6 +127,7 @@ void TerrainGrid::MakeRoads() {
 
 }
 
+// TODO: Split into smaller functions
 void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
     // Number of allowed directions for a given direction
     const int N_ALLOWED_DIR = 3;
