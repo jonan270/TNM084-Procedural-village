@@ -80,7 +80,6 @@ private:
 
     // Is gridslot (x,z) in the town square?
     bool IsInTownSquare(int x, int z) const;
-    bool IsOnRoad(int x, int z) const;
 
     // Get the position value
     // obtained from noise function
@@ -89,8 +88,6 @@ private:
     // Access the correct array index
     // given grid indices for x and z
     static int GetArrIndex(int x, int z);
-
-    Direction ObtainNewDirection(Direction current);
 
     // Return south, east, north, or
     // west at random.

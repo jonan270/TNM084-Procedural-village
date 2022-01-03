@@ -1,3 +1,6 @@
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "cert-msc50-cpp" // Yes, rand works. Thank you compiler
+
 //
 // Created by Jonathan Andersson on 2021-12-20.
 //
@@ -6,24 +9,21 @@
 
 TerrainGrid::TerrainGrid() {
     // Base random seed on current time
-    randomSeed = time(nullptr);
-    //std::cout << "Seed: " << randomSeed << "\n";
+    randomSeed = (int)time(nullptr);
     srand(randomSeed);
+
     MakeTerrain();
     MakeRoads();
 }
 
 void TerrainGrid::MakeTerrain() {
-    auto currentRoadPos = std::pair<int,int>(0,0);
-    Direction dir = Direction::southEast;
-
     for (int x = 0; x < kTerrainSize; x++) {
         for (int z = 0; z < kTerrainSize; z++) {
             int ix = GetArrIndex(x, z);
             float y = GetYNoiseValue(x, z);
 
-            vertices[ix] = SetVec3(x * kPolySize, y, z * kPolySize);
-            texCoords[ix] = SetVec2(x, z);
+            vertices[ix] = SetVec3((float)x * kPolySize, y, (float)z * kPolySize);
+            texCoords[ix] = SetVec2((float)x, (float)z);
 
             vec3 terrainColor = defaultColor;
 
@@ -56,10 +56,10 @@ void TerrainGrid::MakeTerrain() {
     // Make normal vectors
     for (int x = 0; x < kTerrainSize; x++) {
         for (int z = 0; z < kTerrainSize; z++) {
-            vec3 p1 = SetVec3(x + 1, GetYNoiseValue(x + 1, z + 1), z + 1);
-            vec3 p2 = SetVec3(x + 1, GetYNoiseValue(x + 1, z - 1), z - 1);
-            vec3 p3 = SetVec3(x - 1, GetYNoiseValue(x - 1, z - 1), z - 1);
-            vec3 p4 = SetVec3(x - 1, GetYNoiseValue(x - 1, z + 1), z + 1);
+            vec3 p1 = SetVec3((float)x + 1, GetYNoiseValue(x + 1, z + 1), (float)z + 1);
+            vec3 p2 = SetVec3((float)x + 1, GetYNoiseValue(x + 1, z - 1), (float)z - 1);
+            vec3 p3 = SetVec3((float)x - 1, GetYNoiseValue(x - 1, z - 1), (float)z - 1);
+            vec3 p4 = SetVec3((float)x - 1, GetYNoiseValue(x - 1, z + 1), (float)z + 1);
 
             vec3 v1 = VectorSub(p1, p3);
             vec3 v2 = VectorSub(p2, p4);
@@ -89,35 +89,40 @@ void TerrainGrid::MakeRoads() {
         int endX = townSquareCenterPoint.first + townSquareWidth;
         int endZ = townSquareCenterPoint.second + townSquareWidth;
 
-        int x{}, z{};
+        int x, z;
 
         Direction dir = RandDirection4();
-        //dir = Direction::south;
         switch (dir) {
             case Direction::south:
-                std::cout << "South\n";
+                //std::cout << "South\n";
                 x = endX;
                 z = rand() % (endZ - startZ + 1) + startZ;
                 break;
             case Direction::east:
-                std::cout << "East\n";
+                //std::cout << "East\n";
                 x = rand() % (endX - startX + 1) + startX;
                 z = endZ;
                 break;
             case Direction::north:
-                std::cout << "North\n";
+                //std::cout << "North\n";
                 x = startX;
                 z = rand() % (endZ - startZ + 1) + startZ;
                 break;
             case Direction::west:
-                std::cout << "West\n";
+                //std::cout << "West\n";
                 x = rand() % (endX - startX + 1) + startX;
                 z = startZ;
                 break;
+            case southEast:
+            case northEast:
+            case northWest:
+            case southWest:
+                // This only happens if I do something stupid.
+                assert(false);
         }
         MakeRoadFrom(x, z, dir);
-        //akeRoadFrom(10, 10, Direction::north);
-        colors[GetArrIndex(x,z)] = SetVec3(1,0,0);
+        // DEBUG: Mark the starting points of roads.
+        //colors[GetArrIndex(x,z)] = SetVec3(1,0,0);
     }
 
 }
@@ -129,10 +134,17 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
     int countX = x;
     int countZ = z;
 
-    // Get an allowed random direction,
-    // disallowed directions are those
-    // heading opposite to the general
-    // start direction of a given road.
+    /*
+     Get an allowed random direction,
+     disallowed directions are those
+     heading opposite to the general
+     start direction of a given road.
+
+     After testing, I conclude that
+     more realistic roads are generated
+     when only allowing 1 step left/right
+     from the general direction
+    */
     Direction allowed[N_ALLOWED_DIR] = {
             startDirection,
             RightFrom(startDirection),
@@ -152,7 +164,7 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
 
 
         if (straightCount > straightLen) {
-            int randDirInt{};
+            int randDirInt;
 
             // Do not go in the opposite direction
             do
@@ -169,8 +181,7 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
         countZ = p.second;
 
         if(testCount > 150) {
-            //std::cout << "Going..\n";
-
+            // Go either left or right from current
             Direction branchDir = rand() % 2 == 0 ?
                     LeftFrom(newDir) : RightFrom(newDir);
 
@@ -185,30 +196,11 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
     }
 }
 
-TerrainGrid::Direction TerrainGrid::ObtainNewDirection(TerrainGrid::Direction current) {
-    /*
-    int randDirInt{};
-
-    // Do not go in the opposite direction
-    do
-        randDirInt = rand() % N_ALLOWED_DIR; // 0-4
-    while(allowed[randDirInt] == OppositeFrom(newDir));
-    newDir = allowed[randDirInt];
-    straightCount = 0;
-     */
-    return Direction::southEast; // TODO : remove
-}
-
 bool TerrainGrid::IsInTownSquare(int x, int z) const {
     return (x >= townSquareCenterPoint.first - townSquareWidth &&
             x <= townSquareCenterPoint.first + townSquareWidth &&
             z >= townSquareCenterPoint.second - townSquareWidth &&
             z <= townSquareCenterPoint.second + townSquareWidth);
-}
-
-bool TerrainGrid::IsOnRoad(int x, int z) const {
-    return (z >= townSquareCenterPoint.second - roadIndexWidth &&
-            z <= townSquareCenterPoint.second + roadIndexWidth);
 }
 
 int TerrainGrid::GetArrIndex(int x, int z) {
@@ -227,12 +219,8 @@ TerrainGrid::Direction TerrainGrid::RandDirection4() {
         case 1: return Direction::east;
         case 2: return Direction::north;
         case 3: return Direction::west;
+        default: assert(false);
     }
-}
-
-TerrainGrid::Direction TerrainGrid::OppositeFrom(TerrainGrid::Direction current) {
-    // Yes, I am lazy. The computer can handle ;)
-    return LeftFrom(LeftFrom(LeftFrom(LeftFrom(current))));
 }
 
 TerrainGrid::Direction TerrainGrid::RightFrom(TerrainGrid::Direction current) {
@@ -274,6 +262,31 @@ TerrainGrid::Direction TerrainGrid::LeftFrom(TerrainGrid::Direction current) {
             return Direction::northWest;
         case Direction::southWest:
             return Direction::west;
+    }
+}
+
+TerrainGrid::Direction TerrainGrid::OppositeFrom(TerrainGrid::Direction current) {
+    // The lazy readable way:
+    //return LeftFrom(LeftFrom(LeftFrom(LeftFrom(current))));
+
+    // The efficient less readable way:
+    switch(current) {
+        case south:
+            return Direction::north;
+        case southEast:
+            return Direction::northWest;
+        case east:
+            return Direction::west;
+        case northEast:
+            return Direction::southWest;
+        case north:
+            return Direction::south;
+        case northWest:
+            return Direction::southEast;
+        case west:
+            return Direction::east;
+        case southWest:
+            return Direction::northEast;
     }
 }
 
@@ -346,3 +359,5 @@ TerrainGrid::~TerrainGrid() {
 
 
 
+
+#pragma clang diagnostic pop
