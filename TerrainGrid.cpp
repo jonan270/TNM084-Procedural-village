@@ -140,7 +140,7 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
             LeftFrom(LeftFrom(startDirection))
     };
 
-    int testCount = 0;
+    int straightCount = 0;
     Direction newDir = startDirection;
     while(true) {
         // Break when edge of map is reached
@@ -148,7 +148,8 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
             (countX <= 0 || countZ <= 0))
             break;
 
-        if (testCount > 5) {
+
+        if (straightCount > straightLen) {
             int randDirInt{};
 
             // Do not go in the opposite direction
@@ -156,7 +157,7 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
                 randDirInt = rand() % N_ALLOWED_DIR; // 0-4
             while(allowed[randDirInt] == OppositeFrom(newDir));
             newDir = allowed[randDirInt];
-            testCount = 0;
+            straightCount = 0;
         }
 
         DrawRoadAroundIdx(countX, countZ, newDir);
@@ -166,9 +167,22 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
 
         DrawRoadAroundIdx(countX, countZ, newDir);
         colors[GetArrIndex(countX, countZ)] = roadColor;
-        testCount++;
-        //oldDir = newDir;
+        straightCount++;
     }
+}
+
+TerrainGrid::Direction TerrainGrid::ObtainNewDirection(TerrainGrid::Direction current) {
+    /*
+    int randDirInt{};
+
+    // Do not go in the opposite direction
+    do
+        randDirInt = rand() % N_ALLOWED_DIR; // 0-4
+    while(allowed[randDirInt] == OppositeFrom(newDir));
+    newDir = allowed[randDirInt];
+    straightCount = 0;
+     */
+    return Direction::southEast; // TODO : remove
 }
 
 bool TerrainGrid::IsInTownSquare(int x, int z) const {
@@ -188,8 +202,8 @@ int TerrainGrid::GetArrIndex(int x, int z) {
 }
 
 float TerrainGrid::GetYNoiseValue(int x, int z) {
-    return 0.1f * noise2(kPolySize * (float)x + 0.23f,
-                         kPolySize * (float)z + 0.22f);
+    return kPolySize * noise2(0.1f * (float)x + 0.23f,
+                         0.1f * (float)z + 0.22f);
 }
 
 TerrainGrid::Direction TerrainGrid::RandDirection4() {
@@ -306,5 +320,7 @@ void TerrainGrid::DrawRoadAroundIdx(int x, int z, TerrainGrid::Direction current
             break;
     }
 }
+
+
 
 

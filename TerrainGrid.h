@@ -41,14 +41,18 @@ public:
 private:
     constexpr static int roadIndexWidth = 3;
     constexpr static int townSquareWidth = 3 * roadIndexWidth;
-    constexpr static int branchPoints = 6;
+    constexpr static int branchPoints = 3;
+    constexpr static int straightLen = 3;
     int randomSeed;
 
     // Default color to be used for grass/vegetation
-    const vec3 defaultColor = vec3{ 0.24, 0.56, 0.44 };
+    //const vec3 defaultColor = vec3{ 0.24, 0.56, 0.44 }; // Old
+    const vec3 defaultColor = vec3{ 0.22,0.37,0.31};
 
     // Color used to represent roads
-    const vec3 roadColor = vec3{ 0.67, 0.64, 0.5 };
+    //const vec3 roadColor = vec3{ 0.67, 0.64, 0.5 }; // Old
+    const vec3 roadColor = vec3{ 0.46,0.43,0.38};
+    // 0.37,0.32,0.23
 
     vec3 vertices[kTerrainSize * kTerrainSize]; // Vertex position
     vec2 texCoords[kTerrainSize * kTerrainSize];
@@ -81,6 +85,8 @@ private:
     // Access the correct array index
     // given grid indices for x and z
     static int GetArrIndex(int x, int z);
+
+    Direction ObtainNewDirection(Direction current);
 
     // Return south, east, north, or
     // west at random.
