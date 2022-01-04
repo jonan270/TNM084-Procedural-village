@@ -9,6 +9,7 @@
 #include "noise/noise1234.h"
 #include "common/LittleOBJLoader.h"
 #include "common/GL_utilities.h"
+#include <vector>
 #include <tuple>
 #include <cstdlib> // srand makes use of random seed
 #include <ctime>
@@ -33,6 +34,12 @@ public:
         southWest
     };
 
+
+    // The class stores appropriate locations
+    // for buildings.
+    std::vector<std::pair<vec3,Direction>>
+    buildingSpots;
+
     constexpr static int kTerrainSize = 512;
     constexpr static float kPolySize = 0.1f;
 
@@ -46,7 +53,7 @@ private:
     constexpr static int townSquareWidth = 3 * roadIndexWidth;
 
     constexpr static int minBranchDist = 100;
-    constexpr static int branchPoints = 2;
+    constexpr static int branchPoints = 4;
 
     constexpr static int straightLen = 3;
     int randomSeed;
@@ -125,7 +132,7 @@ private:
     static std::pair<int,int>
     GetNextIndexFrom(int x, int z, Direction nextDir);
 
-    bool ShouldMakeBranch(float probability, int currentLenght);
+    static bool ShouldMakeBranch(float probability, int currentLenght);
 };
 
 

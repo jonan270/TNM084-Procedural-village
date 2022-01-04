@@ -201,7 +201,23 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection, int maxDi
         countX = px;
         countZ = pz;
 
-        if(ShouldMakeBranch(0.05, distBranch)) {
+        if(ShouldMakeBranch(0.25, distBranch)) {
+            // Either split of somewhere else or find a spot
+            // for a building
+            if(rand() % 2 == 0) {
+                vec3 location = vertices[GetArrIndex(countX, countZ)];
+                buildingSpots.emplace_back(location, newDir);
+
+                /*
+                std::cout << "Current length was " << distBranch
+                << " and a building was placed after " <<
+                distTotal << " iterations.\n";
+                 */
+
+                break;
+            }
+
+
             std::cout << "Go\n";
 
             // 2 directional branching
@@ -233,9 +249,9 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection, int maxDi
         }
 
         DrawRoadAroundIdx(countX, countZ, newDir);
-        //colors[GetArrIndex(countX, countZ)] = roadColor;
         distStraight++;
         distBranch++;
+        distTotal++;
     }
 }
 

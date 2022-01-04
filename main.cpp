@@ -57,6 +57,15 @@ void init() {
     TranslateModel(wellModel, TerrainGrid::kPolySize * TerrainGrid::kTerrainSize / 2.0, 0,
                    TerrainGrid::kPolySize * TerrainGrid::kTerrainSize / 2.0);
 
+    for(auto bp : grid.buildingSpots) {
+        Model* m = LoadModel((char *)"../obj-models/well.obj", SetVec3(0.427, 0.317, 0.235));
+        ScaleModel(m, 0.1, 0.1, 0.1);
+        vec3 pos = bp.first;
+
+        TranslateModel(m, pos.x, pos.y, pos.z);
+        models.push_back(m);
+    }
+
     //ReloadModelData(wellModel);
     models.push_back(terrainModel);
     models.push_back(wellModel);
