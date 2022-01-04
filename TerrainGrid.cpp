@@ -127,8 +127,7 @@ void TerrainGrid::MakeRoads() {
 
 }
 
-// TODO: Split into smaller functions
-void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
+void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection, int maxDist) {
     // Number of allowed directions for a given direction
     const int N_ALLOWED_DIR = 3;
 
@@ -154,17 +153,26 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
             //LeftFrom(LeftFrom(startDirection))
     };
 
-    int straightCount = 0;
-    int testCount = 0;
+    // How long is total road length?
+    int distTotal = 0;
+
+    // How long has road continued
+    // in one direction?
+    int distStraight = 0;
+
+    // How long has road been going
+    // without branching?
+    int distBranch = 0;
+
     Direction newDir = startDirection;
-    while(true) {
+    while(maxDist <= 0 || distTotal < maxDist) {
         // Break when edge of map is reached
-        if( (countX >= kTerrainSize || countZ >= kTerrainSize) ||
-            (countX <= 0 || countZ <= 0))
-            break;
+        //if( (countX >= kTerrainSize || countZ >= kTerrainSize) ||
+        //    (countX <= 0 || countZ <= 0))
+        //    break;
+        if(!IsValidIndex(countX, countZ)) break;
 
-
-        if (straightCount > straightLen) {
+        if (distStraight > straightLen) {
             int randDirInt;
 
             // Do not go in the opposite direction
@@ -173,16 +181,28 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
             while(allowed[randDirInt] == OppositeFrom(newDir));
             newDir = allowed[randDirInt];
 
-            straightCount = 0;
+            distStraight = 0;
         }
+
+        // Set to occupied
+        occupied[GetArrIndex(x,z)] = true;
 
         DrawRoadAroundIdx(countX, countZ, newDir);
         auto p = GetNextIndexFrom(countX, countZ, newDir);
-        countX = p.first;
-        countZ = p.second;
+        int px = p.first;
+        int pz = p.second;
 
-        // TODO: Remove magic number
-        if(testCount > 150) {
+        if(IsValidIndex(px, pz) && occupied[GetArrIndex(px, pz)]) {
+            std::cout << "Breaking.\n";
+            break;
+        }
+
+
+        countX = px;
+        countZ = pz;
+
+        if(ShouldMakeBranch(0.05, distBranch)) {
+            std::cout << "Go\n";
 
             // 2 directional branching
             Direction branchDir = rand() % 2 == 0 ?
@@ -209,13 +229,13 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
             */
 
             MakeRoadFrom(countX, countZ, branchDir);
-            testCount = 0;
+            distBranch = 0;
         }
 
         DrawRoadAroundIdx(countX, countZ, newDir);
-        colors[GetArrIndex(countX, countZ)] = roadColor;
-        straightCount++;
-        testCount++;
+        //colors[GetArrIndex(countX, countZ)] = roadColor;
+        distStraight++;
+        distBranch++;
     }
 }
 
@@ -224,6 +244,14 @@ bool TerrainGrid::IsInTownSquare(int x, int z) const {
             x <= townSquareCenterPoint.first + townSquareWidth &&
             z >= townSquareCenterPoint.second - townSquareWidth &&
             z <= townSquareCenterPoint.second + townSquareWidth);
+}
+
+bool TerrainGrid::IsRoad(int x, int z) {
+    vec3 cl = colors[GetArrIndex(x,z)];
+    return
+    cl.x == roadColor.x &&
+    cl.y == roadColor.y &&
+    cl.z == roadColor.z;
 }
 
 int TerrainGrid::GetArrIndex(int x, int z) {
@@ -336,6 +364,8 @@ TerrainGrid::GetNextIndexFrom(int x, int z, TerrainGrid::Direction nextDir) {
 }
 
 void TerrainGrid::DrawRoadAroundIdx(int x, int z, TerrainGrid::Direction current) {
+    // Set to occupied
+    //occupied[GetArrIndex(x,z)] = true;
 
     // This rather complicated switch sets colors
     // around (x,z) to form a road
@@ -379,8 +409,15 @@ TerrainGrid::~TerrainGrid() {
     delete[] indices;
 }
 
+bool TerrainGrid::ShouldMakeBranch(float probability, int currentLength) {
+    float roll = (float)(rand() % 100 + 1) / 100.f;
+    return (currentLength > minBranchDist) && (roll <= probability);
+}
 
-
+bool TerrainGrid::IsValidIndex(int x, int z) {
+    return (x < kTerrainSize && z < kTerrainSize) &&
+           (x >= 0 && z >= 0);
+}
 
 
 #pragma clang diagnostic pop

@@ -44,7 +44,10 @@ public:
 private:
     constexpr static int roadIndexWidth = 3;
     constexpr static int townSquareWidth = 3 * roadIndexWidth;
-    constexpr static int branchPoints = 3;
+
+    constexpr static int minBranchDist = 100;
+    constexpr static int branchPoints = 2;
+
     constexpr static int straightLen = 3;
     int randomSeed;
 
@@ -62,6 +65,9 @@ private:
     vec2* texCoords = new vec2[kTerrainSize * kTerrainSize];
     vec3* normals   = new vec3[kTerrainSize * kTerrainSize];
     vec3* colors    = new vec3[kTerrainSize * kTerrainSize];
+
+    // Is there a road or building present?
+    bool* occupied  = new bool[kTerrainSize * kTerrainSize]{false};
     GLuint* indices = new GLuint[(kTerrainSize - 1) * (kTerrainSize - 1) * 3 * 2];
 
     std::pair<int ,int> townSquareCenterPoint =
@@ -73,13 +79,17 @@ private:
 
     // Make road network extending
     // from town square.
-    void MakeRoadFrom(int x, int z, Direction startDirection);
+    void MakeRoadFrom(int x, int z, Direction startDirection, int maxDist = -1);
     void MakeRoads();
 
     void DrawRoadAroundIdx(int x, int z, Direction current);
 
     // Is gridslot (x,z) in the town square?
     bool IsInTownSquare(int x, int z) const;
+
+    bool IsRoad(int x, int z);
+
+    bool IsValidIndex(int x, int z);
 
     // Get the position value
     // obtained from noise function
@@ -114,6 +124,8 @@ private:
     // in the provided Direction nextDir
     static std::pair<int,int>
     GetNextIndexFrom(int x, int z, Direction nextDir);
+
+    bool ShouldMakeBranch(float probability, int currentLenght);
 };
 
 
