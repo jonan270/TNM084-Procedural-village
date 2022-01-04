@@ -1,0 +1,66 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/TerrainGrid.cpp
+TerrainGrid.h
+/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/TerrainGrid.h
+
+/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/TerrainGrid.h
+common/VectorUtils3.h
+/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/VectorUtils3.h
+noise/noise1234.h
+/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/noise/noise1234.h
+common/LittleOBJLoader.h
+/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/LittleOBJLoader.h
+common/GL_utilities.h
+/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/GL_utilities.h
+tuple
+-
+cstdlib
+-
+ctime
+-
+iostream
+-
+
+/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/GL_utilities.h
+OpenGL/gl3.h
+-
+glew.h
+/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/glew.h
+GL/gl.h
+-
+GL/gl.h
+-
+stdlib.h
+-
+
+/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/LittleOBJLoader.h
+OpenGL/gl3.h
+-
+glew.h
+/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/glew.h
+GL/gl.h
+-
+VectorUtils3.h
+/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/VectorUtils3.h
+
+/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/VectorUtils3.h
+OpenGL/gl3.h
+-
+glew.h
+/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/glew.h
+GL/gl.h
+-
+math.h
+-
+stdio.h
+-
+
+/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/noise/noise1234.h
+
