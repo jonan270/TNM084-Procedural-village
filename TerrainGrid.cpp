@@ -14,6 +14,14 @@ TerrainGrid::TerrainGrid() {
 
     MakeTerrain();
     MakeRoads();
+
+    for (int x = 0; x < kTerrainSize; x++) {
+        for (int z = 0; z < kTerrainSize; z++) {
+            int ix = GetArrIndex(x,z);
+            if(occupied[ix])
+                colors[ix] = SetVec3(0,1,0);
+        }
+    }
 }
 
 void TerrainGrid::MakeTerrain() {
