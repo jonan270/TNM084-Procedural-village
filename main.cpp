@@ -20,8 +20,6 @@
 
 mat4 projectionMatrix;
 std::vector<Model*> models;
-//Model*terrainModel;
-//Model* wellPtr;
 
 // Reference to shader programs
 GLuint phongShader;
@@ -29,6 +27,8 @@ GLuint phongShader;
 GlutCameraControls glutCameraControls = GlutCameraControls(TerrainGrid::kTerrainSize, TerrainGrid::kPolySize);
 
 constexpr int RES = 1080;
+
+void GenerateTerrain();
 
 void TranslateModel(Model* m, float x, float y, float z);
 void RotateModelY(Model* m, float angle);
@@ -49,6 +49,7 @@ void init() {
     phongShader = loadShaders("../shaders/phong.vert", "../shaders/phong.frag");
     printError("init shader");
 
+    /*
     // Upload geometry to the GPU:
     TerrainGrid grid{};
     Model* terrainModel = grid.GetModelPtr();
@@ -76,6 +77,8 @@ void init() {
     //ReloadModelData(wellModel);
     models.push_back(terrainModel);
     models.push_back(wellModel);
+    */
+    GenerateTerrain();
 
     // Important! The shader we upload to must be active!
     glUseProgram(phongShader);
@@ -93,6 +96,9 @@ void display() {
     // Floor
     glUseProgram(phongShader);
     mat4 m = glutCameraControls.UpdateWorldMatrix();
+
+    if(glutKeyIsDown('z'))
+        GenerateTerrain();
 
     glUniformMatrix4fv(
             glGetUniformLocation(phongShader, "modelviewMatrix"),
@@ -122,6 +128,41 @@ int main(int argc, char *argv[]) {
     glutKeyboardFunc(keys);
     init();
     glutMainLoop();
+}
+
+void GenerateTerrain() {
+    models = std::vector<Model*>();
+
+    // Upload geometry to the GPU:
+    TerrainGrid grid{};
+    Model* terrainModel = grid.GetModelPtr();
+
+    Model* wellModel = LoadModel((char *)"../obj-models/well.obj", SetVec3(0.427, 0.317, 0.235));
+
+    ScaleModel(wellModel, 0.1, 0.1, 0.1);
+    TranslateModel(wellModel, TerrainGrid::kPolySize * TerrainGrid::kTerrainSize / 2.0, 0,
+                   TerrainGrid::kPolySize * TerrainGrid::kTerrainSize / 2.0);
+
+    for(auto bp : grid.buildingSpots) {
+        Model* m = nullptr;
+
+        m = LoadModel((char *)"../obj-models/housing.obj",
+                      SetVec3(0.427, 0.317, 0.235));
+
+        ScaleModel(m, 0.1, 0.1, 0.1);
+
+        vec3 pos = bp.first;
+        TerrainGrid::Direction dir = bp.second;
+        int angle = GetBuildingRotationAngle(dir);
+
+        RotateModelY(m, (float)angle);
+        TranslateModel(m, pos.x, pos.y, pos.z);
+        models.push_back(m);
+    }
+
+    //ReloadModelData(wellModel);
+    models.push_back(terrainModel);
+    models.push_back(wellModel);
 }
 
 int GetBuildingRotationAngle(TerrainGrid::Direction dir) {
