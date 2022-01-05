@@ -21,6 +21,7 @@
 mat4 projectionMatrix;
 std::vector<Model*> models;
 
+
 // Reference to shader programs
 GLuint phongShader;
 
@@ -33,6 +34,13 @@ void GenerateTerrain();
 void TranslateModel(Model* m, float x, float y, float z);
 void RotateModelY(Model* m, float angle);
 int GetBuildingRotationAngle(TerrainGrid::Direction dir);
+
+void DrawModelInstanced(Model *m, GLuint program,
+                        char* vertexVariableName,
+                        char* normalVariableName,
+                        char* texCoordVariableName,
+                        char* colorVariableName,
+                        int count);
 
 void init() {
     // GL inits
@@ -49,35 +57,6 @@ void init() {
     phongShader = loadShaders("../shaders/phong.vert", "../shaders/phong.frag");
     printError("init shader");
 
-    /*
-    // Upload geometry to the GPU:
-    TerrainGrid grid{};
-    Model* terrainModel = grid.GetModelPtr();
-
-    Model* wellModel = LoadModel((char *)"../obj-models/well.obj", SetVec3(0.427, 0.317, 0.235));
-
-    ScaleModel(wellModel, 0.1, 0.1, 0.1);
-    TranslateModel(wellModel, TerrainGrid::kPolySize * TerrainGrid::kTerrainSize / 2.0, 0,
-                   TerrainGrid::kPolySize * TerrainGrid::kTerrainSize / 2.0);
-
-    for(auto bp : grid.buildingSpots) {
-        Model* m = nullptr;
-        m = LoadModel((char *)"../obj-models/housing.obj", SetVec3(0.427, 0.317, 0.235));
-        ScaleModel(m, 0.1, 0.1, 0.1);
-
-        vec3 pos = bp.first;
-        TerrainGrid::Direction dir = bp.second;
-        int angle = GetBuildingRotationAngle(dir);
-
-        RotateModelY(m, (float)angle);
-        TranslateModel(m, pos.x, pos.y, pos.z);
-        models.push_back(m);
-    }
-
-    //ReloadModelData(wellModel);
-    models.push_back(terrainModel);
-    models.push_back(wellModel);
-    */
     GenerateTerrain();
 
     // Important! The shader we upload to must be active!
@@ -145,7 +124,6 @@ void GenerateTerrain() {
 
     for(auto bp : grid.buildingSpots) {
         Model* m = nullptr;
-
         m = LoadModel((char *)"../obj-models/housing.obj",
                       SetVec3(0.427, 0.317, 0.235));
 
