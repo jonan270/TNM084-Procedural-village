@@ -193,7 +193,7 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection, int maxDi
         }
 
         // Set to occupied
-        occupied[GetArrIndex(x,z)] = true;
+        occupied[GetArrIndex(countX,countZ)] = true;
 
         DrawRoadAroundIdx(countX, countZ, newDir);
         auto p = GetNextIndexFrom(countX, countZ, newDir);
@@ -224,9 +224,6 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection, int maxDi
 
                 break;
             }
-
-
-            std::cout << "Go\n";
 
             // 2 directional branching
             Direction branchDir = rand() % 2 == 0 ?
