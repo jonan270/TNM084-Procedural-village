@@ -15,6 +15,7 @@ TerrainGrid::TerrainGrid() {
     MakeTerrain();
     MakeRoads();
 
+    /*
     for (int x = 0; x < kTerrainSize; x++) {
         for (int z = 0; z < kTerrainSize; z++) {
             int ix = GetArrIndex(x,z);
@@ -22,6 +23,7 @@ TerrainGrid::TerrainGrid() {
                 colors[ix] = SetVec3(0,1,0);
         }
     }
+    */
 }
 
 void TerrainGrid::MakeTerrain() {
@@ -209,7 +211,7 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection, int maxDi
         countX = px;
         countZ = pz;
 
-        if(ShouldMakeBranch(0.25, distBranch)) {
+        if(ShouldMakeBranch(0.75, distBranch)) {
             // Either split of somewhere else or find a spot
             // for a building
             if(rand() % 2 == 0) {

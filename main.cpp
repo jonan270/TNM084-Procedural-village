@@ -31,6 +31,8 @@ GlutCameraControls glutCameraControls = GlutCameraControls(TerrainGrid::kTerrain
 constexpr int RES = 1080;
 
 void TranslateModel(Model* m, float x, float y, float z);
+void RotateModelY(Model* m, float angle);
+int GetBuildingRotationAngle(TerrainGrid::Direction dir);
 
 void init() {
     // GL inits
@@ -58,10 +60,15 @@ void init() {
                    TerrainGrid::kPolySize * TerrainGrid::kTerrainSize / 2.0);
 
     for(auto bp : grid.buildingSpots) {
-        Model* m = LoadModel((char *)"../obj-models/well.obj", SetVec3(0.427, 0.317, 0.235));
+        Model* m = nullptr;
+        m = LoadModel((char *)"../obj-models/housing.obj", SetVec3(0.427, 0.317, 0.235));
         ScaleModel(m, 0.1, 0.1, 0.1);
-        vec3 pos = bp.first;
 
+        vec3 pos = bp.first;
+        TerrainGrid::Direction dir = bp.second;
+        int angle = GetBuildingRotationAngle(dir);
+
+        RotateModelY(m, (float)angle);
         TranslateModel(m, pos.x, pos.y, pos.z);
         models.push_back(m);
     }
@@ -117,6 +124,37 @@ int main(int argc, char *argv[]) {
     glutMainLoop();
 }
 
+int GetBuildingRotationAngle(TerrainGrid::Direction dir) {
+    int angle;
+    switch(dir) {
+        case TerrainGrid::south:
+            angle = 90;
+            break;
+        case TerrainGrid::southEast:
+            angle = 45;
+            break;
+        case TerrainGrid::east:
+            angle = 0;
+            break;
+        case TerrainGrid::northEast:
+            angle = -45;
+            break;
+        case TerrainGrid::north:
+            angle = -90;
+            break;
+        case TerrainGrid::northWest:
+            angle = -135;
+            break;
+        case TerrainGrid::west:
+            angle = 180;
+            break;
+        case TerrainGrid::southWest:
+            angle = 135;
+            break;
+    }
+    return angle;
+}
+
 // Translate the model m along coordinate variables
 // x, y and z.
 void TranslateModel(Model* m, float x, float y, float z) {
@@ -126,4 +164,11 @@ void TranslateModel(Model* m, float x, float y, float z) {
         m->vertexArray[i].z += z;
     }
     ReloadModelData(m);
+}
+
+void RotateModelY(Model* m, float angle) {
+    for (long int i = 0; i < m->numVertices; i++) {
+        vec4 current = vec3tovec4(m->vertexArray[i]);
+        m->vertexArray[i] = vec4tovec3(Ry(angle) * current);
+    }
 }

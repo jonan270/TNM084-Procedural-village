@@ -52,7 +52,7 @@ private:
     constexpr static int roadIndexWidth = 3;
     constexpr static int townSquareWidth = 3 * roadIndexWidth;
 
-    constexpr static int minBranchDist = 100;
+    constexpr static int minBranchDist = 80;
     constexpr static int branchPoints = 4;
 
     constexpr static int straightLen = 3;
