@@ -87,6 +87,12 @@
 		<Unit filename="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/GlutCameraControls.h">
 			<Option target="TNM084_Procedural_village"/>
 		</Unit>
+		<Unit filename="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/LittleOBJExtension.cpp">
+			<Option target="TNM084_Procedural_village"/>
+		</Unit>
+		<Unit filename="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/LittleOBJExtension.h">
+			<Option target="TNM084_Procedural_village"/>
+		</Unit>
 		<Unit filename="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/TerrainGrid.cpp">
 			<Option target="TNM084_Procedural_village"/>
 		</Unit>

@@ -17,6 +17,7 @@
 #include <vector>
 #include "GlutCameraControls.h"
 #include "TerrainGrid.h"
+#include "LittleOBJExtension.h"
 
 mat4 projectionMatrix;
 std::vector<Model*> models;
@@ -30,9 +31,6 @@ GlutCameraControls glutCameraControls = GlutCameraControls(TerrainGrid::kTerrain
 constexpr int RES = 1080;
 
 void GenerateTerrain();
-
-void TranslateModel(Model* m, float x, float y, float z);
-void RotateModelY(Model* m, float angle);
 int GetBuildingRotationAngle(TerrainGrid::Direction dir);
 
 void DrawModelInstanced(Model *m, GLuint program,
@@ -172,22 +170,4 @@ int GetBuildingRotationAngle(TerrainGrid::Direction dir) {
             break;
     }
     return angle;
-}
-
-// Translate the model m along coordinate variables
-// x, y and z.
-void TranslateModel(Model* m, float x, float y, float z) {
-    for (long int i = 0; i < m->numVertices; i++) {
-        m->vertexArray[i].x += x;
-        m->vertexArray[i].y += y;
-        m->vertexArray[i].z += z;
-    }
-    ReloadModelData(m);
-}
-
-void RotateModelY(Model* m, float angle) {
-    for (long int i = 0; i < m->numVertices; i++) {
-        vec4 current = vec3tovec4(m->vertexArray[i]);
-        m->vertexArray[i] = vec4tovec3(Ry(angle) * current);
-    }
 }

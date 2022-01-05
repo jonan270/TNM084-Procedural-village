@@ -129,6 +129,30 @@ TNM084_Procedural_village/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/TNM084_Procedural_village.dir/build.make CMakeFiles/TNM084_Procedural_village.dir/build
 .PHONY : TNM084_Procedural_village/fast
 
+LittleOBJExtension.o: LittleOBJExtension.cpp.o
+.PHONY : LittleOBJExtension.o
+
+# target to build an object file
+LittleOBJExtension.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TNM084_Procedural_village.dir/build.make CMakeFiles/TNM084_Procedural_village.dir/LittleOBJExtension.cpp.o
+.PHONY : LittleOBJExtension.cpp.o
+
+LittleOBJExtension.i: LittleOBJExtension.cpp.i
+.PHONY : LittleOBJExtension.i
+
+# target to preprocess a source file
+LittleOBJExtension.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TNM084_Procedural_village.dir/build.make CMakeFiles/TNM084_Procedural_village.dir/LittleOBJExtension.cpp.i
+.PHONY : LittleOBJExtension.cpp.i
+
+LittleOBJExtension.s: LittleOBJExtension.cpp.s
+.PHONY : LittleOBJExtension.s
+
+# target to generate assembly for a file
+LittleOBJExtension.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/TNM084_Procedural_village.dir/build.make CMakeFiles/TNM084_Procedural_village.dir/LittleOBJExtension.cpp.s
+.PHONY : LittleOBJExtension.cpp.s
+
 TerrainGrid.o: TerrainGrid.cpp.o
 .PHONY : TerrainGrid.o
 
@@ -330,6 +354,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... TNM084_Procedural_village"
+	@echo "... LittleOBJExtension.o"
+	@echo "... LittleOBJExtension.i"
+	@echo "... LittleOBJExtension.s"
 	@echo "... TerrainGrid.o"
 	@echo "... TerrainGrid.i"
 	@echo "... TerrainGrid.s"

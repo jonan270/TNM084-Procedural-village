@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/TNM084_Procedural_village.dir/LittleOBJExtension.cpp.o"
   "CMakeFiles/TNM084_Procedural_village.dir/TerrainGrid.cpp.o"
   "CMakeFiles/TNM084_Procedural_village.dir/common/GL_utilities.c.o"
   "CMakeFiles/TNM084_Procedural_village.dir/common/LittleOBJLoader.c.o"
