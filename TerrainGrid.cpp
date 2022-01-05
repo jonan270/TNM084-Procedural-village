@@ -428,6 +428,7 @@ TerrainGrid::~TerrainGrid() {
     delete[] normals;
     delete[] colors;
     delete[] indices;
+    delete[] occupied;
 }
 
 bool TerrainGrid::ShouldMakeBranch(float probability, int currentLength) {
