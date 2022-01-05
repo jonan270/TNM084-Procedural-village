@@ -18,3 +18,64 @@ void RotateModelY(Model* m, float angle) {
     }
 }
 
+void DrawModelInstanced(Model *m, GLuint program,
+                        char* vertexVariableName,
+                        char* normalVariableName,
+                        char* texCoordVariableName,
+                        char* colorVariableName,
+                        int count) {
+    if (m != NULL) {
+        GLint loc;
+
+        glBindVertexArray(m->vao);	// Select VAO
+
+        glBindBuffer(GL_ARRAY_BUFFER, m->vb);
+        loc = glGetAttribLocation(program, vertexVariableName);
+        if (loc >= 0) {
+            glVertexAttribPointer(loc, 3, GL_FLOAT, GL_FALSE, 0, 0);
+            glEnableVertexAttribArray(loc);
+        }
+        else
+            fprintf(stderr, "DrawModelInstanced warning: '%s' not found in shader!\n", vertexVariableName);
+
+        if (normalVariableName!=NULL) {
+            loc = glGetAttribLocation(program, normalVariableName);
+            if (loc >= 0) {
+                glBindBuffer(GL_ARRAY_BUFFER, m->nb);
+                glVertexAttribPointer(loc, 3, GL_FLOAT, GL_FALSE, 0, 0);
+                glEnableVertexAttribArray(loc);
+            }
+            else
+                fprintf(stderr, "DrawModelInstanced warning: '%s' not found in shader!\n",
+                        normalVariableName);
+        }
+
+        // VBO for texture coordinate data NEW for 5b
+        if ((m->texCoordArray != NULL)&&(texCoordVariableName != NULL)) {
+            loc = glGetAttribLocation(program, texCoordVariableName);
+            if (loc >= 0) {
+                glBindBuffer(GL_ARRAY_BUFFER, m->tb);
+                glVertexAttribPointer(loc, 2, GL_FLOAT, GL_FALSE, 0, 0);
+                glEnableVertexAttribArray(loc);
+            }
+            else
+                fprintf(stderr, "DrawModelInstanced warning: '%s' not found in shader!\n",
+                        texCoordVariableName);
+        }
+
+        if (colorVariableName!=NULL) {
+            loc = glGetAttribLocation(program, colorVariableName);
+            if (loc >= 0) {
+                glBindBuffer(GL_ARRAY_BUFFER, m->cb);
+                glVertexAttribPointer(loc, 3, GL_FLOAT, GL_FALSE, 0, 0);
+                glEnableVertexAttribArray(loc);
+            }
+            else
+                fprintf(stderr, "DrawModelInstanced warning: '%s' not found in shader!\n",
+                        colorVariableName);
+        }
+
+        glDrawElementsInstanced(GL_TRIANGLES, m->numIndices, GL_UNSIGNED_INT, 0L, count);
+    }
+}
+
