@@ -813,7 +813,6 @@ Model* GenerateInstancingModelWithColor(Mesh* mesh, vec3 modelColor, int count)
         if (indexHashMap[index].newIndex != -1)
         {
             model->colorArray[indexHashMap[index].newIndex] = modelColor;
-            //model->instanceTranslationArray[indexHashMap[index].newIndex] = SetVec3(0,0,0);
             if (mesh->vertices)
                 model->vertexArray[indexHashMap[index].newIndex] = mesh->vertices[indexHashMap[index].positionIndex];
             if (mesh->vertexNormals)
@@ -1400,6 +1399,7 @@ static void GenModelBuffers(Model *m)
 }
 
 // For simple models
+// Added color support
 Model* LoadModel(const char* name, vec3 modelColor)
 {
 	Model* model = NULL;
@@ -1423,21 +1423,13 @@ Model* LoadInstancingModel(const char* name, vec3 modelColor, int count)
     Mesh* mesh = LoadOBJ(name);
     DecomposeToTriangles(mesh);
     GenerateNormals(mesh);
+
     model = GenerateInstancingModelWithColor(mesh, modelColor, count);
     model->numInstances = count;
+
     DisposeMesh(mesh);
 
-    //glGenBuffers(1, &model->isb);
-
-    //glGetError();
-
     GenModelBuffers(model);
-
-    //glBindBuffer(GL_ARRAY_BUFFER, model->isb);
-    //glBufferData(GL_ARRAY_BUFFER,
-    //             count*3*sizeof(GLfloat),
-    //             model->instanceTranslationArray, GL_STATIC_DRAW);
-
     return model;
 }
 

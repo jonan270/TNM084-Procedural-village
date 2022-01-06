@@ -33,14 +33,6 @@ constexpr int RES = 1080;
 
 void GenerateTerrain();
 int GetBuildingRotationAngle(TerrainGrid::Direction dir);
-/*
-void DrawModelInstanced(Model *m, GLuint program,
-                        char* vertexVariableName,
-                        char* normalVariableName,
-                        char* texCoordVariableName,
-                        char* colorVariableName,
-                        int count);
-                        */
 
 void init() {
     // GL inits
@@ -138,39 +130,14 @@ void GenerateTerrain() {
                                    SetVec3(0.427, 0.317, 0.235),
                                    grid.buildingSpots.size());
 
-
-    //houses->instanceTranslationArray[1] = SetVec3(0,1,0);
     int count = 0;
     for(auto bp : grid.buildingSpots) {
-        /*
-        if(count == 0) {
-            houses->instanceTranslationArray[count] = SetVec3(5,5,5);
-            break;
-        }
-        */
         houses->instanceTranslationArray[count] = bp.first;
         std::cout << "Setting value x to = " << houses->instanceTranslationArray[count].x << "\n";
         count++;
-        /*
-        Model* m = nullptr;
-        m = LoadModel((char *)"../obj-models/housing.obj",
-                      SetVec3(0.427, 0.317, 0.235));
-
-        ScaleModel(m, 0.1, 0.1, 0.1);
-
-        vec3 pos = bp.first;
-        TerrainGrid::Direction dir = bp.second;
-        int angle = GetBuildingRotationAngle(dir);
-
-        RotateModelY(m, (float)angle);
-        TranslateModel(m, pos.x, pos.y, pos.z);
-        models.push_back(m);
-         */
     }
-
     ReloadModelData(houses);
 
-    ReloadModelData(wellModel);
     models.push_back(terrainModel);
     models.push_back(wellModel);
     //houses = m;
