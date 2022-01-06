@@ -22,6 +22,7 @@ void DrawModelInstanced(Model *m, GLuint program,
                         char* normalVariableName,
                         char* texCoordVariableName,
                         char* colorVariableName,
+                        char* translationVariableName,
                         int count);
 
 #endif //TNM084_PROCEDURAL_VILLAGE_LITTLEOBJEXTENSION_H

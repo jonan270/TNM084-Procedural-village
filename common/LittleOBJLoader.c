@@ -717,7 +717,7 @@ static void GenerateNormals(Mesh* mesh)
 	}
 }
 
-Model* GenerateModelWithColor(Mesh* mesh, vec3 modelColor)
+Model* GenerateInstancingModelWithColor(Mesh* mesh, vec3 modelColor, int count)
 {
     // Convert from Mesh format (multiple index lists) to Model format
     // (one index list) by generating a new set of vertices/indices
@@ -802,6 +802,10 @@ Model* GenerateModelWithColor(Mesh* mesh, vec3 modelColor)
 
     // Added to support colors
     model->colorArray = (vec3 *)malloc(sizeof(vec3) * numNewVertices);
+
+    if(count != NULL)
+        model->instanceTranslationArray = (vec3 *)malloc(sizeof(vec3) * count);
+
     model->numVertices = numNewVertices;
 
     for (index = 0; index < indexHashMapSize; index++)
@@ -809,6 +813,7 @@ Model* GenerateModelWithColor(Mesh* mesh, vec3 modelColor)
         if (indexHashMap[index].newIndex != -1)
         {
             model->colorArray[indexHashMap[index].newIndex] = modelColor;
+            //model->instanceTranslationArray[indexHashMap[index].newIndex] = SetVec3(0,0,0);
             if (mesh->vertices)
                 model->vertexArray[indexHashMap[index].newIndex] = mesh->vertices[indexHashMap[index].positionIndex];
             if (mesh->vertexNormals)
@@ -1363,6 +1368,13 @@ void ReloadModelData(Model *m)
         glBindBuffer(GL_ARRAY_BUFFER, m->cb);
         glBufferData(GL_ARRAY_BUFFER, m->numVertices*3*sizeof(GLfloat), m->colorArray, GL_STATIC_DRAW);
     }
+
+    if(m->instanceTranslationArray != NULL)
+    {
+        glBindBuffer(GL_ARRAY_BUFFER, m->isb);
+        glBufferData(GL_ARRAY_BUFFER,
+                     m->numInstances*3*sizeof(GLfloat), m->instanceTranslationArray, GL_STATIC_DRAW);
+    }
 	
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m->ib);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, m->numIndices*sizeof(GLuint), m->indexArray, GL_STATIC_DRAW);
@@ -1381,6 +1393,9 @@ static void GenModelBuffers(Model *m)
     if(m->colorArray != NULL)
         glGenBuffers(1, &m->cb);
 
+    if(m->instanceTranslationArray != NULL)
+        glGenBuffers(1, &m->isb);
+
 	ReloadModelData(m);
 }
 
@@ -1391,11 +1406,39 @@ Model* LoadModel(const char* name, vec3 modelColor)
 	Mesh* mesh = LoadOBJ(name);
 	DecomposeToTriangles(mesh);
 	GenerateNormals(mesh);
-	model = GenerateModelWithColor(mesh, modelColor);
+	model = GenerateInstancingModelWithColor(mesh, modelColor, NULL);
 	DisposeMesh(mesh);
 
 	GenModelBuffers(model);	
 	return model;
+}
+
+// Added to support setting different positions
+// for instancing objects
+//
+// Inspired by: https://www.youtube.com/watch?v=9F_lUPPS_pg
+Model* LoadInstancingModel(const char* name, vec3 modelColor, int count)
+{
+    Model* model = NULL;
+    Mesh* mesh = LoadOBJ(name);
+    DecomposeToTriangles(mesh);
+    GenerateNormals(mesh);
+    model = GenerateInstancingModelWithColor(mesh, modelColor, count);
+    model->numInstances = count;
+    DisposeMesh(mesh);
+
+    //glGenBuffers(1, &model->isb);
+
+    //glGetError();
+
+    GenModelBuffers(model);
+
+    //glBindBuffer(GL_ARRAY_BUFFER, model->isb);
+    //glBufferData(GL_ARRAY_BUFFER,
+    //             count*3*sizeof(GLfloat),
+    //             model->instanceTranslationArray, GL_STATIC_DRAW);
+
+    return model;
 }
 
 // For multiple part models
@@ -1466,6 +1509,8 @@ void DisposeModel(Model *m)
 			free(m->colorArray);
 		if (m->indexArray != NULL)
 			free(m->indexArray);
+        if (m->instanceTranslationArray != NULL)
+            free(m->instanceTranslationArray);
 		
 		// Lazy error checking here since "glDeleteBuffers silently ignores 0's and names that do not correspond to existing buffer objects."
 		glDeleteBuffers(1, &m->vb);
@@ -1473,6 +1518,7 @@ void DisposeModel(Model *m)
 		glDeleteBuffers(1, &m->nb);
 		glDeleteBuffers(1, &m->tb);
         glDeleteBuffers(1, &m->cb);
+        glDeleteBuffers(1, &m->isb);
 		glDeleteVertexArrays(1, &m->vao);
 		
 		if (m->material != NULL)

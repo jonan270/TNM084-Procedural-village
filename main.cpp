@@ -21,6 +21,7 @@
 
 mat4 projectionMatrix;
 std::vector<Model*> models;
+Model* houses;
 
 
 // Reference to shader programs
@@ -32,13 +33,14 @@ constexpr int RES = 1080;
 
 void GenerateTerrain();
 int GetBuildingRotationAngle(TerrainGrid::Direction dir);
-
+/*
 void DrawModelInstanced(Model *m, GLuint program,
                         char* vertexVariableName,
                         char* normalVariableName,
                         char* texCoordVariableName,
                         char* colorVariableName,
                         int count);
+                        */
 
 void init() {
     // GL inits
@@ -81,12 +83,24 @@ void display() {
             glGetUniformLocation(phongShader, "modelviewMatrix"),
             1, GL_TRUE, m.m);
 
+    printError("display b4");
+
     for(Model* model : models)
         DrawModel(model, phongShader,
                   "inPosition",
                   "inNormal",
                   "inTexCoord",
                   "inColor");
+
+
+    DrawModelInstanced(houses, phongShader,
+              "inPosition",
+              "inNormal",
+              "inTexCoord",
+              "inColor",
+              "inTranslation",
+              houses->numInstances);
+
 
     printError("display");
 
@@ -120,7 +134,24 @@ void GenerateTerrain() {
     TranslateModel(wellModel, TerrainGrid::kPolySize * TerrainGrid::kTerrainSize / 2.0, 0,
                    TerrainGrid::kPolySize * TerrainGrid::kTerrainSize / 2.0);
 
+    houses = LoadInstancingModel((char *)"../obj-models/housing.obj",
+                                   SetVec3(0.427, 0.317, 0.235),
+                                   grid.buildingSpots.size());
+
+
+    //houses->instanceTranslationArray[1] = SetVec3(0,1,0);
+    int count = 0;
     for(auto bp : grid.buildingSpots) {
+        /*
+        if(count == 0) {
+            houses->instanceTranslationArray[count] = SetVec3(5,5,5);
+            break;
+        }
+        */
+        houses->instanceTranslationArray[count] = bp.first;
+        std::cout << "Setting value x to = " << houses->instanceTranslationArray[count].x;
+        count++;
+        /*
         Model* m = nullptr;
         m = LoadModel((char *)"../obj-models/housing.obj",
                       SetVec3(0.427, 0.317, 0.235));
@@ -134,11 +165,14 @@ void GenerateTerrain() {
         RotateModelY(m, (float)angle);
         TranslateModel(m, pos.x, pos.y, pos.z);
         models.push_back(m);
+         */
     }
 
-    //ReloadModelData(wellModel);
+    ReloadModelData(wellModel);
     models.push_back(terrainModel);
     models.push_back(wellModel);
+    //houses = m;
+    printError("generate terrain");
 }
 
 int GetBuildingRotationAngle(TerrainGrid::Direction dir) {

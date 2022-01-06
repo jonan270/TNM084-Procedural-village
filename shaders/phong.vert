@@ -2,8 +2,13 @@
 
 in  vec3 inPosition;
 in  vec3 inNormal;
+
 in vec3 inColor;
-in vec2 inTexCoord;
+in vec3 inTranslation;
+
+in vec2 inTexCoord; // Currently not used
+
+
 out vec3 exNormal; // Phong
 out vec3 exSurface; // Phong (specular)
 out vec2 exTexCoord;
@@ -22,5 +27,11 @@ void main(void)
 	exTexCoord = inTexCoord;
 
 	color = inColor;
-	gl_Position = projectionMatrix * modelviewMatrix * vec4(inPosition, 1.0); // This should include projection
+	//vec4 pos = vec4(inTranslation + inPosition, 1.0);
+	vec4 pos = vec4(inPosition, 1.0);
+	if(gl_InstanceID != 0) {
+		pos.y += 5;
+		color = inTranslation;
+	}
+	gl_Position = projectionMatrix * modelviewMatrix * pos; // This should include projection
 }

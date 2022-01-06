@@ -23,6 +23,7 @@ void DrawModelInstanced(Model *m, GLuint program,
                         char* normalVariableName,
                         char* texCoordVariableName,
                         char* colorVariableName,
+                        char* translationVariableName,
                         int count) {
     if (m != NULL) {
         GLint loc;
@@ -75,7 +76,25 @@ void DrawModelInstanced(Model *m, GLuint program,
                         colorVariableName);
         }
 
+        if (translationVariableName!=NULL) {
+            loc = glGetAttribLocation(program, translationVariableName);
+            if (loc >= 0) {
+                glBindBuffer(GL_ARRAY_BUFFER, m->isb);
+                glVertexAttribPointer(loc, 3, GL_FLOAT, GL_FALSE, 0, 0);
+                glEnableVertexAttribArray(loc);
+
+                // Divisor 1 sets variable to entire model
+                // rather than for each vertex in model.
+                glVertexAttribDivisor(loc, 1);
+            }
+            else
+                fprintf(stderr, "DrawModelInstanced warning: '%s' not found in shader!\n",
+                        colorVariableName);
+        }
+
         glDrawElementsInstanced(GL_TRIANGLES, m->numIndices, GL_UNSIGNED_INT, 0L, count);
     }
 }
+
+
 
