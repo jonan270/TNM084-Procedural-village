@@ -6,39 +6,3 @@
 
 #IncludeRegexTransform: 
 
-../common/VectorUtils3.h
-OpenGL/gl3.h
--
-glew.h
-../common/glew.h
-GL/gl.h
--
-math.h
--
-stdio.h
--
-
-/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/LittleOBJLoader.c
-LittleOBJLoader.h
-/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/LittleOBJLoader.h
-stdio.h
--
-stdlib.h
--
-string.h
--
-math.h
--
-VectorUtils3.h
--
-
-/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/LittleOBJLoader.h
-OpenGL/gl3.h
--
-glew.h
-/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/glew.h
-GL/gl.h
--
-VectorUtils3.h
-/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/VectorUtils3.h
-

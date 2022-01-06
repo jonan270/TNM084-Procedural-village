@@ -27,11 +27,6 @@ void main(void)
 	exTexCoord = inTexCoord;
 
 	color = inColor;
-	//vec4 pos = vec4(inTranslation + inPosition, 1.0);
-	vec4 pos = vec4(inPosition, 1.0);
-	if(gl_InstanceID != 0) {
-		pos.y += 5;
-		color = inTranslation;
-	}
+	vec4 pos = vec4(inTranslation + inPosition, 1.0);
 	gl_Position = projectionMatrix * modelviewMatrix * pos; // This should include projection
 }

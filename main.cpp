@@ -149,7 +149,7 @@ void GenerateTerrain() {
         }
         */
         houses->instanceTranslationArray[count] = bp.first;
-        std::cout << "Setting value x to = " << houses->instanceTranslationArray[count].x;
+        std::cout << "Setting value x to = " << houses->instanceTranslationArray[count].x << "\n";
         count++;
         /*
         Model* m = nullptr;
@@ -167,6 +167,8 @@ void GenerateTerrain() {
         models.push_back(m);
          */
     }
+
+    ReloadModelData(houses);
 
     ReloadModelData(wellModel);
     models.push_back(terrainModel);
