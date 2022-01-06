@@ -24,6 +24,7 @@ void DrawModelInstanced(Model *m, GLuint program,
                         char* texCoordVariableName,
                         char* colorVariableName,
                         char* translationVariableName,
+                        char* angleVariableName,
                         int count) {
     if (m != NULL) {
         GLint loc;
@@ -89,7 +90,23 @@ void DrawModelInstanced(Model *m, GLuint program,
             }
             else
                 fprintf(stderr, "DrawModelInstanced warning: '%s' not found in shader!\n",
-                        colorVariableName);
+                        translationVariableName);
+        }
+
+        if (angleVariableName!=NULL) {
+            loc = glGetAttribLocation(program, angleVariableName);
+            if (loc >= 0) {
+                glBindBuffer(GL_ARRAY_BUFFER, m->ab);
+                glVertexAttribPointer(loc, 1, GL_FLOAT, GL_FALSE, 0, 0);
+                glEnableVertexAttribArray(loc);
+
+                // Divisor 1 sets variable to entire model
+                // rather than for each vertex in model.
+                glVertexAttribDivisor(loc, 1);
+            }
+            else
+                fprintf(stderr, "DrawModelInstanced warning: '%s' not found in shader!\n",
+                        angleVariableName);
         }
 
         glDrawElementsInstanced(GL_TRIANGLES, m->numIndices, GL_UNSIGNED_INT, 0L, count);

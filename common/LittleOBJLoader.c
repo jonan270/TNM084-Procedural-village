@@ -803,8 +803,10 @@ Model* GenerateInstancingModelWithColor(Mesh* mesh, vec3 modelColor, int count)
     // Added to support colors
     model->colorArray = (vec3 *)malloc(sizeof(vec3) * numNewVertices);
 
-    if(count != NULL)
+    if(count != NULL) {
         model->instanceTranslationArray = (vec3 *)malloc(sizeof(vec3) * count);
+        model->instanceRotationArray = (vec3 *)malloc(sizeof(float) * count);
+    }
 
     model->numVertices = numNewVertices;
 
@@ -1374,6 +1376,13 @@ void ReloadModelData(Model *m)
         glBufferData(GL_ARRAY_BUFFER,
                      m->numInstances*3*sizeof(GLfloat), m->instanceTranslationArray, GL_STATIC_DRAW);
     }
+
+    if(m->instanceRotationArray != NULL)
+    {
+        glBindBuffer(GL_ARRAY_BUFFER, m->ab);
+        glBufferData(GL_ARRAY_BUFFER,
+                     m->numInstances*sizeof(GLfloat), m->instanceRotationArray, GL_STATIC_DRAW);
+    }
 	
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m->ib);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, m->numIndices*sizeof(GLuint), m->indexArray, GL_STATIC_DRAW);
@@ -1393,6 +1402,9 @@ static void GenModelBuffers(Model *m)
         glGenBuffers(1, &m->cb);
 
     if(m->instanceTranslationArray != NULL)
+        glGenBuffers(1, &m->ab);
+
+    if(m->instanceRotationArray != NULL)
         glGenBuffers(1, &m->isb);
 
 	ReloadModelData(m);
@@ -1503,6 +1515,8 @@ void DisposeModel(Model *m)
 			free(m->indexArray);
         if (m->instanceTranslationArray != NULL)
             free(m->instanceTranslationArray);
+        if (m->instanceRotationArray != NULL)
+            free(m->instanceRotationArray);
 		
 		// Lazy error checking here since "glDeleteBuffers silently ignores 0's and names that do not correspond to existing buffer objects."
 		glDeleteBuffers(1, &m->vb);
@@ -1511,6 +1525,7 @@ void DisposeModel(Model *m)
 		glDeleteBuffers(1, &m->tb);
         glDeleteBuffers(1, &m->cb);
         glDeleteBuffers(1, &m->isb);
+        glDeleteBuffers(1, &m->ab);
 		glDeleteVertexArrays(1, &m->vao);
 		
 		if (m->material != NULL)

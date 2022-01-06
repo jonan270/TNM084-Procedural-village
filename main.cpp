@@ -92,6 +92,7 @@ void display() {
               "inTexCoord",
               "inColor",
               "inTranslation",
+              "inAngle",
               houses->numInstances);
 
 
@@ -137,6 +138,8 @@ void GenerateTerrain() {
     int count = 0;
     for(auto bp : grid.buildingSpots) {
         houses->instanceTranslationArray[count] = bp.first;
+        houses->instanceRotationArray[count] =
+                (float)GetBuildingRotationAngle(bp.second);
         count++;
     }
     ReloadModelData(houses);

@@ -44,6 +44,7 @@ typedef struct
   vec2* texCoordArray;
   vec3* colorArray; // Rarely used
   vec3* instanceTranslationArray; // Added
+  float* instanceRotationArray;
 
   GLuint* indexArray;
   int numInstances; // Added
@@ -52,7 +53,7 @@ typedef struct
   
   // Space for saving VBO and VAO IDs
   GLuint vao; // VAO
-  GLuint vb, ib, nb, tb, cb, isb; // VBOs, cb and isb added
+  GLuint vb, ib, nb, tb, cb, isb, ab; // VBOs, cb and isb added
   
   Mtl *material;
 } Model;
