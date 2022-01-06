@@ -24,14 +24,12 @@ in float inAngle;
 
 void main(void)
 {
-
 	// Rotate around y
 	mat4 r;
 	r[0] = vec4(cos(inAngle), 0, sin(inAngle), 0);
 	r[1] = vec4(0, 1, 0, 0);
 	r[2] = vec4(-sin(inAngle), 0, cos(inAngle), 0);
 	r[3] = vec4(0, 0, 0, 1);
-	//vec4 originPos = vec4(inPosition, 1.0);
 
 	vec4 pos = r * vec4(inPosition, 1.0);
 	pos.x += inTranslation.x;
@@ -43,8 +41,5 @@ void main(void)
 	exTexCoord = inTexCoord;
 
 	color = inColor;
-
-	//pos += vec4(inTranslation, 1.0);
-	//vec4 pos = vec4(inTranslation + inPosition, 1.0) * r;
 	gl_Position = projectionMatrix * modelviewMatrix * pos; // This should include projection
 }
