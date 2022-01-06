@@ -27,7 +27,8 @@ Model* houses;
 // Reference to shader programs
 GLuint phongShader;
 
-GlutCameraControls glutCameraControls = GlutCameraControls(TerrainGrid::kTerrainSize, TerrainGrid::kPolySize);
+GlutCameraControls glutCameraControls =
+        GlutCameraControls(TerrainGrid::kTerrainSize, TerrainGrid::kPolySize);
 
 constexpr int RES = 1080;
 
@@ -120,12 +121,15 @@ void GenerateTerrain() {
     TerrainGrid grid{};
     Model* terrainModel = grid.GetModelPtr();
 
+    // Load model for well to be placed in town center
     Model* wellModel = LoadModel((char *)"../obj-models/well.obj", SetVec3(0.427, 0.317, 0.235));
 
+    // Put in center of map
     ScaleModel(wellModel, 0.1, 0.1, 0.1);
     TranslateModel(wellModel, TerrainGrid::kPolySize * TerrainGrid::kTerrainSize / 2.0, 0,
                    TerrainGrid::kPolySize * TerrainGrid::kTerrainSize / 2.0);
 
+    // Load the model for housing to be used with instancing
     houses = LoadInstancingModel((char *)"../obj-models/housing.obj",
                                    SetVec3(0.427, 0.317, 0.235),
                                    grid.buildingSpots.size());
@@ -133,14 +137,12 @@ void GenerateTerrain() {
     int count = 0;
     for(auto bp : grid.buildingSpots) {
         houses->instanceTranslationArray[count] = bp.first;
-        std::cout << "Setting value x to = " << houses->instanceTranslationArray[count].x << "\n";
         count++;
     }
     ReloadModelData(houses);
 
     models.push_back(terrainModel);
     models.push_back(wellModel);
-    //houses = m;
     printError("generate terrain");
 }
 

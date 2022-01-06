@@ -4,8 +4,6 @@ in  vec3 inPosition;
 in  vec3 inNormal;
 
 in vec3 inColor;
-in vec3 inTranslation;
-
 in vec2 inTexCoord; // Currently not used
 
 
@@ -17,6 +15,9 @@ out vec3 color;
 
 uniform mat4 modelviewMatrix;
 uniform mat4 projectionMatrix;
+
+// instancing translation
+in vec3 inTranslation;
 
 void main(void)
 {
