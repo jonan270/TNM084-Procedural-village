@@ -43,13 +43,17 @@ typedef struct
   vec3* normalArray;
   vec2* texCoordArray;
   vec3* colorArray; // Rarely used
+  vec3* instanceTranslationArray; // Added
+  float* instanceRotationArray;
+
   GLuint* indexArray;
+  int numInstances; // Added
   int numVertices;
   int numIndices;
   
   // Space for saving VBO and VAO IDs
   GLuint vao; // VAO
-  GLuint vb, ib, nb, tb, cb; // VBOs
+  GLuint vb, ib, nb, tb, cb, isb, ab; // VBOs, cb and isb added
   
   Mtl *material;
 } Model;
@@ -57,6 +61,7 @@ typedef struct
 // Basic model loading
 #define LoadModelPlus LoadModel
 Model* LoadModel(const char* name, vec3 modelColor); // Load OBJ as single Model
+Model* LoadInstancingModel(const char* name, vec3 modelColor, int count);
 Model** LoadModelSet(const char* name);  // Multi-part OBJ!
 
 // Drawing models

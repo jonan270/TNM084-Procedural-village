@@ -17,30 +17,23 @@
 #include <vector>
 #include "GlutCameraControls.h"
 #include "TerrainGrid.h"
+#include "LittleOBJExtension.h"
 
 mat4 projectionMatrix;
 std::vector<Model*> models;
+Model* houses;
 
 
 // Reference to shader programs
 GLuint phongShader;
 
-GlutCameraControls glutCameraControls = GlutCameraControls(TerrainGrid::kTerrainSize, TerrainGrid::kPolySize);
+GlutCameraControls glutCameraControls =
+        GlutCameraControls(TerrainGrid::kTerrainSize, TerrainGrid::kPolySize);
 
 constexpr int RES = 1080;
 
 void GenerateTerrain();
-
-void TranslateModel(Model* m, float x, float y, float z);
-void RotateModelY(Model* m, float angle);
 int GetBuildingRotationAngle(TerrainGrid::Direction dir);
-
-void DrawModelInstanced(Model *m, GLuint program,
-                        char* vertexVariableName,
-                        char* normalVariableName,
-                        char* texCoordVariableName,
-                        char* colorVariableName,
-                        int count);
 
 void init() {
     // GL inits
@@ -83,12 +76,25 @@ void display() {
             glGetUniformLocation(phongShader, "modelviewMatrix"),
             1, GL_TRUE, m.m);
 
+    printError("display b4");
+
     for(Model* model : models)
         DrawModel(model, phongShader,
                   "inPosition",
                   "inNormal",
                   "inTexCoord",
                   "inColor");
+
+
+    DrawModelInstanced(houses, phongShader,
+              "inPosition",
+              "inNormal",
+              "inTexCoord",
+              "inColor",
+              "inTranslation",
+              "inAngle",
+              houses->numInstances);
+
 
     printError("display");
 
@@ -116,31 +122,31 @@ void GenerateTerrain() {
     TerrainGrid grid{};
     Model* terrainModel = grid.GetModelPtr();
 
+    // Load model for well to be placed in town center
     Model* wellModel = LoadModel((char *)"../obj-models/well.obj", SetVec3(0.427, 0.317, 0.235));
 
+    // Put in center of map
     ScaleModel(wellModel, 0.1, 0.1, 0.1);
     TranslateModel(wellModel, TerrainGrid::kPolySize * TerrainGrid::kTerrainSize / 2.0, 0,
                    TerrainGrid::kPolySize * TerrainGrid::kTerrainSize / 2.0);
 
+    // Load the model for housing to be used with instancing
+    houses = LoadInstancingModel((char *)"../obj-models/housing.obj",
+                                   SetVec3(0.427, 0.317, 0.235),
+                                   grid.buildingSpots.size());
+
+    int count = 0;
     for(auto bp : grid.buildingSpots) {
-        Model* m = nullptr;
-        m = LoadModel((char *)"../obj-models/housing.obj",
-                      SetVec3(0.427, 0.317, 0.235));
-
-        ScaleModel(m, 0.1, 0.1, 0.1);
-
-        vec3 pos = bp.first;
-        TerrainGrid::Direction dir = bp.second;
-        int angle = GetBuildingRotationAngle(dir);
-
-        RotateModelY(m, (float)angle);
-        TranslateModel(m, pos.x, pos.y, pos.z);
-        models.push_back(m);
+        houses->instanceTranslationArray[count] = bp.first;
+        houses->instanceRotationArray[count] =
+                (float)GetBuildingRotationAngle(bp.second);
+        count++;
     }
+    ReloadModelData(houses);
 
-    //ReloadModelData(wellModel);
     models.push_back(terrainModel);
     models.push_back(wellModel);
+    printError("generate terrain");
 }
 
 int GetBuildingRotationAngle(TerrainGrid::Direction dir) {
@@ -172,22 +178,4 @@ int GetBuildingRotationAngle(TerrainGrid::Direction dir) {
             break;
     }
     return angle;
-}
-
-// Translate the model m along coordinate variables
-// x, y and z.
-void TranslateModel(Model* m, float x, float y, float z) {
-    for (long int i = 0; i < m->numVertices; i++) {
-        m->vertexArray[i].x += x;
-        m->vertexArray[i].y += y;
-        m->vertexArray[i].z += z;
-    }
-    ReloadModelData(m);
-}
-
-void RotateModelY(Model* m, float angle) {
-    for (long int i = 0; i < m->numVertices; i++) {
-        vec4 current = vec3tovec4(m->vertexArray[i]);
-        m->vertexArray[i] = vec4tovec3(Ry(angle) * current);
-    }
 }

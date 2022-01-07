@@ -202,11 +202,8 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection, int maxDi
         int px = p.first;
         int pz = p.second;
 
-        if(IsValidIndex(px, pz) && occupied[GetArrIndex(px, pz)]) {
-            std::cout << "Breaking.\n";
-            break;
-        }
-
+        // We have encounttered a crossing road! Break.
+        if(IsValidIndex(px, pz) && occupied[GetArrIndex(px, pz)]) break;
 
         countX = px;
         countZ = pz;
@@ -217,13 +214,6 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection, int maxDi
             if(rand() % 2 == 0) {
                 vec3 location = vertices[GetArrIndex(countX, countZ)];
                 buildingSpots.emplace_back(location, newDir);
-
-                /*
-                std::cout << "Current length was " << distBranch
-                << " and a building was placed after " <<
-                distTotal << " iterations.\n";
-                 */
-
                 break;
             }
 

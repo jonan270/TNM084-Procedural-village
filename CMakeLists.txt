@@ -21,7 +21,7 @@ set(SOURCES main.cpp
         ${NOISE_INCLUDE_DIR}/noise1234.c
         GlutCameraControls.h
         TerrainGrid.cpp
-        TerrainGrid.h)
+        TerrainGrid.h LittleOBJExtension.h LittleOBJExtension.cpp)
 
 find_package(OpenGL REQUIRED)
 
