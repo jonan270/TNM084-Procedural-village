@@ -10,8 +10,17 @@ ForestMap::ForestMap() : frequency{1.f} {}
 int ForestMap::IsForested(float x, float y) {
     // Makes use of unseeded rand, ensures same
     // return value every time.
+
+    // "Big noise pattern", draws blobs of
+    // forest.
     float randVal = (rand() % 100)/100.0;
-    float res = noise2(frequency * (float)x + 0.23f * randVal,
+    float largeNoise = noise2(frequency * (float)x + 0.23f * randVal,
                        frequency * (float)y + 0.22f * randVal);
-    return res > 0.3;
+    if(largeNoise < 0.3) return false;
+
+    // Small noise pattern, place individual
+    // trees.
+    float smallNoise = noise2(0.001*frequency * (float)x + 0.23f * randVal,
+                              0.001*frequency * (float)y + 0.22f * randVal);
+    return smallNoise > 0.15;
 }
