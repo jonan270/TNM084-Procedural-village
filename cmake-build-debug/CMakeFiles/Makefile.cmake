@@ -26,7 +26,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "C:/Program Files/JetBrains/CLion 2021.2.3/bin/cmake/win/share/cmake-3.20/Modules/FindOpenGL.cmake"
   "C:/Program Files/JetBrains/CLion 2021.2.3/bin/cmake/win/share/cmake-3.20/Modules/FindPackageHandleStandardArgs.cmake"
   "C:/Program Files/JetBrains/CLion 2021.2.3/bin/cmake/win/share/cmake-3.20/Modules/FindPackageMessage.cmake"
-  "C:/Program Files/JetBrains/CLion 2021.2.3/bin/cmake/win/share/cmake-3.20/Modules/FindPkgConfig.cmake"
   "C:/Program Files/JetBrains/CLion 2021.2.3/bin/cmake/win/share/cmake-3.20/Modules/Platform/Windows-GNU-C-ABI.cmake"
   "C:/Program Files/JetBrains/CLion 2021.2.3/bin/cmake/win/share/cmake-3.20/Modules/Platform/Windows-GNU-C.cmake"
   "C:/Program Files/JetBrains/CLion 2021.2.3/bin/cmake/win/share/cmake-3.20/Modules/Platform/Windows-GNU-CXX-ABI.cmake"
@@ -42,7 +41,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.20.2/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.20.2/CMakeRCCompiler.cmake"
   "CMakeFiles/3.20.2/CMakeSystem.cmake"
-  "../cmake/FindGlfw3.cmake"
   )
 
 # The corresponding makefile is:

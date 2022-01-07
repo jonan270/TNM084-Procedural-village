@@ -101,7 +101,6 @@ void display() {
 
 
     printError("display");
-
     glutSwapBuffers();
 }
 

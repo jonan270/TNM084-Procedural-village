@@ -5,7 +5,7 @@
 		<Option title="TNM084_Procedural_village"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\cmake\;"/>
+		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug"/>
@@ -26,7 +26,6 @@
 				<Compiler>
 					<Add directory="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common"/>
 					<Add directory="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/noise"/>
-					<Add directory="C:/glfw3/include"/>
 					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
 					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
 					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
@@ -50,7 +49,6 @@
 				<Compiler>
 					<Add directory="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common"/>
 					<Add directory="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/noise"/>
-					<Add directory="C:/glfw3/include"/>
 					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
 					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
 					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
@@ -148,9 +146,6 @@
 		</Unit>
 		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
-		</Unit>
-		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake/FindGlfw3.cmake">
-			<Option virtualFolder="CMake Files\cmake\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

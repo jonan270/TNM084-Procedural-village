@@ -23,7 +23,6 @@ set(CMAKE_C_COMPILER_ID "GNU")
 set(CMAKE_C_TARGET_INCLUDE_PATH
   "../common"
   "../noise"
-  "C:/glfw3/include"
   )
 set(CMAKE_DEPENDS_CHECK_CXX
   "E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/LittleOBJExtension.cpp" "E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/CMakeFiles/TNM084_Procedural_village.dir/LittleOBJExtension.cpp.obj"
@@ -36,7 +35,6 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../common"
   "../noise"
-  "C:/glfw3/include"
   )
 
 # The set of dependency files which are needed:
