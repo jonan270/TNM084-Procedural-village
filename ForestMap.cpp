@@ -16,7 +16,7 @@ int ForestMap::IsForested(float x, float y) {
     float randVal = (rand() % 100)/100.0;
     float largeNoise = noise2(frequency * (float)x + 0.23f * randVal,
                        frequency * (float)y + 0.22f * randVal);
-    if(largeNoise < 0.3) return false;
+    if(largeNoise < 0.1) return false;
 
     // Small noise pattern, place individual
     // trees.

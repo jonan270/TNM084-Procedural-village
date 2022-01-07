@@ -130,15 +130,15 @@ void GenerateTerrain() {
                    TerrainGrid::kPolySize * TerrainGrid::kTerrainSize / 2.0);
 
     int numBuildings = (int)grid.buildingSpots.size();
-    std::cout << "Number of houses generated: \n" << numBuildings;
+    std::cout << "Number of houses generated: " << numBuildings << "\n";
     InstancingModel villageHousing = InstancingModel((char *)"../obj-models/housing.obj",
                                      SetVec3(0.427, 0.317, 0.235),
                                      numBuildings);
 
     int numTrees = (int)grid.treeSpots.size();
-    std::cout << "Number of trees generated: \n" << numTrees;
+    std::cout << "Number of trees generated: " << numTrees << "\n";
     InstancingModel forest = InstancingModel((char *)"../obj-models/pineTree.obj",
-                                                     SetVec3(0.427, 0.8, 0.235),
+                                                     SetVec3(0.227, 0.352, 0.286),
                                                      numTrees);
 
     int count = 0;
@@ -150,7 +150,7 @@ void GenerateTerrain() {
 
     count = 0;
     for(auto tp : grid.treeSpots) {
-        forest.SetTranslationOfInstance(count, tp.first);
+        forest.SetTranslationOfInstance(count, tp);
         count++;
     }
 
