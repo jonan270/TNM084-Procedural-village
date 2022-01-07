@@ -13,6 +13,7 @@
 #include <tuple>
 #include <cstdlib> // srand makes use of random seed
 #include <ctime>
+#include <cassert>
 
 #include <iostream>
 

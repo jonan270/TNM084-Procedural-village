@@ -2,16 +2,20 @@
 // The basic project setup is based on lab3b from the course.
 // Note that I have made som minor changes to LittleObjLoader
 
-#ifdef __APPLE__
+#include "common/GL_utilities.h"
+#include "common/LittleOBJLoader.h"
 
+#ifdef __APPLE__
+#include "common/Mac/MicroGlut.h"
 #include <OpenGL/gl3.h>
 // linking hint for Lightweight IDE
 //uses framework Cocoa
+#else
+    #if defined(_WIN32)
+        #include "common/Windows/MicroGlut.h"
+        #include "common/Windows/include/glfw3.h"
+    #endif
 #endif
-
-#include "common/GL_utilities.h"
-#include "common/Mac/MicroGlut.h"
-#include "common/LittleOBJLoader.h"
 
 #include <iostream>
 #include <vector>

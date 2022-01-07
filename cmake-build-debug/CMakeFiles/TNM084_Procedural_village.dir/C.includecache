@@ -6,3 +6,49 @@
 
 #IncludeRegexTransform: 
 
+E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common/Windows/glew.c
+glew.h
+E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common/Windows/glew.h
+wglew.h
+E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common/Windows/wglew.h
+GL/glxew.h
+-
+stddef.h
+-
+dlfcn.h
+-
+stdio.h
+-
+stdlib.h
+-
+stdlib.h
+-
+string.h
+-
+AvailabilityMacros.h
+-
+dlfcn.h
+-
+mach-o/dyld.h
+-
+
+E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common/Windows/glew.h
+stddef.h
+-
+inttypes.h
+-
+stdint.h
+-
+inttypes.h
+-
+Availability.h
+-
+OpenGL/glu.h
+-
+GL/glu.h
+-
+
+E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common/Windows/wglew.h
+windows.h
+-
+

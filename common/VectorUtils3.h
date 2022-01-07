@@ -9,7 +9,7 @@
 	#include <OpenGL/gl3.h>
 #else
 	#if defined(_WIN32)
-		#include "glew.h"
+		#include "Windows/glew.h"
 	#endif
 	#include <GL/gl.h>
 #endif
