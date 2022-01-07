@@ -53,8 +53,10 @@ private:
     constexpr static int roadIndexWidth = 3;
     constexpr static int townSquareWidth = 3 * roadIndexWidth;
 
-    constexpr static int minBranchDist = 150;
-    constexpr static int branchPoints = 4;
+    constexpr static int minBranchDist = 30;
+    constexpr static int branchPoints = 3;
+
+    const float branchProb = 0.85;
 
     constexpr static int straightLen = 3;
     int randomSeed;

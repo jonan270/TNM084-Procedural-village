@@ -208,7 +208,7 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection, int maxDi
         countX = px;
         countZ = pz;
 
-        if(ShouldMakeBranch(0.75, distBranch)) {
+        if(ShouldMakeBranch(branchProb, distBranch)) {
             // Either split of somewhere else or find a spot
             // for a building
             if(rand() % 2 == 0) {
