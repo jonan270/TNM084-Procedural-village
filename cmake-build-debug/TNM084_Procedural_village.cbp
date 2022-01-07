@@ -87,6 +87,12 @@
 		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/GlutCameraControls.h">
 			<Option target="TNM084_Procedural_village"/>
 		</Unit>
+		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/InstancingModel.cpp">
+			<Option target="TNM084_Procedural_village"/>
+		</Unit>
+		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/InstancingModel.h">
+			<Option target="TNM084_Procedural_village"/>
+		</Unit>
 		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/LittleOBJExtension.cpp">
 			<Option target="TNM084_Procedural_village"/>
 		</Unit>

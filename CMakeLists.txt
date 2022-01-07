@@ -24,7 +24,7 @@ set(SOURCES main.cpp
         TerrainGrid.cpp
         TerrainGrid.h
         LittleOBJExtension.h
-        LittleOBJExtension.cpp)
+        LittleOBJExtension.cpp InstancingModel.h InstancingModel.cpp)
 
 find_package(OpenGL REQUIRED)
 find_package(GLUT REQUIRED)

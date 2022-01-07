@@ -29,6 +29,13 @@ CMakeFiles/TNM084_Procedural_village.dir/common/Windows/glew.c.obj: \
 CMakeFiles/TNM084_Procedural_village.dir/noise/noise1234.c.obj: \
  ../noise/noise1234.c \
  ../noise/noise1234.h
+CMakeFiles/TNM084_Procedural_village.dir/InstancingModel.cpp.obj: \
+ ../InstancingModel.cpp \
+ ../InstancingModel.h \
+ ../LittleOBJExtension.h \
+ ../common/LittleOBJLoader.h \
+ ../common/VectorUtils3.h \
+ ../common/Windows/glew.h
 CMakeFiles/TNM084_Procedural_village.dir/LittleOBJExtension.cpp.obj: \
  ../LittleOBJExtension.cpp \
  ../LittleOBJExtension.h \
@@ -45,6 +52,7 @@ CMakeFiles/TNM084_Procedural_village.dir/TerrainGrid.cpp.obj: \
  ../noise/noise1234.h
 CMakeFiles/TNM084_Procedural_village.dir/main.cpp.obj: \
  ../GlutCameraControls.h \
+ ../InstancingModel.h \
  ../LittleOBJExtension.h \
  ../TerrainGrid.h \
  ../common/GL_utilities.h \

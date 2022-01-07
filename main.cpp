@@ -22,11 +22,12 @@
 #include "GlutCameraControls.h"
 #include "TerrainGrid.h"
 #include "LittleOBJExtension.h"
+#include "InstancingModel.h"
 
 mat4 projectionMatrix;
-std::vector<Model*> models;
-Model* houses;
 
+std::vector<Model*> models;
+std::vector<InstancingModel> insModels;
 
 // Reference to shader programs
 GLuint phongShader;
@@ -89,16 +90,9 @@ void display() {
                   NULL,
                   "inColor");
 
-
-    DrawModelInstanced(houses, phongShader,
-              "inPosition",
-              "inNormal",
-              NULL,
-              "inColor",
-              "inTranslation",
-              "inAngle",
-              houses->numInstances);
-
+    for(InstancingModel im : insModels) {
+        im.Draw(phongShader);
+    }
 
     printError("display");
     glutSwapBuffers();
@@ -119,7 +113,9 @@ int main(int argc, char *argv[]) {
 }
 
 void GenerateTerrain() {
+    // Empty old model data
     models = std::vector<Model*>();
+    insModels = std::vector<InstancingModel>();
 
     // Upload geometry to the GPU:
     TerrainGrid grid{};
@@ -133,20 +129,19 @@ void GenerateTerrain() {
     TranslateModel(wellModel, TerrainGrid::kPolySize * TerrainGrid::kTerrainSize / 2.0, 0,
                    TerrainGrid::kPolySize * TerrainGrid::kTerrainSize / 2.0);
 
-    // Load the model for housing to be used with instancing
-    houses = LoadInstancingModel((char *)"../obj-models/housing.obj",
-                                   SetVec3(0.427, 0.317, 0.235),
-                                   grid.buildingSpots.size());
+    int numBuildings = (int)grid.buildingSpots.size();
+    InstancingModel villageHousing = InstancingModel((char *)"../obj-models/housing.obj",
+                                     SetVec3(0.427, 0.317, 0.235),
+                                     numBuildings);
 
     int count = 0;
     for(auto bp : grid.buildingSpots) {
-        houses->instanceTranslationArray[count] = bp.first;
-        houses->instanceRotationArray[count] =
-                (float)GetBuildingRotationAngle(bp.second);
+        villageHousing.SetTranslationOfInstance(count, bp.first);
+        villageHousing.SetRotationOfInstance(count, (float)GetBuildingRotationAngle(bp.second));
         count++;
     }
-    ReloadModelData(houses);
 
+    insModels.push_back(villageHousing);
     models.push_back(terrainModel);
     models.push_back(wellModel);
     printError("generate terrain");

@@ -128,6 +128,30 @@ TNM084_Procedural_village/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TNM084_Procedural_village.dir\build.make CMakeFiles/TNM084_Procedural_village.dir/build
 .PHONY : TNM084_Procedural_village/fast
 
+InstancingModel.obj: InstancingModel.cpp.obj
+.PHONY : InstancingModel.obj
+
+# target to build an object file
+InstancingModel.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TNM084_Procedural_village.dir\build.make CMakeFiles/TNM084_Procedural_village.dir/InstancingModel.cpp.obj
+.PHONY : InstancingModel.cpp.obj
+
+InstancingModel.i: InstancingModel.cpp.i
+.PHONY : InstancingModel.i
+
+# target to preprocess a source file
+InstancingModel.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TNM084_Procedural_village.dir\build.make CMakeFiles/TNM084_Procedural_village.dir/InstancingModel.cpp.i
+.PHONY : InstancingModel.cpp.i
+
+InstancingModel.s: InstancingModel.cpp.s
+.PHONY : InstancingModel.s
+
+# target to generate assembly for a file
+InstancingModel.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TNM084_Procedural_village.dir\build.make CMakeFiles/TNM084_Procedural_village.dir/InstancingModel.cpp.s
+.PHONY : InstancingModel.cpp.s
+
 LittleOBJExtension.obj: LittleOBJExtension.cpp.obj
 .PHONY : LittleOBJExtension.obj
 
@@ -377,6 +401,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... TNM084_Procedural_village
+	@echo ... InstancingModel.obj
+	@echo ... InstancingModel.i
+	@echo ... InstancingModel.s
 	@echo ... LittleOBJExtension.obj
 	@echo ... LittleOBJExtension.i
 	@echo ... LittleOBJExtension.s
