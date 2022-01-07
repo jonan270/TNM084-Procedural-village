@@ -16,6 +16,7 @@
 #include <cassert>
 
 #include <iostream>
+#include "ForestMap.h"
 
 
 class TerrainGrid {
@@ -37,9 +38,9 @@ public:
 
 
     // The class stores appropriate locations
-    // for buildings.
+    // for buildings and trees.
     std::vector<std::pair<vec3,Direction>>
-    buildingSpots;
+    buildingSpots, treeSpots;
 
     constexpr static int kTerrainSize = 512;
     constexpr static float kPolySize = 0.1f;

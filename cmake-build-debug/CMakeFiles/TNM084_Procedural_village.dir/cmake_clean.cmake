@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/TNM084_Procedural_village.dir/ForestMap.cpp.obj"
   "CMakeFiles/TNM084_Procedural_village.dir/InstancingModel.cpp.obj"
   "CMakeFiles/TNM084_Procedural_village.dir/LittleOBJExtension.cpp.obj"
   "CMakeFiles/TNM084_Procedural_village.dir/TerrainGrid.cpp.obj"

@@ -134,6 +134,12 @@ void GenerateTerrain() {
                                      SetVec3(0.427, 0.317, 0.235),
                                      numBuildings);
 
+    int numTrees = (int)grid.treeSpots.size();
+    std::cout << "Trees: " << numTrees;
+    InstancingModel forest = InstancingModel((char *)"../obj-models/pineTree.obj",
+                                                     SetVec3(0.427, 0.8, 0.235),
+                                                     numTrees);
+
     int count = 0;
     for(auto bp : grid.buildingSpots) {
         villageHousing.SetTranslationOfInstance(count, bp.first);
@@ -141,7 +147,15 @@ void GenerateTerrain() {
         count++;
     }
 
+    count = 0;
+    for(auto tp : grid.treeSpots) {
+        forest.SetTranslationOfInstance(count, tp.first);
+        count++;
+    }
+
     insModels.push_back(villageHousing);
+    insModels.push_back(forest);
+
     models.push_back(terrainModel);
     models.push_back(wellModel);
     printError("generate terrain");

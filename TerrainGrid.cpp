@@ -63,6 +63,7 @@ void TerrainGrid::MakeTerrain() {
         }
     }
 
+    ForestMap map{0.1 * kPolySize};
     // Make normal vectors
     for (int x = 0; x < kTerrainSize; x++) {
         for (int z = 0; z < kTerrainSize; z++) {
@@ -76,6 +77,11 @@ void TerrainGrid::MakeTerrain() {
 
             vec3 normal = CrossProduct(v1, v2);
             normals[GetArrIndex(x,z)] = normal;
+
+            // Check if tree
+            if(map.IsForested(x,z)) {
+                treeSpots.emplace_back(vertices[GetArrIndex(x,z)], Direction::north);
+            }
         }
     }
 }
