@@ -103,7 +103,7 @@ private:
 
     // Get the position value
     // obtained from noise function
-    static float GetYNoiseValue(int x, int z);
+    float GetYNoiseValue(int x, int z);
 
     // Access the correct array index
     // given grid indices for x and z

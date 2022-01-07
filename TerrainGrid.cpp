@@ -272,8 +272,9 @@ int TerrainGrid::GetArrIndex(int x, int z) {
 }
 
 float TerrainGrid::GetYNoiseValue(int x, int z) {
-    return kPolySize * noise2(kPolySize * (float)x + 0.23f,
-                              kPolySize * (float)z + 0.22f);
+    float randVal = (rand() % 100)/100.0;
+    return kPolySize * noise2(kPolySize * (float)x + 0.23f * randVal,
+                              kPolySize * (float)z + 0.22f * randVal);
 }
 
 TerrainGrid::Direction TerrainGrid::RandDirection4() {
