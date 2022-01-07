@@ -9,14 +9,15 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/GL_utilities.c" "/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/cmake-build-debug/CMakeFiles/TNM084_Procedural_village.dir/common/GL_utilities.c.o"
-  "/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/LittleOBJLoader.c" "/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/cmake-build-debug/CMakeFiles/TNM084_Procedural_village.dir/common/LittleOBJLoader.c.o"
-  "/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/LoadTGA.c" "/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/cmake-build-debug/CMakeFiles/TNM084_Procedural_village.dir/common/LoadTGA.c.o"
-  "/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/Mac/MicroGlut.m" "/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/cmake-build-debug/CMakeFiles/TNM084_Procedural_village.dir/common/Mac/MicroGlut.m.o"
-  "/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/VectorUtils3.c" "/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/cmake-build-debug/CMakeFiles/TNM084_Procedural_village.dir/common/VectorUtils3.c.o"
-  "/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/noise/noise1234.c" "/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/cmake-build-debug/CMakeFiles/TNM084_Procedural_village.dir/noise/noise1234.c.o"
+  "E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common/GL_utilities.c" "E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/CMakeFiles/TNM084_Procedural_village.dir/common/GL_utilities.c.obj"
+  "E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common/LittleOBJLoader.c" "E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/CMakeFiles/TNM084_Procedural_village.dir/common/LittleOBJLoader.c.obj"
+  "E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common/LoadTGA.c" "E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/CMakeFiles/TNM084_Procedural_village.dir/common/LoadTGA.c.obj"
+  "E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common/VectorUtils3.c" "E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/CMakeFiles/TNM084_Procedural_village.dir/common/VectorUtils3.c.obj"
+  "E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common/Windows/MicroGlut.c" "E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/CMakeFiles/TNM084_Procedural_village.dir/common/Windows/MicroGlut.c.obj"
+  "E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common/Windows/glew.c" "E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/CMakeFiles/TNM084_Procedural_village.dir/common/Windows/glew.c.obj"
+  "E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/noise/noise1234.c" "E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/CMakeFiles/TNM084_Procedural_village.dir/noise/noise1234.c.obj"
   )
-set(CMAKE_C_COMPILER_ID "AppleClang")
+set(CMAKE_C_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
@@ -24,11 +25,11 @@ set(CMAKE_C_TARGET_INCLUDE_PATH
   "../noise"
   )
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/LittleOBJExtension.cpp" "/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/cmake-build-debug/CMakeFiles/TNM084_Procedural_village.dir/LittleOBJExtension.cpp.o"
-  "/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/TerrainGrid.cpp" "/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/cmake-build-debug/CMakeFiles/TNM084_Procedural_village.dir/TerrainGrid.cpp.o"
-  "/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/main.cpp" "/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/cmake-build-debug/CMakeFiles/TNM084_Procedural_village.dir/main.cpp.o"
+  "E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/LittleOBJExtension.cpp" "E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/CMakeFiles/TNM084_Procedural_village.dir/LittleOBJExtension.cpp.obj"
+  "E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/TerrainGrid.cpp" "E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/CMakeFiles/TNM084_Procedural_village.dir/TerrainGrid.cpp.obj"
+  "E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/main.cpp" "E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/CMakeFiles/TNM084_Procedural_village.dir/main.cpp.obj"
   )
-set(CMAKE_CXX_COMPILER_ID "AppleClang")
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

@@ -86,14 +86,14 @@ void display() {
         DrawModel(model, phongShader,
                   "inPosition",
                   "inNormal",
-                  "inTexCoord",
+                  NULL,
                   "inColor");
 
 
     DrawModelInstanced(houses, phongShader,
               "inPosition",
               "inNormal",
-              "inTexCoord",
+              NULL,
               "inColor",
               "inTranslation",
               "inAngle",
