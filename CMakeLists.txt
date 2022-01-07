@@ -33,7 +33,7 @@ add_executable(TNM084_Procedural_village ${SOURCES})
 target_include_directories(${PROJECT_NAME} PRIVATE ${COMMON_INCLUDE_DIR})
 target_include_directories(${PROJECT_NAME} PRIVATE ${NOISE_INCLUDE_DIR})
 
-if(MACOS)
+if(APPLE)
     set(OS_INCLUDE_DIR ${COMMON_INCLUDE_DIR}/Mac)
     target_sources(TNM084_Procedural_village
             PUBLIC ${OS_INCLUDE_DIR}/MicroGlut.h

@@ -8,143 +8,137 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug"/>
+				<Option working_dir="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="TNM084_Procedural_village">
-				<Option output="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/TNM084_Procedural_village.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common"/>
-					<Add directory="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/noise"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 TNM084_Procedural_village"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="TNM084_Procedural_village/fast">
-				<Option output="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/TNM084_Procedural_village.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common"/>
-					<Add directory="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/noise"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
-					<Add directory="C:/Program Files/mingw-w64/x86_64-8.1.0-posix-seh-rt_v6-rev0/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
-				</Compiler>
-				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 TNM084_Procedural_village/fast"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jonathanandersson/Documents/Git/Procedural\ images/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jonathanandersson/Documents/Git/Procedural\ images/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jonathanandersson/Documents/Git/Procedural\ images/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jonathanandersson/Documents/Git/Procedural\ images/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug"/>
+				<Option working_dir="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/MINGW-~1/X86_64~1.0-P/mingw64/bin/mingw32-make.exe -f &quot;E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jonathanandersson/Documents/Git/Procedural\ images/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jonathanandersson/Documents/Git/Procedural\ images/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jonathanandersson/Documents/Git/Procedural\ images/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jonathanandersson/Documents/Git/Procedural\ images/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jonathanandersson/Documents/Git/Procedural\ images/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jonathanandersson/Documents/Git/Procedural\ images/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jonathanandersson/Documents/Git/Procedural\ images/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jonathanandersson/Documents/Git/Procedural\ images/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="TNM084_Procedural_village">
+				<Option output="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/cmake-build-debug/TNM084_Procedural_village" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common"/>
+					<Add directory="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/noise"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.5/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jonathanandersson/Documents/Git/Procedural\ images/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 TNM084_Procedural_village"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jonathanandersson/Documents/Git/Procedural\ images/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jonathanandersson/Documents/Git/Procedural\ images/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jonathanandersson/Documents/Git/Procedural\ images/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="TNM084_Procedural_village/fast">
+				<Option output="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/cmake-build-debug/TNM084_Procedural_village" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common"/>
+					<Add directory="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/noise"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/12.0.5/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/jonathanandersson/Documents/Git/Procedural\ images/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 TNM084_Procedural_village/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/jonathanandersson/Documents/Git/Procedural\ images/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/jonathanandersson/Documents/Git/Procedural\ images/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/jonathanandersson/Documents/Git/Procedural\ images/TNM084-Procedural-village/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/GlutCameraControls.h">
+		<Unit filename="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/GlutCameraControls.h">
 			<Option target="TNM084_Procedural_village"/>
 		</Unit>
-		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/LittleOBJExtension.cpp">
+		<Unit filename="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/LittleOBJExtension.cpp">
 			<Option target="TNM084_Procedural_village"/>
 		</Unit>
-		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/LittleOBJExtension.h">
+		<Unit filename="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/LittleOBJExtension.h">
 			<Option target="TNM084_Procedural_village"/>
 		</Unit>
-		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/TerrainGrid.cpp">
+		<Unit filename="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/TerrainGrid.cpp">
 			<Option target="TNM084_Procedural_village"/>
 		</Unit>
-		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/TerrainGrid.h">
+		<Unit filename="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/TerrainGrid.h">
 			<Option target="TNM084_Procedural_village"/>
 		</Unit>
-		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common/GL_utilities.c">
+		<Unit filename="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/GL_utilities.c">
 			<Option target="TNM084_Procedural_village"/>
 		</Unit>
-		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common/GL_utilities.h">
+		<Unit filename="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/GL_utilities.h">
 			<Option target="TNM084_Procedural_village"/>
 		</Unit>
-		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common/LittleOBJLoader.c">
+		<Unit filename="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/LittleOBJLoader.c">
 			<Option target="TNM084_Procedural_village"/>
 		</Unit>
-		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common/LittleOBJLoader.h">
+		<Unit filename="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/LittleOBJLoader.h">
 			<Option target="TNM084_Procedural_village"/>
 		</Unit>
-		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common/LoadTGA.c">
+		<Unit filename="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/LoadTGA.c">
 			<Option target="TNM084_Procedural_village"/>
 		</Unit>
-		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common/LoadTGA.h">
+		<Unit filename="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/LoadTGA.h">
 			<Option target="TNM084_Procedural_village"/>
 		</Unit>
-		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common/VectorUtils3.c">
+		<Unit filename="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/Mac/MicroGlut.h">
 			<Option target="TNM084_Procedural_village"/>
 		</Unit>
-		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common/VectorUtils3.h">
+		<Unit filename="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/Mac/MicroGlut.m">
 			<Option target="TNM084_Procedural_village"/>
 		</Unit>
-		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common/Windows/MicroGlut.c">
+		<Unit filename="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/VectorUtils3.c">
 			<Option target="TNM084_Procedural_village"/>
 		</Unit>
-		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common/Windows/MicroGlut.h">
+		<Unit filename="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/common/VectorUtils3.h">
 			<Option target="TNM084_Procedural_village"/>
 		</Unit>
-		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common/Windows/glew.c">
+		<Unit filename="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/main.cpp">
 			<Option target="TNM084_Procedural_village"/>
 		</Unit>
-		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common/Windows/glew.h">
+		<Unit filename="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/noise/noise1234.c">
 			<Option target="TNM084_Procedural_village"/>
 		</Unit>
-		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/main.cpp">
+		<Unit filename="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/noise/noise1234.h">
 			<Option target="TNM084_Procedural_village"/>
 		</Unit>
-		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/noise/noise1234.c">
-			<Option target="TNM084_Procedural_village"/>
-		</Unit>
-		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/noise/noise1234.h">
-			<Option target="TNM084_Procedural_village"/>
-		</Unit>
-		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/CMakeLists.txt">
+		<Unit filename="/Users/jonathanandersson/Documents/Git/Procedural images/TNM084-Procedural-village/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
