@@ -84,9 +84,6 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/BuildingSpot.h">
-			<Option target="TNM084_Procedural_village"/>
-		</Unit>
 		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/ForestMap.cpp">
 			<Option target="TNM084_Procedural_village"/>
 		</Unit>
@@ -148,9 +145,6 @@
 			<Option target="TNM084_Procedural_village"/>
 		</Unit>
 		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/common/Windows/glew.h">
-			<Option target="TNM084_Procedural_village"/>
-		</Unit>
-		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/enum.h">
 			<Option target="TNM084_Procedural_village"/>
 		</Unit>
 		<Unit filename="E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/main.cpp">

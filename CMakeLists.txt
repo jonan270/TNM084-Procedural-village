@@ -28,7 +28,7 @@ set(SOURCES main.cpp
         InstancingModel.h
         InstancingModel.cpp
         ForestMap.cpp
-        ForestMap.h BuildingSpot.h enum.h)
+        ForestMap.h)
 
 find_package(OpenGL REQUIRED)
 find_package(GLUT REQUIRED)
