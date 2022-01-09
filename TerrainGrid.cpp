@@ -104,32 +104,32 @@ void TerrainGrid::MakeRoads() {
 
         int x, z;
 
-        Direction dir = RandDirection4();
+        enums::Direction dir = RandDirection4();
         switch (dir) {
-            case Direction::south:
+            case enums::Direction::south:
                 //std::cout << "South\n";
                 x = endX;
                 z = rand() % (endZ - startZ + 1) + startZ;
                 break;
-            case Direction::east:
+            case enums::Direction::east:
                 //std::cout << "East\n";
                 x = rand() % (endX - startX + 1) + startX;
                 z = endZ;
                 break;
-            case Direction::north:
+            case enums::Direction::north:
                 //std::cout << "North\n";
                 x = startX;
                 z = rand() % (endZ - startZ + 1) + startZ;
                 break;
-            case Direction::west:
+            case enums::Direction::west:
                 //std::cout << "West\n";
                 x = rand() % (endX - startX + 1) + startX;
                 z = startZ;
                 break;
-            case southEast:
-            case northEast:
-            case northWest:
-            case southWest:
+            case enums::Direction::southEast:
+            case enums::Direction::northEast:
+            case enums::Direction::northWest:
+            case enums::Direction::southWest:
                 // This only happens if I do something stupid.
                 assert(false);
         }
@@ -140,7 +140,7 @@ void TerrainGrid::MakeRoads() {
 
 }
 
-void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
+void TerrainGrid::MakeRoadFrom(int x, int z, enums::Direction startDirection) {
     // Number of allowed directions for a given direction
     const int N_ALLOWED_DIR = 3;
 
@@ -158,7 +158,7 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
      when only allowing 1 step left/right
      from the general direction
     */
-    Direction allowed[N_ALLOWED_DIR] = {
+    enums::Direction allowed[N_ALLOWED_DIR] = {
             startDirection,
             RightFrom(startDirection),
             //RightFrom(RightFrom(startDirection)),
@@ -177,7 +177,7 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
     // without branching?
     int distBranch = 0;
 
-    Direction newDir = startDirection;
+    enums::Direction newDir = startDirection;
     while(true) {
         // Break if edge of map is reached
         if(!IsValidIndex(countX, countZ)) break;
@@ -224,7 +224,7 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
             }
 
             // 2 directional branching
-            Direction branchDir = rand() % 2 == 0 ?
+            enums::Direction branchDir = rand() % 2 == 0 ?
                     LeftFrom(newDir) : RightFrom(newDir);
 
             // 4 directional branching
@@ -298,117 +298,117 @@ float TerrainGrid::GetYNoiseValue(int x, int z) {
                               kPolySize * (float)z + 0.22f * randVal);
 }
 
-TerrainGrid::Direction TerrainGrid::RandDirection4() {
+enums::Direction TerrainGrid::RandDirection4() {
     int randDirInt = rand() % 4; // 0-3
     switch (randDirInt) {
-        case 0: return Direction::south;
-        case 1: return Direction::east;
-        case 2: return Direction::north;
-        case 3: return Direction::west;
+        case 0: return enums::Direction::south;
+        case 1: return enums::Direction::east;
+        case 2: return enums::Direction::north;
+        case 3: return enums::Direction::west;
         default: assert(false);
     }
 }
 
-TerrainGrid::Direction TerrainGrid::RightFrom(TerrainGrid::Direction current) {
+enums::Direction TerrainGrid::RightFrom(enums::Direction current) {
     switch (current) {
-        case Direction::south:
-            return Direction::southEast;
-        case Direction::southEast:
-            return Direction::east;
-        case Direction::east:
-            return Direction::northEast;
-        case Direction::northEast:
-            return Direction::north;
-        case Direction::north:
-            return Direction::northWest;
-        case Direction::northWest:
-            return Direction::west;
-        case Direction::west:
-            return Direction::southWest;
-        case Direction::southWest:
-            return Direction::south;
+        case enums::Direction::south:
+            return enums::Direction::southEast;
+        case enums::Direction::southEast:
+            return enums::Direction::east;
+        case enums::Direction::east:
+            return enums::Direction::northEast;
+        case enums::Direction::northEast:
+            return enums::Direction::north;
+        case enums::Direction::north:
+            return enums::Direction::northWest;
+        case enums::Direction::northWest:
+            return enums::Direction::west;
+        case enums::Direction::west:
+            return enums::Direction::southWest;
+        case enums::Direction::southWest:
+            return enums::Direction::south;
     }
 }
 
-TerrainGrid::Direction TerrainGrid::LeftFrom(TerrainGrid::Direction current) {
+enums::Direction TerrainGrid::LeftFrom(enums::Direction current) {
     switch (current) {
-        case Direction::south:
-            return Direction::southWest;
-        case Direction::southEast:
-            return Direction::south;
-        case Direction::east:
-            return Direction::southEast;
-        case Direction::northEast:
-            return Direction::east;
-        case Direction::north:
-            return Direction::northEast;
-        case Direction::northWest:
-            return Direction::north;
-        case Direction::west:
-            return Direction::northWest;
-        case Direction::southWest:
-            return Direction::west;
+        case enums::Direction::south:
+            return enums::Direction::southWest;
+        case enums::Direction::southEast:
+            return enums::Direction::south;
+        case enums::Direction::east:
+            return enums::Direction::southEast;
+        case enums::Direction::northEast:
+            return enums::Direction::east;
+        case enums::Direction::north:
+            return enums::Direction::northEast;
+        case enums::Direction::northWest:
+            return enums::Direction::north;
+        case enums::Direction::west:
+            return enums::Direction::northWest;
+        case enums::Direction::southWest:
+            return enums::Direction::west;
     }
 }
 
-TerrainGrid::Direction TerrainGrid::OppositeFrom(TerrainGrid::Direction current) {
+enums::Direction TerrainGrid::OppositeFrom(enums::Direction current) {
     // The lazy readable way:
     //return LeftFrom(LeftFrom(LeftFrom(LeftFrom(current))));
 
     // The efficient less readable way:
     switch(current) {
-        case south:
-            return Direction::north;
-        case southEast:
-            return Direction::northWest;
-        case east:
-            return Direction::west;
-        case northEast:
-            return Direction::southWest;
-        case north:
-            return Direction::south;
-        case northWest:
-            return Direction::southEast;
-        case west:
-            return Direction::east;
-        case southWest:
-            return Direction::northEast;
+        case enums::Direction::south:
+            return enums::Direction::north;
+        case enums::Direction::southEast:
+            return enums::Direction::northWest;
+        case enums::Direction::east:
+            return enums::Direction::west;
+        case enums::Direction::northEast:
+            return enums::Direction::southWest;
+        case enums::Direction::north:
+            return enums::Direction::south;
+        case enums::Direction::northWest:
+            return enums::Direction::southEast;
+        case enums::Direction::west:
+            return enums::Direction::east;
+        case enums::Direction::southWest:
+            return enums::Direction::northEast;
     }
 }
 
 std::pair<int, int>
-TerrainGrid::GetNextIndexFrom(int x, int z, TerrainGrid::Direction nextDir) {
+TerrainGrid::GetNextIndexFrom(int x, int z, enums::Direction nextDir) {
     switch (nextDir) {
-        case Direction::south:
+        case enums::Direction::south:
             return {x + 1, z};
-        case Direction::southEast:
+        case enums::Direction::southEast:
             return {x + 1, z + 1};
-        case Direction::east:
+        case enums::Direction::east:
             return {x, z + 1};
-        case Direction::northEast:
+        case enums::Direction::northEast:
             return {x - 1, z + 1};
-        case Direction::north:
+        case enums::Direction::north:
             return {x - 1, z};
-        case Direction::northWest:
+        case enums::Direction::northWest:
             return {x - 1, z - 1};
-        case Direction::west:
+        case enums::Direction::west:
             return {x, z - 1};
-        case Direction::southWest:
+        case enums::Direction::southWest:
             return {x + 1, z - 1};
     }
 }
 
-void TerrainGrid::DrawRoadAroundIdx(int x, int z, TerrainGrid::Direction current) {
+void TerrainGrid::DrawRoadAroundIdx(int x, int z, enums::Direction current) {
     // Set to occupied
     //occupied[GetArrIndex(x,z)] = true;
 
     // This rather complicated switch sets colors
     // around (x,z) to form a road
     switch (current) {
-        case Direction::south:
-        case Direction::north:
-        case Direction::west:
-        case Direction::east:
+        case enums::Direction::south:
+        case enums::Direction::north:
+        case enums::Direction::west:
+        case enums::Direction::east:
             for(int i = x - (roadIndexWidth - 1) / 2;
                 i <= x + (roadIndexWidth - 1) / 2 &&
                 i > 0 && i < kTerrainSize;
@@ -419,10 +419,10 @@ void TerrainGrid::DrawRoadAroundIdx(int x, int z, TerrainGrid::Direction current
                     j++)
                     colors[GetArrIndex(i, j)] = roadColor;
             break;
-        case Direction::southEast:
-        case Direction::southWest:
-        case Direction::northEast:
-        case Direction::northWest:
+        case enums::Direction::southEast:
+        case enums::Direction::southWest:
+        case enums::Direction::northEast:
+        case enums::Direction::northWest:
             for(int i = x - (roadIndexWidth - 1)/2;
                 i <= x + (roadIndexWidth - 1)/2 &&
                 i > 0 && i < kTerrainSize;

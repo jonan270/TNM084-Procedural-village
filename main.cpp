@@ -38,7 +38,7 @@ GlutCameraControls glutCameraControls =
 constexpr int RES = 1080;
 
 void GenerateTerrain();
-int GetBuildingRotationAngle(TerrainGrid::Direction dir);
+int GetBuildingRotationAngle(enums::Direction dir);
 
 void init() {
     // GL inits
@@ -162,31 +162,31 @@ void GenerateTerrain() {
     printError("generate terrain");
 }
 
-int GetBuildingRotationAngle(TerrainGrid::Direction dir) {
+int GetBuildingRotationAngle(enums::Direction dir) {
     int angle;
     switch(dir) {
-        case TerrainGrid::south:
+        case enums::Direction::south:
             angle = 90;
             break;
-        case TerrainGrid::southEast:
+        case enums::Direction::southEast:
             angle = 45;
             break;
-        case TerrainGrid::east:
+        case enums::Direction::east:
             angle = 0;
             break;
-        case TerrainGrid::northEast:
+        case enums::Direction::northEast:
             angle = -45;
             break;
-        case TerrainGrid::north:
+        case enums::Direction::north:
             angle = -90;
             break;
-        case TerrainGrid::northWest:
+        case enums::Direction::northWest:
             angle = -135;
             break;
-        case TerrainGrid::west:
+        case enums::Direction::west:
             angle = 180;
             break;
-        case TerrainGrid::southWest:
+        case enums::Direction::southWest:
             angle = 135;
             break;
     }

@@ -17,29 +17,17 @@
 
 #include <iostream>
 #include "ForestMap.h"
+#include "enum.h"
 
 
 class TerrainGrid {
 
 public:
 
-    // The different directions where a
-    // road might be headed.
-    enum Direction {
-        south,
-        southEast,
-        east,
-        northEast,
-        north,
-        northWest,
-        west,
-        southWest
-    };
-
 
     // The class stores appropriate locations
     // for buildings and trees.
-    std::vector<std::pair<vec3,Direction>>
+    std::vector<std::pair<vec3, enums::Direction>>
     buildingSpots;
 
     std::vector<vec3> treeSpots;
@@ -96,10 +84,10 @@ private:
 
     // Make road network extending
     // from town square.
-    void MakeRoadFrom(int x, int z, Direction startDirection);
+    void MakeRoadFrom(int x, int z, enums::Direction startDirection);
     void MakeRoads();
 
-    void DrawRoadAroundIdx(int x, int z, Direction current);
+    void DrawRoadAroundIdx(int x, int z, enums::Direction current);
 
     // Is gridslot (x,z) in the town square?
     bool IsInTownSquare(int x, int z) const;
@@ -118,7 +106,7 @@ private:
 
     // Return south, east, north, or
     // west at random.
-    static Direction RandDirection4();
+    static enums::Direction RandDirection4();
 
     // Get an allowed random direction,
     // disallowed directions are those
@@ -127,20 +115,20 @@ private:
 
     // Return the direction 1 step to the
     // right from current
-    static Direction RightFrom(Direction current);
+    static enums::Direction RightFrom(enums::Direction current);
 
     // Return the direction 1 step to the
     // left from current
-    static Direction LeftFrom(Direction current);
+    static enums::Direction LeftFrom(enums::Direction current);
 
     // Return the direction opposite
     // from current. I.E current = north => return south
-    static Direction OppositeFrom(Direction current);
+    static enums::Direction OppositeFrom(enums::Direction current);
 
     // Get the connecting index when moving
     // in the provided Direction nextDir
     static std::pair<int,int>
-    GetNextIndexFrom(int x, int z, Direction nextDir);
+    GetNextIndexFrom(int x, int z, enums::Direction nextDir);
 
     static bool ShouldMakeBranch(float probability, int currentLenght);
 };

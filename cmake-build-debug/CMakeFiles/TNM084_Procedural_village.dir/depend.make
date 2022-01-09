@@ -55,6 +55,7 @@ CMakeFiles/TNM084_Procedural_village.dir/TerrainGrid.cpp.obj: \
  ../common/LittleOBJLoader.h \
  ../common/VectorUtils3.h \
  ../common/Windows/glew.h \
+ ../enum.h \
  ../noise/noise1234.h
 CMakeFiles/TNM084_Procedural_village.dir/main.cpp.obj: \
  ../noise/noise1234.h \
@@ -70,5 +71,6 @@ CMakeFiles/TNM084_Procedural_village.dir/main.cpp.obj: \
  ../common/Windows/MicroGlut.h \
  ../common/Windows/glew.h \
  ../common/Windows/include/glfw3.h \
+ ../enum.h \
  ../main.cpp \
  ../noise/noise1234.h
