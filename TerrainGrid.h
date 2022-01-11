@@ -16,7 +16,7 @@
 #include <cassert>
 
 #include <iostream>
-#include "ForestMap.h"
+#include "BiomeMap.h"
 
 
 class TerrainGrid {
@@ -60,7 +60,7 @@ private:
     constexpr static int branchPoints = 3;
     constexpr static int houseClearance = 4;
 
-    ForestMap forestMap;
+    BiomeMap biomeMap;
 
     const float branchProb = 0.85;
 
@@ -95,6 +95,8 @@ private:
 
     // Find nice spots for trees
     void MakeForest();
+
+    void MakeLakes();
 
     // Make road network extending
     // from town square.

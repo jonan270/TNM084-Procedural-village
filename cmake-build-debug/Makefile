@@ -128,29 +128,29 @@ TNM084_Procedural_village/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TNM084_Procedural_village.dir\build.make CMakeFiles/TNM084_Procedural_village.dir/build
 .PHONY : TNM084_Procedural_village/fast
 
-ForestMap.obj: ForestMap.cpp.obj
-.PHONY : ForestMap.obj
+BiomeMap.obj: BiomeMap.cpp.obj
+.PHONY : BiomeMap.obj
 
 # target to build an object file
-ForestMap.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TNM084_Procedural_village.dir\build.make CMakeFiles/TNM084_Procedural_village.dir/ForestMap.cpp.obj
-.PHONY : ForestMap.cpp.obj
+BiomeMap.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TNM084_Procedural_village.dir\build.make CMakeFiles/TNM084_Procedural_village.dir/BiomeMap.cpp.obj
+.PHONY : BiomeMap.cpp.obj
 
-ForestMap.i: ForestMap.cpp.i
-.PHONY : ForestMap.i
+BiomeMap.i: BiomeMap.cpp.i
+.PHONY : BiomeMap.i
 
 # target to preprocess a source file
-ForestMap.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TNM084_Procedural_village.dir\build.make CMakeFiles/TNM084_Procedural_village.dir/ForestMap.cpp.i
-.PHONY : ForestMap.cpp.i
+BiomeMap.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TNM084_Procedural_village.dir\build.make CMakeFiles/TNM084_Procedural_village.dir/BiomeMap.cpp.i
+.PHONY : BiomeMap.cpp.i
 
-ForestMap.s: ForestMap.cpp.s
-.PHONY : ForestMap.s
+BiomeMap.s: BiomeMap.cpp.s
+.PHONY : BiomeMap.s
 
 # target to generate assembly for a file
-ForestMap.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TNM084_Procedural_village.dir\build.make CMakeFiles/TNM084_Procedural_village.dir/ForestMap.cpp.s
-.PHONY : ForestMap.cpp.s
+BiomeMap.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TNM084_Procedural_village.dir\build.make CMakeFiles/TNM084_Procedural_village.dir/BiomeMap.cpp.s
+.PHONY : BiomeMap.cpp.s
 
 InstancingModel.obj: InstancingModel.cpp.obj
 .PHONY : InstancingModel.obj
@@ -425,9 +425,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... TNM084_Procedural_village
-	@echo ... ForestMap.obj
-	@echo ... ForestMap.i
-	@echo ... ForestMap.s
+	@echo ... BiomeMap.obj
+	@echo ... BiomeMap.i
+	@echo ... BiomeMap.s
 	@echo ... InstancingModel.obj
 	@echo ... InstancingModel.i
 	@echo ... InstancingModel.s

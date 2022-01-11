@@ -191,19 +191,19 @@ CMakeFiles/TNM084_Procedural_village.dir/InstancingModel.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TNM084_Procedural_village.dir/InstancingModel.cpp.s"
 	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\InstancingModel.cpp" -o CMakeFiles\TNM084_Procedural_village.dir\InstancingModel.cpp.s
 
-CMakeFiles/TNM084_Procedural_village.dir/ForestMap.cpp.obj: CMakeFiles/TNM084_Procedural_village.dir/flags.make
-CMakeFiles/TNM084_Procedural_village.dir/ForestMap.cpp.obj: CMakeFiles/TNM084_Procedural_village.dir/includes_CXX.rsp
-CMakeFiles/TNM084_Procedural_village.dir/ForestMap.cpp.obj: ../ForestMap.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/TNM084_Procedural_village.dir/ForestMap.cpp.obj"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\TNM084_Procedural_village.dir\ForestMap.cpp.obj -c "E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\ForestMap.cpp"
+CMakeFiles/TNM084_Procedural_village.dir/BiomeMap.cpp.obj: CMakeFiles/TNM084_Procedural_village.dir/flags.make
+CMakeFiles/TNM084_Procedural_village.dir/BiomeMap.cpp.obj: CMakeFiles/TNM084_Procedural_village.dir/includes_CXX.rsp
+CMakeFiles/TNM084_Procedural_village.dir/BiomeMap.cpp.obj: ../BiomeMap.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/TNM084_Procedural_village.dir/BiomeMap.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\TNM084_Procedural_village.dir\BiomeMap.cpp.obj -c "E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\BiomeMap.cpp"
 
-CMakeFiles/TNM084_Procedural_village.dir/ForestMap.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TNM084_Procedural_village.dir/ForestMap.cpp.i"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\ForestMap.cpp" > CMakeFiles\TNM084_Procedural_village.dir\ForestMap.cpp.i
+CMakeFiles/TNM084_Procedural_village.dir/BiomeMap.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TNM084_Procedural_village.dir/BiomeMap.cpp.i"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\BiomeMap.cpp" > CMakeFiles\TNM084_Procedural_village.dir\BiomeMap.cpp.i
 
-CMakeFiles/TNM084_Procedural_village.dir/ForestMap.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TNM084_Procedural_village.dir/ForestMap.cpp.s"
-	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\ForestMap.cpp" -o CMakeFiles\TNM084_Procedural_village.dir\ForestMap.cpp.s
+CMakeFiles/TNM084_Procedural_village.dir/BiomeMap.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TNM084_Procedural_village.dir/BiomeMap.cpp.s"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\BiomeMap.cpp" -o CMakeFiles\TNM084_Procedural_village.dir\BiomeMap.cpp.s
 
 CMakeFiles/TNM084_Procedural_village.dir/common/Windows/glew.c.obj: CMakeFiles/TNM084_Procedural_village.dir/flags.make
 CMakeFiles/TNM084_Procedural_village.dir/common/Windows/glew.c.obj: CMakeFiles/TNM084_Procedural_village.dir/includes_C.rsp
@@ -244,7 +244,7 @@ TNM084_Procedural_village_OBJECTS = \
 "CMakeFiles/TNM084_Procedural_village.dir/TerrainGrid.cpp.obj" \
 "CMakeFiles/TNM084_Procedural_village.dir/LittleOBJExtension.cpp.obj" \
 "CMakeFiles/TNM084_Procedural_village.dir/InstancingModel.cpp.obj" \
-"CMakeFiles/TNM084_Procedural_village.dir/ForestMap.cpp.obj" \
+"CMakeFiles/TNM084_Procedural_village.dir/BiomeMap.cpp.obj" \
 "CMakeFiles/TNM084_Procedural_village.dir/common/Windows/glew.c.obj" \
 "CMakeFiles/TNM084_Procedural_village.dir/common/Windows/MicroGlut.c.obj"
 
@@ -260,7 +260,7 @@ TNM084_Procedural_village.exe: CMakeFiles/TNM084_Procedural_village.dir/noise/no
 TNM084_Procedural_village.exe: CMakeFiles/TNM084_Procedural_village.dir/TerrainGrid.cpp.obj
 TNM084_Procedural_village.exe: CMakeFiles/TNM084_Procedural_village.dir/LittleOBJExtension.cpp.obj
 TNM084_Procedural_village.exe: CMakeFiles/TNM084_Procedural_village.dir/InstancingModel.cpp.obj
-TNM084_Procedural_village.exe: CMakeFiles/TNM084_Procedural_village.dir/ForestMap.cpp.obj
+TNM084_Procedural_village.exe: CMakeFiles/TNM084_Procedural_village.dir/BiomeMap.cpp.obj
 TNM084_Procedural_village.exe: CMakeFiles/TNM084_Procedural_village.dir/common/Windows/glew.c.obj
 TNM084_Procedural_village.exe: CMakeFiles/TNM084_Procedural_village.dir/common/Windows/MicroGlut.c.obj
 TNM084_Procedural_village.exe: CMakeFiles/TNM084_Procedural_village.dir/build.make
