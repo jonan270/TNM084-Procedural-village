@@ -7,7 +7,7 @@
 
 #include "TerrainGrid.h"
 
-TerrainGrid::TerrainGrid() : forestMap{0.1 * kPolySize, (int)time(nullptr)*(rand() % 10 + 1)} {
+TerrainGrid::TerrainGrid() : forestMap{0.1 * kPolySize, (int)time(nullptr)*(rand() % 100 + 1)} {
     // Base random seed on current time
     randomSeed = forestMap.randSeed;
     srand(randomSeed);
