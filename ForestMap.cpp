@@ -26,10 +26,10 @@ bool ForestMap::IsForested(float x, float y) {
 bool ForestMap::IsTreeSpot(float x, float y) {
     // Small noise pattern, place individual
     // trees.
-    float smallNoise = std::abs(noise2(1000.0 * frequency * (float)x + 0.23f * randVal,
-                                       1000.0 * frequency * (float)y + 0.22f * randVal));
+    float smallNoise = std::abs(noise2(1000.0 * frequency * (float)x + 0.23f,
+                                       1000.0 * frequency * (float)y + 0.22f));
 
     //std::cout << "Randval = " << randVal << ", smallNoise = " << smallNoise << "\n";
 
-    return IsForested(x,y) && smallNoise > 0.21;
+    return IsForested(x,y) && smallNoise > 0.35;
 }
