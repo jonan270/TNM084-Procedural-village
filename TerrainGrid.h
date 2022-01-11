@@ -60,6 +60,8 @@ private:
     constexpr static int branchPoints = 3;
     constexpr static int houseClearance = 4;
 
+    ForestMap forestMap;
+
     const float branchProb = 0.85;
 
     constexpr static int straightLen = 3;

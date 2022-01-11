@@ -7,16 +7,20 @@
 
 #include <cstdlib>
 #include "noise1234.h"
+#include "cmath"
+#include <iostream>
 
 class ForestMap {
 public:
-    ForestMap();
-    ForestMap(float f);
+    ForestMap(float f, int rSeed);
+    int randSeed;
 
     // Is this 2d position forested?
-    IsForested(float x, float y);
+    bool IsForested(float x, float y);
+    bool IsTreeSpot(float x, float y);
 private:
     float frequency;
+    float randVal;
 };
 
 

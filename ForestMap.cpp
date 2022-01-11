@@ -4,23 +4,32 @@
 
 #include "ForestMap.h"
 
-ForestMap::ForestMap(float f) : frequency{f} {}
-ForestMap::ForestMap() : frequency{1.f} {}
+ForestMap::ForestMap(float f, int rSeed) : frequency{f} {
+    srand(rSeed);
+    randSeed = rSeed;
+    randVal = (rand() % 100 + 1.f)/100.f; // Between 0-1
+    std::cout << "Randval: " << randVal << "\n";
+}
 
-int ForestMap::IsForested(float x, float y) {
+bool ForestMap::IsForested(float x, float y) {
     // Makes use of unseeded rand, ensures same
     // return value every time.
 
     // "Big noise pattern", draws blobs of
     // forest.
-    float randVal = (rand() % 100)/100.0;
-    float largeNoise = noise2(frequency * (float)x + 0.23f * randVal,
-                       frequency * (float)y + 0.22f * randVal);
-    if(largeNoise < 0.1) return false;
+    float largeNoise = std::abs(noise2(frequency * (float)x + 0.23f * randVal,
+                       frequency * (float)y + 0.22f * randVal));
+    return largeNoise > 0.2;
 
+}
+
+bool ForestMap::IsTreeSpot(float x, float y) {
     // Small noise pattern, place individual
     // trees.
-    float smallNoise = noise2(0.001*frequency * (float)x + 0.23f * randVal,
-                              0.001*frequency * (float)y + 0.22f * randVal);
-    return smallNoise > 0.15;
+    float smallNoise = std::abs(noise2(1000.0 * frequency * (float)x + 0.23f * randVal,
+                                       1000.0 * frequency * (float)y + 0.22f * randVal));
+
+    //std::cout << "Randval = " << randVal << ", smallNoise = " << smallNoise << "\n";
+
+    return IsForested(x,y) && smallNoise > 0.21;
 }

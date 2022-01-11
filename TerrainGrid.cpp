@@ -7,10 +7,12 @@
 
 #include "TerrainGrid.h"
 
-TerrainGrid::TerrainGrid() {
+TerrainGrid::TerrainGrid() : forestMap{0.1 * kPolySize, (int)time(nullptr)} {
     // Base random seed on current time
-    randomSeed = (int)time(nullptr);
+    randomSeed = forestMap.randSeed;
     srand(randomSeed);
+
+    //forestMap = ForestMap(0.1 * kPolySize, randomSeed);
 
     MakeTerrain();
     MakeRoads();
@@ -259,14 +261,14 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
 }
 
 void TerrainGrid::MakeForest() {
-    ForestMap forestMap{0.1 * kPolySize};
+    //ForestMap forestMap{0.1 * kPolySize};
     for (int x = 0; x < kTerrainSize; x++) {
         for (int z = 0; z < kTerrainSize; z++) {
             // Get correct index
             int ix = GetArrIndex(x,z);
 
             // Check if a tree should be placed here
-            if(forestMap.IsForested(x,z) && !occupied[ix] && !IsRoad(x,z))
+            if(forestMap.IsTreeSpot(x,z) && !occupied[ix] && !IsRoad(x,z))
                 treeSpots.push_back(vertices[ix]);
         }
     }
