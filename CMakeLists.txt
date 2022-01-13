@@ -27,8 +27,8 @@ set(SOURCES main.cpp
         LittleOBJExtension.cpp
         InstancingModel.h
         InstancingModel.cpp
-        BiomeMap.cpp
-        BiomeMap.h)
+        BiomeMap.h
+        BiomeMap.cpp)
 
 find_package(OpenGL REQUIRED)
 find_package(GLUT REQUIRED)

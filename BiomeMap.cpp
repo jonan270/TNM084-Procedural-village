@@ -14,8 +14,8 @@ BiomeMap::BiomeMap(float f, int rSeed) : frequency{f} {
 bool BiomeMap::IsForested(float x, float y) {
     // "Big noise pattern", draws blobs of
     // forest.
-    float largeNoise = std::abs(noise2(0.5*frequency * (float)x + 0.23f * randVal,
-                       0.5*frequency * (float)y + 0.22f * randVal));
+    float largeNoise = std::abs(noise2(0.5*frequency * (float)x + 0.23f * randVal*100,
+                       0.5*frequency * (float)y + 0.22f * randVal*33));
     return largeNoise > 0.2;
 
 }
@@ -28,19 +28,19 @@ bool BiomeMap::IsTreeSpot(float x, float y) {
 
     //std::cout << "Randval = " << randVal << ", smallNoise = " << smallNoise << "\n";
 
-    return IsForested(x,y) && smallNoise > 0.4;
+    return IsForested(x,y) && smallNoise > 0.35;
 }
 
 bool BiomeMap::IsLake(float x, float y) {
-    return LakeNoise(x, y , 0.35);
+    return LakeNoise(x, y , 0.40);
 }
 
 bool BiomeMap::IsBeach(float x, float y) {
-    return LakeNoise(x, y, 0.34);
+    return LakeNoise(x, y, 0.39);
 }
 
 bool BiomeMap::LakeNoise(float x, float y, float gate) {
-    float largeNoise = std::abs(noise2(0.2*frequency * (float)x + 0.773f * randVal,
-                                       0.2*frequency * (float)y + 0.627f * randVal));
-    return largeNoise > gate - 0.1;
+    float largeNoise = std::abs(noise2(0.3*frequency * (float)x + 0.773f * randVal*100,
+                                       0.3*frequency * (float)y + 0.627f * randVal*33));
+    return largeNoise > gate;
 }
