@@ -14,6 +14,8 @@ TerrainGrid::TerrainGrid() {
 
     MakeTerrain();
     MakeRoads();
+    MakeForest();
+
 
     /*
     for (int x = 0; x < kTerrainSize; x++) {
@@ -23,7 +25,8 @@ TerrainGrid::TerrainGrid() {
                 colors[ix] = SetVec3(0,1,0);
         }
     }
-    */
+     */
+
 }
 
 void TerrainGrid::MakeTerrain() {
@@ -137,7 +140,7 @@ void TerrainGrid::MakeRoads() {
 
 }
 
-void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection, int maxDist) {
+void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
     // Number of allowed directions for a given direction
     const int N_ALLOWED_DIR = 3;
 
@@ -175,11 +178,8 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection, int maxDi
     int distBranch = 0;
 
     Direction newDir = startDirection;
-    while(maxDist <= 0 || distTotal < maxDist) {
-        // Break when edge of map is reached
-        //if( (countX >= kTerrainSize || countZ >= kTerrainSize) ||
-        //    (countX <= 0 || countZ <= 0))
-        //    break;
+    while(true) {
+        // Break if edge of map is reached
         if(!IsValidIndex(countX, countZ)) break;
 
         if (distStraight > straightLen) {
@@ -202,7 +202,7 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection, int maxDi
         int px = p.first;
         int pz = p.second;
 
-        // We have encounttered a crossing road! Break.
+        // We have encountered a crossing road! Break.
         if(IsValidIndex(px, pz) && occupied[GetArrIndex(px, pz)]) break;
 
         countX = px;
@@ -214,6 +214,12 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection, int maxDi
             if(rand() % 2 == 0) {
                 vec3 location = vertices[GetArrIndex(countX, countZ)];
                 buildingSpots.emplace_back(location, newDir);
+
+                // Set area around house to occupied
+                for(int bx = countX - houseClearance; bx < countX + houseClearance; bx ++) {
+                    for(int bz = countZ - houseClearance; bz < countZ + houseClearance; bz ++)
+                        if(IsValidIndex(bx,bz)) occupied[GetArrIndex(bx,bz)] = true;
+                }
                 break;
             }
 
@@ -252,6 +258,20 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection, int maxDi
     }
 }
 
+void TerrainGrid::MakeForest() {
+    ForestMap forestMap{0.1 * kPolySize};
+    for (int x = 0; x < kTerrainSize; x++) {
+        for (int z = 0; z < kTerrainSize; z++) {
+            // Get correct index
+            int ix = GetArrIndex(x,z);
+
+            // Check if a tree should be placed here
+            if(forestMap.IsForested(x,z) && !occupied[ix] && !IsRoad(x,z))
+                treeSpots.push_back(vertices[ix]);
+        }
+    }
+}
+
 bool TerrainGrid::IsInTownSquare(int x, int z) const {
     return (x >= townSquareCenterPoint.first - townSquareWidth &&
             x <= townSquareCenterPoint.first + townSquareWidth &&
@@ -261,10 +281,11 @@ bool TerrainGrid::IsInTownSquare(int x, int z) const {
 
 bool TerrainGrid::IsRoad(int x, int z) {
     vec3 cl = colors[GetArrIndex(x,z)];
+
     return
-    cl.x == roadColor.x &&
-    cl.y == roadColor.y &&
-    cl.z == roadColor.z;
+        cl.x == roadColor.x &&
+        cl.y == roadColor.y &&
+        cl.z == roadColor.z;
 }
 
 int TerrainGrid::GetArrIndex(int x, int z) {
@@ -272,8 +293,9 @@ int TerrainGrid::GetArrIndex(int x, int z) {
 }
 
 float TerrainGrid::GetYNoiseValue(int x, int z) {
-    return kPolySize * noise2(kPolySize * (float)x + 0.23f,
-                              kPolySize * (float)z + 0.22f);
+    float randVal = (rand() % 100)/100.0;
+    return kPolySize * noise2(kPolySize * (float)x + 0.23f * randVal,
+                              kPolySize * (float)z + 0.22f * randVal);
 }
 
 TerrainGrid::Direction TerrainGrid::RandDirection4() {
@@ -432,6 +454,5 @@ bool TerrainGrid::IsValidIndex(int x, int z) {
     return (x < kTerrainSize && z < kTerrainSize) &&
            (x >= 0 && z >= 0);
 }
-
 
 #pragma clang diagnostic pop

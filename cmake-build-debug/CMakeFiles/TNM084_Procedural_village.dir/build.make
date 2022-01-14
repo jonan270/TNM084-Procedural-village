@@ -177,10 +177,38 @@ CMakeFiles/TNM084_Procedural_village.dir/LittleOBJExtension.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TNM084_Procedural_village.dir/LittleOBJExtension.cpp.s"
 	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\LittleOBJExtension.cpp" -o CMakeFiles\TNM084_Procedural_village.dir\LittleOBJExtension.cpp.s
 
+CMakeFiles/TNM084_Procedural_village.dir/InstancingModel.cpp.obj: CMakeFiles/TNM084_Procedural_village.dir/flags.make
+CMakeFiles/TNM084_Procedural_village.dir/InstancingModel.cpp.obj: CMakeFiles/TNM084_Procedural_village.dir/includes_CXX.rsp
+CMakeFiles/TNM084_Procedural_village.dir/InstancingModel.cpp.obj: ../InstancingModel.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/TNM084_Procedural_village.dir/InstancingModel.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\TNM084_Procedural_village.dir\InstancingModel.cpp.obj -c "E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\InstancingModel.cpp"
+
+CMakeFiles/TNM084_Procedural_village.dir/InstancingModel.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TNM084_Procedural_village.dir/InstancingModel.cpp.i"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\InstancingModel.cpp" > CMakeFiles\TNM084_Procedural_village.dir\InstancingModel.cpp.i
+
+CMakeFiles/TNM084_Procedural_village.dir/InstancingModel.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TNM084_Procedural_village.dir/InstancingModel.cpp.s"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\InstancingModel.cpp" -o CMakeFiles\TNM084_Procedural_village.dir\InstancingModel.cpp.s
+
+CMakeFiles/TNM084_Procedural_village.dir/ForestMap.cpp.obj: CMakeFiles/TNM084_Procedural_village.dir/flags.make
+CMakeFiles/TNM084_Procedural_village.dir/ForestMap.cpp.obj: CMakeFiles/TNM084_Procedural_village.dir/includes_CXX.rsp
+CMakeFiles/TNM084_Procedural_village.dir/ForestMap.cpp.obj: ../ForestMap.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/TNM084_Procedural_village.dir/ForestMap.cpp.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\TNM084_Procedural_village.dir\ForestMap.cpp.obj -c "E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\ForestMap.cpp"
+
+CMakeFiles/TNM084_Procedural_village.dir/ForestMap.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/TNM084_Procedural_village.dir/ForestMap.cpp.i"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\ForestMap.cpp" > CMakeFiles\TNM084_Procedural_village.dir\ForestMap.cpp.i
+
+CMakeFiles/TNM084_Procedural_village.dir/ForestMap.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/TNM084_Procedural_village.dir/ForestMap.cpp.s"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\ForestMap.cpp" -o CMakeFiles\TNM084_Procedural_village.dir\ForestMap.cpp.s
+
 CMakeFiles/TNM084_Procedural_village.dir/common/Windows/glew.c.obj: CMakeFiles/TNM084_Procedural_village.dir/flags.make
 CMakeFiles/TNM084_Procedural_village.dir/common/Windows/glew.c.obj: CMakeFiles/TNM084_Procedural_village.dir/includes_C.rsp
 CMakeFiles/TNM084_Procedural_village.dir/common/Windows/glew.c.obj: ../common/Windows/glew.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/TNM084_Procedural_village.dir/common/Windows/glew.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/TNM084_Procedural_village.dir/common/Windows/glew.c.obj"
 	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\TNM084_Procedural_village.dir\common\Windows\glew.c.obj -c "E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\common\Windows\glew.c"
 
 CMakeFiles/TNM084_Procedural_village.dir/common/Windows/glew.c.i: cmake_force
@@ -194,7 +222,7 @@ CMakeFiles/TNM084_Procedural_village.dir/common/Windows/glew.c.s: cmake_force
 CMakeFiles/TNM084_Procedural_village.dir/common/Windows/MicroGlut.c.obj: CMakeFiles/TNM084_Procedural_village.dir/flags.make
 CMakeFiles/TNM084_Procedural_village.dir/common/Windows/MicroGlut.c.obj: CMakeFiles/TNM084_Procedural_village.dir/includes_C.rsp
 CMakeFiles/TNM084_Procedural_village.dir/common/Windows/MicroGlut.c.obj: ../common/Windows/MicroGlut.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/TNM084_Procedural_village.dir/common/Windows/MicroGlut.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/TNM084_Procedural_village.dir/common/Windows/MicroGlut.c.obj"
 	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\TNM084_Procedural_village.dir\common\Windows\MicroGlut.c.obj -c "E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\common\Windows\MicroGlut.c"
 
 CMakeFiles/TNM084_Procedural_village.dir/common/Windows/MicroGlut.c.i: cmake_force
@@ -215,6 +243,8 @@ TNM084_Procedural_village_OBJECTS = \
 "CMakeFiles/TNM084_Procedural_village.dir/noise/noise1234.c.obj" \
 "CMakeFiles/TNM084_Procedural_village.dir/TerrainGrid.cpp.obj" \
 "CMakeFiles/TNM084_Procedural_village.dir/LittleOBJExtension.cpp.obj" \
+"CMakeFiles/TNM084_Procedural_village.dir/InstancingModel.cpp.obj" \
+"CMakeFiles/TNM084_Procedural_village.dir/ForestMap.cpp.obj" \
 "CMakeFiles/TNM084_Procedural_village.dir/common/Windows/glew.c.obj" \
 "CMakeFiles/TNM084_Procedural_village.dir/common/Windows/MicroGlut.c.obj"
 
@@ -229,13 +259,15 @@ TNM084_Procedural_village.exe: CMakeFiles/TNM084_Procedural_village.dir/common/L
 TNM084_Procedural_village.exe: CMakeFiles/TNM084_Procedural_village.dir/noise/noise1234.c.obj
 TNM084_Procedural_village.exe: CMakeFiles/TNM084_Procedural_village.dir/TerrainGrid.cpp.obj
 TNM084_Procedural_village.exe: CMakeFiles/TNM084_Procedural_village.dir/LittleOBJExtension.cpp.obj
+TNM084_Procedural_village.exe: CMakeFiles/TNM084_Procedural_village.dir/InstancingModel.cpp.obj
+TNM084_Procedural_village.exe: CMakeFiles/TNM084_Procedural_village.dir/ForestMap.cpp.obj
 TNM084_Procedural_village.exe: CMakeFiles/TNM084_Procedural_village.dir/common/Windows/glew.c.obj
 TNM084_Procedural_village.exe: CMakeFiles/TNM084_Procedural_village.dir/common/Windows/MicroGlut.c.obj
 TNM084_Procedural_village.exe: CMakeFiles/TNM084_Procedural_village.dir/build.make
 TNM084_Procedural_village.exe: CMakeFiles/TNM084_Procedural_village.dir/linklibs.rsp
 TNM084_Procedural_village.exe: CMakeFiles/TNM084_Procedural_village.dir/objects1.rsp
 TNM084_Procedural_village.exe: CMakeFiles/TNM084_Procedural_village.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable TNM084_Procedural_village.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="E:\Skola\TNM084 - Procedural images\git\project\Procedural village\TNM084-Procedural-village\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable TNM084_Procedural_village.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\TNM084_Procedural_village.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

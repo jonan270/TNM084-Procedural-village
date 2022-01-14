@@ -16,6 +16,7 @@
 #include <cassert>
 
 #include <iostream>
+#include "ForestMap.h"
 
 
 class TerrainGrid {
@@ -37,9 +38,11 @@ public:
 
 
     // The class stores appropriate locations
-    // for buildings.
+    // for buildings and trees.
     std::vector<std::pair<vec3,Direction>>
     buildingSpots;
+
+    std::vector<vec3> treeSpots;
 
     constexpr static int kTerrainSize = 512;
     constexpr static float kPolySize = 0.1f;
@@ -55,6 +58,7 @@ private:
 
     constexpr static int minBranchDist = 30;
     constexpr static int branchPoints = 3;
+    constexpr static int houseClearance = 4;
 
     const float branchProb = 0.85;
 
@@ -87,9 +91,12 @@ private:
     // Based on lab 3b
     void MakeTerrain();
 
+    // Find nice spots for trees
+    void MakeForest();
+
     // Make road network extending
     // from town square.
-    void MakeRoadFrom(int x, int z, Direction startDirection, int maxDist = -1);
+    void MakeRoadFrom(int x, int z, Direction startDirection);
     void MakeRoads();
 
     void DrawRoadAroundIdx(int x, int z, Direction current);
@@ -103,7 +110,7 @@ private:
 
     // Get the position value
     // obtained from noise function
-    static float GetYNoiseValue(int x, int z);
+    float GetYNoiseValue(int x, int z);
 
     // Access the correct array index
     // given grid indices for x and z
