@@ -45,7 +45,7 @@ public:
         }
 
         // Move up/down
-        if (glutKeyIsDown('z'))
+        if (glutKeyIsDown('x'))
             campos = VectorAdd(campos, ScalarMult(SetVector(0, 1, 0), 0.01));
         if (glutKeyIsDown('c'))
             campos = VectorSub(campos, ScalarMult(SetVector(0, 1, 0), 0.01));

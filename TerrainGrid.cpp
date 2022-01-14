@@ -7,12 +7,15 @@
 
 #include "TerrainGrid.h"
 
-TerrainGrid::TerrainGrid() {
+TerrainGrid::TerrainGrid() : biomeMap{0.1 * kPolySize, (int)time(nullptr) * (rand() % 10000 + 1)} {
     // Base random seed on current time
-    randomSeed = (int)time(nullptr);
+    randomSeed = biomeMap.randSeed;
     srand(randomSeed);
 
+    //biomeMap = BiomeMap(0.1 * kPolySize, randomSeed);
+
     MakeTerrain();
+    MakeLakes();
     MakeRoads();
     MakeForest();
 
@@ -259,15 +262,36 @@ void TerrainGrid::MakeRoadFrom(int x, int z, Direction startDirection) {
 }
 
 void TerrainGrid::MakeForest() {
-    ForestMap forestMap{0.1 * kPolySize};
+    //BiomeMap biomeMap{0.1 * kPolySize};
     for (int x = 0; x < kTerrainSize; x++) {
         for (int z = 0; z < kTerrainSize; z++) {
             // Get correct index
             int ix = GetArrIndex(x,z);
 
             // Check if a tree should be placed here
-            if(forestMap.IsForested(x,z) && !occupied[ix] && !IsRoad(x,z))
+            if(biomeMap.IsTreeSpot(x, z) && !occupied[ix] && !IsRoad(x, z) && !biomeMap.IsBeach(x,z))
                 treeSpots.push_back(vertices[ix]);
+        }
+    }
+}
+
+void TerrainGrid::MakeLakes() {
+    for (int x = 0; x < kTerrainSize; x++) {
+        for (int z = 0; z < kTerrainSize; z++) {
+            // Get correct index
+            int ix = GetArrIndex(x,z);
+
+            // Check if on lake perimiter or within
+            if(biomeMap.IsBeach(x,z)) {
+                occupied[ix] = true;
+                colors[ix] = SetVec3(0.584, 0.572, 0.458);
+                if(biomeMap.IsLake(x,z)) {
+                    // Make surface flat
+                    normals[ix] = SetVec3(0,1,0);
+                    vertices[ix].y = -0.1f; // Lower surface slightly
+                    colors[ix] = SetVec3(0.262, 0.407, 0.439);
+                }
+            }
         }
     }
 }

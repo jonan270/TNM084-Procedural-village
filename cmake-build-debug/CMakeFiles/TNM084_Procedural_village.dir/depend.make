@@ -29,10 +29,10 @@ CMakeFiles/TNM084_Procedural_village.dir/common/Windows/glew.c.obj: \
 CMakeFiles/TNM084_Procedural_village.dir/noise/noise1234.c.obj: \
  ../noise/noise1234.c \
  ../noise/noise1234.h
-CMakeFiles/TNM084_Procedural_village.dir/ForestMap.cpp.obj: \
+CMakeFiles/TNM084_Procedural_village.dir/BiomeMap.cpp.obj: \
  ../noise/noise1234.h \
- ../ForestMap.cpp \
- ../ForestMap.h
+ ../BiomeMap.cpp \
+ ../BiomeMap.h
 CMakeFiles/TNM084_Procedural_village.dir/InstancingModel.cpp.obj: \
  ../InstancingModel.cpp \
  ../InstancingModel.h \
@@ -48,7 +48,7 @@ CMakeFiles/TNM084_Procedural_village.dir/LittleOBJExtension.cpp.obj: \
  ../common/Windows/glew.h
 CMakeFiles/TNM084_Procedural_village.dir/TerrainGrid.cpp.obj: \
  ../noise/noise1234.h \
- ../ForestMap.h \
+ ../BiomeMap.h \
  ../TerrainGrid.cpp \
  ../TerrainGrid.h \
  ../common/GL_utilities.h \
@@ -58,7 +58,7 @@ CMakeFiles/TNM084_Procedural_village.dir/TerrainGrid.cpp.obj: \
  ../noise/noise1234.h
 CMakeFiles/TNM084_Procedural_village.dir/main.cpp.obj: \
  ../noise/noise1234.h \
- ../ForestMap.h \
+ ../BiomeMap.h \
  ../GlutCameraControls.h \
  ../InstancingModel.h \
  ../LittleOBJExtension.h \
