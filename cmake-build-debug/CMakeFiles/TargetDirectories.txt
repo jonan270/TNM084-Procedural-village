@@ -1,3 +1,0 @@
-E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/CMakeFiles/TNM084_Procedural_village.dir
-E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/CMakeFiles/edit_cache.dir
-E:/Skola/TNM084 - Procedural images/git/project/Procedural village/TNM084-Procedural-village/cmake-build-debug/CMakeFiles/rebuild_cache.dir
