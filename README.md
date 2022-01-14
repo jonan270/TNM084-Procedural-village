@@ -7,7 +7,7 @@ but it can be changed to use predefined seedvalue by providing an integer value 
 the biomeMap member variable inside TerrainGrid.cpp.
 
 # Controls
--WASD EQ XC : Move the camera
--\+ : Tilt camera upwards
--\- : Tilt camera downwards
--z : Regenerate procedural village
+**WASD EQ XC** : Move the camera
+**\+** : Tilt camera upwards
+**\-** : Tilt camera downwards
+**z** : Regenerate procedural village
